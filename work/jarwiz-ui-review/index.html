@@ -22,7 +22,7 @@
     h1 span{color:#9a9e95;font-weight:400}
     .description{max-width:650px;margin:0;font-size:18px;line-height:1.5;color:var(--muted)}
     .surface-tabs{display:flex;gap:8px;overflow-x:auto;padding:5px 3px 12px;margin:0 -3px 8px;scrollbar-width:thin;scrollbar-color:#dce1d7 transparent}
-    .surface-tab{display:flex;align-items:center;justify-content:flex-start;gap:10px;flex:1;min-width:0;padding:8px;background:#fff;border:1px solid transparent;border-radius:10px;text-align:left;color:#8b9285;font-size:13px;line-height:1.2;white-space:nowrap}
+    .surface-tab{display:flex;align-items:center;justify-content:flex-start;gap:10px;flex:1 0 auto;min-width:0;padding:8px;background:#fff;border:1px solid transparent;border-radius:10px;text-align:left;color:#8b9285;font-size:13px;line-height:1.2;white-space:nowrap}
     .surface-tab:hover{background:#f8f9f6;color:#424d39}
     .surface-tab[aria-selected="true"]{background:#f4f6f0;border-color:#e2e7dc;color:#273421}
     .tab-preview{display:block;flex:none;width:48px;height:32px;border:1px solid #e6e9e0;border-radius:4px;overflow:hidden;background:var(--paper)}
@@ -63,16 +63,18 @@
     <header class="intro">
       <svg class="brand" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 1C14.6 11.3 11.3 14.6 1 16c10.3 1.4 13.6 4.7 15 15 1.4-10.3 4.7-13.6 15-15C20.7 14.6 17.4 11.3 16 1Z"/></svg>
       <h1>Jarwiz <span>/ UI review</span></h1>
-      <p class="description">Compact attachments, clearer type, and sources inside the cards. Six surfaces, ready for a closer look.</p>
+      <p class="description">Compact attachments, clearer type, and sources inside the cards. Eight surfaces, ready for a closer look.</p>
     </header>
     <section aria-label="Product screenshots">
       <div class="surface-tabs" role="tablist" aria-label="Product surface">
         <button type="button" class="surface-tab" id="tab-start" role="tab" aria-selected="true" aria-controls="surface-panel" tabindex="0" data-surface="start"><span class="tab-preview"><img src="./surfaces/start.png" alt="" loading="lazy"></span><span>Start</span></button>
         <button type="button" class="surface-tab" id="tab-attachments" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="attachments"><span class="tab-preview"><img src="./surfaces/attachments.png" alt="" loading="lazy"></span><span>Attachments</span></button>
         <button type="button" class="surface-tab" id="tab-research" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="research"><span class="tab-preview"><img src="./surfaces/research.png" alt="" loading="lazy"></span><span>Research</span></button>
+        <button type="button" class="surface-tab" id="tab-opportunities" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="opportunities"><span class="tab-preview"><img src="./surfaces/opportunities.png?v=ideation-cards" alt="" loading="lazy"></span><span>Opportunities</span></button>
+        <button type="button" class="surface-tab" id="tab-evidence" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="evidence"><span class="tab-preview"><img src="./surfaces/evidence.png?v=ideation-cards" alt="" loading="lazy"></span><span>Evidence</span></button>
         <button type="button" class="surface-tab" id="tab-comparison" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="comparison"><span class="tab-preview"><img src="./surfaces/comparison.png" alt="" loading="lazy"></span><span>Comparison</span></button>
         <button type="button" class="surface-tab" id="tab-blueprint" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="blueprint"><span class="tab-preview"><img src="./surfaces/blueprint.png?v=flow-primitives" alt="" loading="lazy"></span><span>Blueprint</span></button>
-        <button type="button" class="surface-tab" id="tab-canvas" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="canvas"><span class="tab-preview"><img src="./surfaces/canvas.png?v=flow-primitives" alt="" loading="lazy"></span><span>Canvas</span></button>
+        <button type="button" class="surface-tab" id="tab-canvas" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="canvas"><span class="tab-preview"><img src="./surfaces/canvas.png?v=ideation-cards" alt="" loading="lazy"></span><span>Canvas</span></button>
       </div>
       <div id="surface-panel" role="tabpanel" aria-labelledby="tab-start" tabindex="0">
         <figure class="surface-figure">
@@ -98,6 +100,8 @@
       start:{label:'Start',caption:'Begin with the question.',alt:'Jarwiz’s starting prompt'},
       attachments:{label:'Attachments',caption:'Keep the supporting files close to the question.',alt:'Compact report attachments in the Jarwiz prompt'},
       research:{label:'Research',caption:'Read the reasoning and follow its sources.',alt:'A Jarwiz research card with sources inside the card'},
+      opportunities:{label:'Opportunities',caption:'Explore the opportunities before choosing a solution.',alt:'An opportunity map on the Jarwiz canvas'},
+      evidence:{label:'Evidence',caption:'Separate what the reports show from what still needs testing.',alt:'Evidence and assumptions from the supplied reports'},
       comparison:{label:'Comparison',caption:'Compare the approaches side by side.',alt:'A detailed comparison table in Jarwiz'},
       blueprint:{label:'Blueprint',caption:'Follow each step across service lanes, with recovery paths where needed.',alt:'A chronological service blueprint with conditional recovery paths on the Jarwiz canvas'},
       canvas:{label:'Canvas',caption:'Keep the whole response in view.',alt:'The complete Jarwiz working canvas'},
@@ -106,7 +110,7 @@
     const panel=document.querySelector('#surface-panel'),stage=document.querySelector('.surface-stage'),mainImage=document.querySelector('#surface-image'),imageLink=document.querySelector('#surface-open'),fullLink=document.querySelector('#surface-full'),empty=document.querySelector('#surface-empty');
     const dialog=document.querySelector('#surface-lightbox'),dialogImage=document.querySelector('#lightbox-image'),sizeButton=document.querySelector('#lightbox-size');
     let selected='start',previousOverflow='';
-    const path=key=>`./surfaces/${key}.png${key==='blueprint'||key==='canvas'?'?v=flow-primitives':''}`;
+    const path=key=>`./surfaces/${key}.png${['opportunities','evidence','canvas'].includes(key)?'?v=ideation-cards':key==='blueprint'?'?v=flow-primitives':''}`;
     function setImageState(ready){empty.hidden=ready;imageLink.style.visibility=ready?'visible':'hidden';fullLink.hidden=!ready;if(ready&&mainImage.naturalWidth){stage.style.aspectRatio=`${mainImage.naturalWidth} / ${mainImage.naturalHeight}`;}}
     function selectSurface(key,focus=false,updateHash=true){
       if(!Object.hasOwn(surfaces,key))return;
