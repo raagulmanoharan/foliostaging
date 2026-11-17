@@ -99,7 +99,7 @@
       attachments:{label:'Attachments',caption:'Keep the supporting files close to the question.',alt:'Compact report attachments in the Jarwiz prompt'},
       research:{label:'Research',caption:'Read the reasoning and follow its sources.',alt:'A Jarwiz research card with sources inside the card'},
       comparison:{label:'Comparison',caption:'Compare the approaches side by side.',alt:'A detailed comparison table in Jarwiz'},
-      blueprint:{label:'Blueprint',caption:'Trace the experience across user and system steps.',alt:'A service blueprint on the Jarwiz canvas'},
+      blueprint:{label:'Blueprint',caption:'Follow each step across service lanes, with recovery paths where needed.',alt:'A chronological service blueprint with conditional recovery paths on the Jarwiz canvas'},
       canvas:{label:'Canvas',caption:'Keep the whole response in view.',alt:'The complete Jarwiz working canvas'},
     };
     const tabs=[...document.querySelectorAll('[data-surface]')];
@@ -108,7 +108,8 @@
     let selected='start',previousOverflow='';
     const path=key=>`./surfaces/${key}.png`;
     function setImageState(ready){empty.hidden=ready;imageLink.style.visibility=ready?'visible':'hidden';fullLink.hidden=!ready;if(ready&&mainImage.naturalWidth){stage.style.aspectRatio=`${mainImage.naturalWidth} / ${mainImage.naturalHeight}`;}}
-    function selectSurface(key,focus=false){
+    function selectSurface(key,focus=false,updateHash=true){
+      if(!Object.hasOwn(surfaces,key))return;
       selected=key;
       const surface=surfaces[key];
       tabs.forEach(tab=>{const active=tab.dataset.surface===key;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;});
@@ -121,6 +122,7 @@
       const tab=document.querySelector(`#tab-${key}`);
       if(focus)tab.focus({preventScroll:true});
       tab.scrollIntoView({block:'nearest',inline:'nearest'});
+      if(updateHash&&location.hash!==`#${key}`)history.replaceState(history.state,'',`#${key}`);
     }
     tabs.forEach((tab,index)=>{
       tab.addEventListener('click',()=>selectSurface(tab.dataset.surface));
@@ -151,6 +153,9 @@
     sizeButton.addEventListener('click',()=>{
       const actual=dialog.dataset.actualSize!=='true';dialog.dataset.actualSize=String(actual);dialogImage.style.width=actual?`${dialogImage.naturalWidth||mainImage.naturalWidth}px`:'';sizeButton.textContent=actual?'Fit to view':'Actual size';sizeButton.setAttribute('aria-pressed',String(actual));
     });
+    function selectFromHash(){const key=location.hash.slice(1)||'start';if(Object.hasOwn(surfaces,key))selectSurface(key,false,false);}
+    window.addEventListener('hashchange',selectFromHash);
+    selectFromHash();
   </script>
 </body>
 </html>
