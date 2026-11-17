@@ -24,27 +24,27 @@
     <header class="intro">
       <p class="eyebrow">From onboarding to a working canvas</p>
       <h1>One question. A canvas to work with.</h1>
-      <p class="description">Start with a question. A screenshot, useful references, ideas, and a flow give you a canvas to work with.</p>
+      <p class="description">Ask a question. Explore the answer as research, comparisons, images, and websites on a spatial canvas.</p>
     </header>
     <figure class="film">
-      <video id="film" autoplay muted playsinline loop preload="auto" poster="./rich-poster.jpg" aria-label="Jarwiz onboarding: ask a question and explore its screenshot, references, ideas, and flow on the canvas">
-        <source src="./onboarding-rich.mp4" type="video/mp4">
-        <a class="fallback" href="./onboarding-rich.mp4">Watch the onboarding film</a>
+      <video id="film" autoplay muted playsinline loop preload="auto" poster="./answer-poster.jpg" aria-label="Jarwiz onboarding: ask a question and explore research, a detailed comparison, the supplied screenshot, and two website previews on the canvas">
+        <source src="./onboarding-answer.mp4" type="video/mp4">
+        <a class="fallback" href="./onboarding-answer.mp4">Watch the onboarding film</a>
       </video>
     </figure>
-    <input class="progress" id="progress" type="range" min="0" max="34.5333" step="0.05" value="0" aria-label="Video position">
+    <input class="progress" id="progress" type="range" min="0" max="45.8667" step="0.05" value="0" aria-label="Video position">
     <div class="controls">
       <div class="playback">
         <button class="icon-button" id="toggle" aria-label="Pause video"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path id="play-icon" d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg></button>
         <button class="icon-button" id="replay" aria-label="Replay video"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.2 8.5a7 7 0 1 1 .9 5.6M3 3v5.5h5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <button class="icon-button" id="expand" aria-label="View video full screen"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8V3h5m4 0h5v5M3 12v5h5m4 0h5v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <span class="time" id="time" aria-live="off">0:00 / 0:34</span>
+        <span class="time" id="time" aria-live="off">0:00 / 0:45</span>
       </div>
       <div class="chapters" aria-label="Video chapters">
         <button class="chapter" data-at="0" aria-pressed="true"><span>01</span>Onboarding</button>
-        <button class="chapter" data-at="2.46" aria-pressed="false"><span>02</span>Canvas</button>
+        <button class="chapter" data-at="2.44" aria-pressed="false"><span>02</span>Canvas</button>
         <button class="chapter" data-at="8.84" aria-pressed="false"><span>03</span>Prompt</button>
-        <button class="chapter" data-at="14.07" aria-pressed="false"><span>04</span>Cards</button>
+        <button class="chapter" data-at="13.9" aria-pressed="false"><span>04</span>Cards</button>
       </div>
     </div>
     <p class="static-note hide" id="motion-note">Press play to watch the canvas take shape.</p>
@@ -76,7 +76,7 @@
         <p class="surface-status" id="surface-status" role="status">Refined capture coming next.</p>
       </div>
     </section>
-    <footer class="footer"><span>Actual Jarwiz UI · Illustrative scenario and AI responses.</span><div class="footer-links"><a href="https://github.com/Shopify/polaris/blob/main/polaris.shopify.com/content/components/layout-and-structure/empty-state.mdx" target="_blank" rel="noopener">Design reference: Shopify Polaris ↗</a><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></div></footer>
+    <footer class="footer"><span>Source-based research · Prepared AI responses · Actual Jarwiz UI</span><div class="footer-links"><a href="https://github.com/Shopify/polaris-react-archive/blob/main/polaris.shopify.com/content/components/layout-and-structure/empty-state.mdx" target="_blank" rel="noopener">Polaris archive ↗</a><a href="https://github.com/primer/design/blob/main/content/ui-patterns/empty-states.mdx" target="_blank" rel="noopener">GitHub Primer ↗</a><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></div></footer>
   </main>
   <dialog class="surface-lightbox" id="surface-lightbox" aria-labelledby="lightbox-title" data-actual-size="false">
     <header class="lightbox-head"><p id="lightbox-title">Onboarding <span>Original</span></p><div class="lightbox-actions"><button type="button" class="lightbox-button" id="lightbox-size" aria-pressed="false">Actual size</button><button type="button" class="lightbox-button" id="lightbox-close" aria-label="Close screenshot"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m5 5 10 10M15 5 5 15" stroke-linecap="round"/></svg></button></div></header>
@@ -85,12 +85,12 @@
   <script>
     const film=document.querySelector('#film'),toggle=document.querySelector('#toggle'),icon=document.querySelector('#play-icon'),progress=document.querySelector('#progress'),time=document.querySelector('#time'),chapters=[...document.querySelectorAll('.chapter')];
     const clock=n=>`${Math.floor((n||0)/60)}:${String(Math.floor((n||0)%60)).padStart(2,'0')}`;
-    const update=()=>{const t=film.currentTime;progress.value=t;time.textContent=`${clock(t)} / ${clock(film.duration||34.5333)}`;chapters.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===Math.max(0,chapters.findLastIndex(chapter=>t>=Number(chapter.dataset.at))))));};
+    const update=()=>{const t=film.currentTime;progress.value=t;time.textContent=`${clock(t)} / ${clock(film.duration||45.8667)}`;chapters.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===Math.max(0,chapters.findLastIndex(chapter=>t>=Number(chapter.dataset.at))))));};
     const updatePlayback=()=>{toggle.setAttribute('aria-label',film.paused?'Play video':'Pause video');icon.setAttribute('d',film.paused?'M6 3l11 7-11 7z':'M5 3h3v14H5zm7 0h3v14h-3z');};
     const play=()=>film.play().catch(()=>updatePlayback());
     toggle.addEventListener('click',()=>film.paused?play():film.pause());
     document.querySelector('#replay').addEventListener('click',()=>{film.currentTime=0;play();});
-    document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open(film.currentSrc||'./onboarding-rich.mp4','_blank','noopener');}});
+    document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open(film.currentSrc||'./onboarding-answer.mp4','_blank','noopener');}});
     progress.addEventListener('input',()=>{film.currentTime=Number(progress.value);update();});
     chapters.forEach(button=>button.addEventListener('click',()=>{film.currentTime=Number(button.dataset.at);update();play();}));
     film.addEventListener('timeupdate',update);film.addEventListener('seeked',update);film.addEventListener('loadedmetadata',()=>{progress.max=film.duration;update();});film.addEventListener('play',updatePlayback);film.addEventListener('pause',updatePlayback);
@@ -101,14 +101,14 @@
       onboarding:{label:'Onboarding',before:'Six starting points before the canvas.',after:'Clearer hierarchy and a calmer first choice.'},
       canvas:{label:'Canvas',before:'The original workspace and its navigation.',after:'A quieter canvas with space for a fuller first response.'},
       prompt:{label:'Prompt',before:'The original prompt and context controls.',after:'A more focused place for the question and its context.'},
-      cards:{label:'Cards',before:'Original card spacing, type, and hierarchy.',after:'References, ideas, and a flow—distinct, connected, and readable.'},
+      cards:{label:'Cards',before:'Original card spacing, type, and hierarchy.',after:'Research with inline sources, a detailed comparison, the supplied image, and two website previews.'},
     };
     const surfaceTabs=[...document.querySelectorAll('[data-surface]')],versionButtons=[...document.querySelectorAll('[data-version]')];
     const surfacePanel=document.querySelector('#surface-panel'),surfaceImage=document.querySelector('#surface-image'),surfaceOpen=document.querySelector('#surface-open'),surfaceFull=document.querySelector('#surface-full'),surfaceEmpty=document.querySelector('#surface-empty'),surfaceStatus=document.querySelector('#surface-status');
     const lightbox=document.querySelector('#surface-lightbox'),lightboxImage=document.querySelector('#lightbox-image'),lightboxSize=document.querySelector('#lightbox-size');
     const imageAvailability=Object.fromEntries(Object.keys(surfaces).map(key=>[key,{before:null,after:null}]));
     let selectedSurface='onboarding',selectedVersion='after',shownVersion='before',bodyOverflow='';
-    const screenshotPath=(surface,version)=>`./surfaces/${version}-${surface}.png`;
+    const screenshotPath=(surface,version)=>`./surfaces/${version}-${surface}.png?v=answer`;
     function renderSurface(){
       const item=surfaces[selectedSurface],ready=imageAvailability[selectedSurface];
       shownVersion=selectedVersion==='after'&&ready.after===true?'after':'before';
