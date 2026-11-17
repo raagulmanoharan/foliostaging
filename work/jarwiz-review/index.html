@@ -57,8 +57,8 @@
     document.querySelector('#replay').addEventListener('click',()=>{film.currentTime=0;play();});
     document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open('./onboarding-canvas.mp4','_blank','noopener');}});
     progress.addEventListener('input',()=>{film.currentTime=Number(progress.value);update();});
-    chapters.forEach(button=>button.addEventListener('click',()=>{film.currentTime=Number(button.dataset.at);play();}));
-    film.addEventListener('timeupdate',update);film.addEventListener('loadedmetadata',()=>{progress.max=film.duration;update();});film.addEventListener('play',updatePlayback);film.addEventListener('pause',updatePlayback);
+    chapters.forEach(button=>button.addEventListener('click',()=>{film.currentTime=Number(button.dataset.at);update();play();}));
+    film.addEventListener('timeupdate',update);film.addEventListener('seeked',update);film.addEventListener('loadedmetadata',()=>{progress.max=film.duration;update();});film.addEventListener('play',updatePlayback);film.addEventListener('pause',updatePlayback);
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){film.autoplay=false;film.pause();document.querySelector('#motion-note').classList.remove('hide');updatePlayback();}
   </script>
 </body>
