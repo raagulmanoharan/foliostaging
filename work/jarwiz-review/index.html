@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Jarwiz — A clearer place to begin</title>
+  <style>
+    @font-face{font-family:Neue;src:url('./NeueMontreal-Regular.otf');font-weight:400;font-display:swap}
+    @font-face{font-family:Neue;src:url('./NeueMontreal-Medium.otf');font-weight:500 700;font-display:swap}
+    *{box-sizing:border-box}body{margin:0;background:#fff;color:#1b1d1b;font-family:Neue,Arial,sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}a{color:inherit;text-decoration:none}main{max-width:1160px;margin:auto;padding:42px 40px 60px}.masthead{display:flex;align-items:center;justify-content:space-between;font-size:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:500}.brand svg{width:21px;height:21px}.edition{color:#6e746e;font-size:14px}.intro{margin:64px 0 30px;max-width:680px}.eyebrow{font-size:13px;color:#727972;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px}h1{font-size:44px;line-height:1.05;letter-spacing:-1.8px;font-weight:500;margin:0 0 16px}.description{font-size:19px;line-height:1.5;color:#737973;margin:0}.film{margin:0;border-radius:18px;background:#f5f5f2;overflow:hidden;border:1px solid #e7e9e4;position:relative;aspect-ratio:3/2}video{width:100%;height:100%;display:block;object-fit:contain}.controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:17px}.playback{display:flex;align-items:center;gap:8px}.icon-button{width:38px;height:38px;border:1px solid #e4e8e2;border-radius:50%;display:grid;place-items:center;background:white}.icon-button:hover{background:#f3f5f1}.icon-button:focus-visible,.chapter:focus-visible{outline:2px solid #253a2c;outline-offset:4px}.icon-button svg{width:16px;height:16px}.time{font-size:13px;color:#717870;font-variant-numeric:tabular-nums;margin-left:5px}.chapters{display:flex;gap:7px}.chapter{background:#fff;border:1px solid #e4e8e2;border-radius:30px;padding:10px 13px;font-size:13px;color:#737973;transition:background .2s,color .2s,border-color .2s}.chapter[aria-pressed="true"]{background:#20251f;color:#fff;border-color:#20251f}.chapter span{opacity:.6;margin-right:6px}.footer{margin-top:38px;padding-top:21px;border-top:1px solid #eceee9;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#737973}.footer a:hover{color:#1b1d1b}.static-note{margin:12px 0;color:#737973;font-size:14px}.progress{width:100%;accent-color:#303d31;height:2px;margin-top:19px;display:block;cursor:pointer}.fallback{padding:20px}.hide{display:none}
+    @media(max-width:700px){main{padding:25px 18px 32px}.intro{margin:48px 0 26px}h1{font-size:35px;letter-spacing:-1.2px}.description{font-size:17px}.film{border-radius:11px;margin:0 -8px;width:calc(100% + 16px)}.controls{align-items:flex-start;flex-wrap:wrap}.chapters{order:2;width:100%;justify-content:space-between;gap:5px}.chapter{flex:1;font-size:12px;padding:11px 8px}.edition{font-size:12px}.footer{margin-top:28px;gap:16px;align-items:flex-start}.time{font-size:12px}.progress{margin-top:16px}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <main>
+    <nav class="masthead" aria-label="Page">
+      <a class="brand" href="../../case-studies/jarwiz/" aria-label="Jarwiz case study"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 1C14.6 11.3 11.3 14.6 1 16c10.3 1.4 13.6 4.7 15 15 1.4-10.3 4.7-13.6 15-15C20.7 14.6 17.4 11.3 16 1Z"/></svg>Jarwiz</a>
+      <span class="edition">01 / Onboarding</span>
+    </nav>
+    <header class="intro">
+      <p class="eyebrow">A new visual direction</p>
+      <h1>A clearer place to begin.</h1>
+      <p class="description">Choose a focus. Bring a question. Find three directions worth exploring.</p>
+    </header>
+    <figure class="film">
+      <video id="film" autoplay muted playsinline loop preload="auto" poster="./poster.jpg" aria-label="Jarwiz onboarding: choose Product thinking, describe an onboarding problem, and explore three idea cards">
+        <source src="./onboarding.mp4" type="video/mp4">
+        <a class="fallback" href="./onboarding.mp4">Watch the onboarding film</a>
+      </video>
+    </figure>
+    <input class="progress" id="progress" type="range" min="0" max="22" step="0.05" value="0" aria-label="Video position">
+    <div class="controls">
+      <div class="playback">
+        <button class="icon-button" id="toggle" aria-label="Pause video"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path id="play-icon" d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg></button>
+        <button class="icon-button" id="replay" aria-label="Replay video"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.2 8.5a7 7 0 1 1 .9 5.6M3 3v5.5h5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="icon-button" id="expand" aria-label="View video full screen"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8V3h5m4 0h5v5M3 12v5h5m4 0h5v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span class="time" id="time" aria-live="off">0:00 / 0:22</span>
+      </div>
+      <div class="chapters" aria-label="Video chapters">
+        <button class="chapter" data-at="0.6" aria-pressed="true"><span>01</span>Choose a focus</button>
+        <button class="chapter" data-at="4.5" aria-pressed="false"><span>02</span>Bring a question</button>
+        <button class="chapter" data-at="10.8" aria-pressed="false"><span>03</span>Explore ideas</button>
+      </div>
+    </div>
+    <p class="static-note hide" id="motion-note">Press play to watch the 22-second film.</p>
+    <footer class="footer"><span>New screens, built for this product film.</span><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></footer>
+  </main>
+  <script>
+    const film=document.querySelector('#film'),toggle=document.querySelector('#toggle'),icon=document.querySelector('#play-icon'),progress=document.querySelector('#progress'),time=document.querySelector('#time'),chapters=[...document.querySelectorAll('.chapter')];
+    const clock=n=>`0:${String(Math.floor(n||0)).padStart(2,'0')}`;
+    const update=()=>{const t=film.currentTime;progress.value=t;time.textContent=`${clock(t)} / ${clock(film.duration||22)}`;chapters.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===(t<4.5?0:t<10.8?1:2))));};
+    const updatePlayback=()=>{toggle.setAttribute('aria-label',film.paused?'Play video':'Pause video');icon.setAttribute('d',film.paused?'M6 3l11 7-11 7z':'M5 3h3v14H5zm7 0h3v14h-3z');};
+    const play=()=>film.play().catch(()=>updatePlayback());
+    toggle.addEventListener('click',()=>film.paused?play():film.pause());
+    document.querySelector('#replay').addEventListener('click',()=>{film.currentTime=0;play();});
+    document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open('./onboarding.mp4','_blank','noopener');}});
+    progress.addEventListener('input',()=>{film.currentTime=Number(progress.value);update();});
+    chapters.forEach(button=>button.addEventListener('click',()=>{film.currentTime=Number(button.dataset.at);play();}));
+    film.addEventListener('timeupdate',update);film.addEventListener('loadedmetadata',()=>{progress.max=film.duration;update();});film.addEventListener('play',updatePlayback);film.addEventListener('pause',updatePlayback);
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches){film.autoplay=false;film.pause();document.querySelector('#motion-note').classList.remove('hide');updatePlayback();}
+  </script>
+</body>
+</html>
