@@ -20,32 +20,32 @@
   <main>
     <nav class="masthead" aria-label="Page">
       <a class="brand" href="../../case-studies/jarwiz/" aria-label="Jarwiz case study"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 1C14.6 11.3 11.3 14.6 1 16c10.3 1.4 13.6 4.7 15 15 1.4-10.3 4.7-13.6 15-15C20.7 14.6 17.4 11.3 16 1Z"/></svg>Jarwiz</a>
-      <span class="edition">01 / Onboarding</span>
+      <span class="edition">01 / First question</span>
     </nav>
     <header class="intro">
-      <p class="eyebrow">From onboarding to a working canvas</p>
+      <p class="eyebrow">From the first question to a working canvas</p>
       <h1>One question. A canvas to work with.</h1>
-      <p class="description">Two reports. One question. Explore the research, compare approaches, and trace the next steps in a service blueprint.</p>
+      <p class="description">Start with a question and two reports. Jarwiz turns findings from the attachments into research, comparisons, and next steps on one working canvas.</p>
     </header>
     <figure class="film">
-      <video id="film" autoplay muted playsinline loop preload="auto" poster="./guided-poster.jpg" aria-label="Jarwiz onboarding: ask a question with two PDF reports, then explore research, an evidence image, two website previews, a detailed comparison, and a service blueprint on the canvas">
-        <source src="./onboarding-guided.mp4" type="video/mp4">
-        <a class="fallback" href="./onboarding-guided.mp4">Watch the onboarding film</a>
+      <video id="film" autoplay muted playsinline loop preload="auto" poster="./flow-poster.jpg" aria-label="Jarwiz first question: type a prompt, attach two PDF reports, and watch the response take shape on a working canvas">
+        <source src="./onboarding-flow.mp4" type="video/mp4">
+        <a class="fallback" href="./onboarding-flow.mp4">Watch the film</a>
       </video>
     </figure>
-    <input class="progress" id="progress" type="range" min="0" max="60.8" step="0.05" value="0" aria-label="Video position">
+    <input class="progress" id="progress" type="range" min="0" max="63.86666666666667" step="0.05" value="0" aria-label="Video position">
     <div class="controls">
       <div class="playback">
         <button class="icon-button" id="toggle" aria-label="Pause video"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path id="play-icon" d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg></button>
         <button class="icon-button" id="replay" aria-label="Replay video"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.2 8.5a7 7 0 1 1 .9 5.6M3 3v5.5h5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <button class="icon-button" id="expand" aria-label="View video full screen"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8V3h5m4 0h5v5M3 12v5h5m4 0h5v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <span class="time" id="time" aria-live="off">0:00 / 1:00</span>
+        <span class="time" id="time" aria-live="off">0:00 / 1:03</span>
       </div>
       <div class="chapters" aria-label="Video chapters">
-        <button class="chapter" data-at="0" aria-pressed="true"><span>01</span>Onboarding</button>
-        <button class="chapter" data-at="2.9" aria-pressed="false"><span>02</span>Canvas</button>
-        <button class="chapter" data-at="7.14" aria-pressed="false"><span>03</span>Prompt</button>
-        <button class="chapter" data-at="9.18" aria-pressed="false"><span>04</span>Cards</button>
+        <button class="chapter" data-at="0" aria-pressed="true"><span>01</span>Start</button>
+        <button class="chapter" data-at="4.68" aria-pressed="false"><span>02</span>Files</button>
+        <button class="chapter" data-at="9.01" aria-pressed="false"><span>03</span>Answer</button>
+        <button class="chapter" data-at="59.66" aria-pressed="false"><span>04</span>Canvas</button>
       </div>
     </div>
     <p class="static-note hide" id="motion-note">Press play to watch the canvas take shape.</p>
@@ -53,7 +53,7 @@
       <header class="surface-heading"><div><h2 id="surface-title">A closer look at the surfaces.</h2><p>Compare the original UI with the refinement.</p></div></header>
       <div class="surface-toolbar">
         <div class="surface-tabs" role="tablist" aria-label="Product surface">
-          <button type="button" class="surface-tab" id="tab-onboarding" role="tab" aria-selected="true" aria-controls="surface-panel" tabindex="0" data-surface="onboarding">Onboarding</button>
+          <button type="button" class="surface-tab" id="tab-onboarding" role="tab" aria-selected="true" aria-controls="surface-panel" tabindex="0" data-surface="onboarding">Start</button>
           <button type="button" class="surface-tab" id="tab-canvas" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="canvas">Canvas</button>
           <button type="button" class="surface-tab" id="tab-prompt" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="prompt">Prompt</button>
           <button type="button" class="surface-tab" id="tab-cards" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="cards">Cards</button>
@@ -66,33 +66,33 @@
       <div id="surface-panel" role="tabpanel" aria-labelledby="tab-onboarding" tabindex="0">
         <figure class="surface-figure">
           <div class="surface-stage">
-            <a class="surface-open" id="surface-open" href="./surfaces/before-onboarding.png?v=guided" target="_blank" rel="noopener" aria-label="Inspect the original onboarding screenshot">
-              <img class="surface-image" id="surface-image" src="./surfaces/before-onboarding.png?v=guided" width="1440" height="960" alt="Jarwiz’s original onboarding screen" loading="lazy">
+            <a class="surface-open" id="surface-open" href="./surfaces/before-onboarding.png?v=flow" target="_blank" rel="noopener" aria-label="Inspect the original start screenshot">
+              <img class="surface-image" id="surface-image" src="./surfaces/before-onboarding.png?v=flow" width="1440" height="960" alt="Jarwiz’s original start screen" loading="lazy">
               <span class="surface-zoom" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </a>
             <div class="surface-empty" id="surface-empty" hidden>This screenshot is being prepared.</div>
           </div>
-          <figcaption class="surface-caption"><p><strong id="surface-version">Original</strong><span class="surface-caption-text" id="surface-caption">Six starting points before the canvas.</span></p><a class="surface-full" id="surface-full" href="./surfaces/before-onboarding.png?v=guided" target="_blank" rel="noopener">Open full image ↗</a></figcaption>
+          <figcaption class="surface-caption"><p><strong id="surface-version">Original</strong><span class="surface-caption-text" id="surface-caption">Six starting points before the canvas.</span></p><a class="surface-full" id="surface-full" href="./surfaces/before-onboarding.png?v=flow" target="_blank" rel="noopener">Open full image ↗</a></figcaption>
         </figure>
         <p class="surface-status" id="surface-status" role="status">Refined capture coming next.</p>
-        <div class="surface-detail-links"><a class="surface-full" href="./surfaces/after-blueprint.png?v=guided" target="_blank" rel="noopener">Inspect the blueprint ↗</a><a class="surface-full" href="./surfaces/after-comparison.png?v=guided" target="_blank" rel="noopener">Inspect the comparison ↗</a></div>
+        <div class="surface-detail-links"><a class="surface-full" href="./surfaces/after-research.png?v=flow" target="_blank" rel="noopener">Inspect the report insights ↗</a><a class="surface-full" href="./surfaces/after-blueprint.png?v=flow" target="_blank" rel="noopener">Inspect the blueprint ↗</a><a class="surface-full" href="./surfaces/after-comparison.png?v=flow" target="_blank" rel="noopener">Inspect the comparison ↗</a></div>
       </div>
     </section>
     <footer class="footer"><span>Actual Jarwiz UI · Prepared AI responses · Illustrative reports</span><div class="footer-links"><a href="https://github.com/Shopify/polaris-react-archive/blob/main/polaris.shopify.com/content/components/layout-and-structure/empty-state.mdx" target="_blank" rel="noopener">Polaris archive ↗</a><a href="https://github.com/primer/design/blob/main/content/ui-patterns/empty-states.mdx" target="_blank" rel="noopener">GitHub Primer ↗</a><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></div></footer>
   </main>
   <dialog class="surface-lightbox" id="surface-lightbox" aria-labelledby="lightbox-title" data-actual-size="false">
-    <header class="lightbox-head"><p id="lightbox-title">Onboarding <span>Original</span></p><div class="lightbox-actions"><button type="button" class="lightbox-button" id="lightbox-size" aria-pressed="false">Actual size</button><button type="button" class="lightbox-button" id="lightbox-close" aria-label="Close screenshot"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m5 5 10 10M15 5 5 15" stroke-linecap="round"/></svg></button></div></header>
+    <header class="lightbox-head"><p id="lightbox-title">Start <span>Original</span></p><div class="lightbox-actions"><button type="button" class="lightbox-button" id="lightbox-size" aria-pressed="false">Actual size</button><button type="button" class="lightbox-button" id="lightbox-close" aria-label="Close screenshot"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m5 5 10 10M15 5 5 15" stroke-linecap="round"/></svg></button></div></header>
     <div class="lightbox-scroll"><img class="lightbox-image" id="lightbox-image" alt=""></div>
   </dialog>
   <script>
     const film=document.querySelector('#film'),toggle=document.querySelector('#toggle'),icon=document.querySelector('#play-icon'),progress=document.querySelector('#progress'),time=document.querySelector('#time'),chapters=[...document.querySelectorAll('.chapter')];
     const clock=n=>`${Math.floor((n||0)/60)}:${String(Math.floor((n||0)%60)).padStart(2,'0')}`;
-    const update=()=>{const t=film.currentTime;progress.value=t;time.textContent=`${clock(t)} / ${clock(film.duration||60.8)}`;chapters.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===Math.max(0,chapters.findLastIndex(chapter=>t>=Number(chapter.dataset.at))))));};
+    const update=()=>{const t=film.currentTime;progress.value=t;time.textContent=`${clock(t)} / ${clock(film.duration||63.86666666666667)}`;chapters.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===Math.max(0,chapters.findLastIndex(chapter=>t>=Number(chapter.dataset.at))))));};
     const updatePlayback=()=>{toggle.setAttribute('aria-label',film.paused?'Play video':'Pause video');icon.setAttribute('d',film.paused?'M6 3l11 7-11 7z':'M5 3h3v14H5zm7 0h3v14h-3z');};
     const play=()=>film.play().catch(()=>updatePlayback());
     toggle.addEventListener('click',()=>film.paused?play():film.pause());
     document.querySelector('#replay').addEventListener('click',()=>{film.currentTime=0;play();});
-    document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open(film.currentSrc||'./onboarding-guided.mp4','_blank','noopener');}});
+    document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open(film.currentSrc||'./onboarding-flow.mp4','_blank','noopener');}});
     progress.addEventListener('input',()=>{film.currentTime=Number(progress.value);update();});
     chapters.forEach(button=>button.addEventListener('click',()=>{film.currentTime=Number(button.dataset.at);update();play();}));
     film.addEventListener('timeupdate',update);film.addEventListener('seeked',update);film.addEventListener('loadedmetadata',()=>{progress.max=film.duration;update();});film.addEventListener('play',updatePlayback);film.addEventListener('pause',updatePlayback);
@@ -100,9 +100,9 @@
     const available=async(url,type)=>{try{const response=await fetch(url,{method:'HEAD',cache:'no-store'});return response.ok&&(response.headers.get('content-type')||'').includes(type);}catch{return false;}};
 
     const surfaces={
-      onboarding:{label:'Onboarding',before:'Six starting points before the canvas.',after:'Clearer hierarchy and a calmer first choice.'},
+      onboarding:{label:'Start',before:'Six starting points before the canvas.',after:'Begin directly with a question.'},
       canvas:{label:'Canvas',before:'The original workspace and its navigation.',after:'A quieter canvas with space for a fuller first response.'},
-      prompt:{label:'Prompt',before:'The original prompt and context controls.',after:'One short question, with two PDF reports for context.'},
+      prompt:{label:'Prompt',before:'The original prompt and context controls.',after:'A short question, with two PDF reports dropped into the prompt.'},
       cards:{label:'Cards',before:'Original card spacing, type, and hierarchy.',after:'Research, evidence, a detailed comparison, and a service blueprint on one canvas.'},
     };
     const surfaceTabs=[...document.querySelectorAll('[data-surface]')],versionButtons=[...document.querySelectorAll('[data-version]')];
@@ -110,7 +110,7 @@
     const lightbox=document.querySelector('#surface-lightbox'),lightboxImage=document.querySelector('#lightbox-image'),lightboxSize=document.querySelector('#lightbox-size');
     const imageAvailability=Object.fromEntries(Object.keys(surfaces).map(key=>[key,{before:null,after:null}]));
     let selectedSurface='onboarding',selectedVersion='after',shownVersion='before',bodyOverflow='';
-    const screenshotPath=(surface,version)=>`./surfaces/${version}-${surface}.png?v=guided`;
+    const screenshotPath=(surface,version)=>`./surfaces/${version}-${surface}.png?v=flow`;
     function renderSurface(){
       const item=surfaces[selectedSurface],ready=imageAvailability[selectedSurface];
       shownVersion=selectedVersion==='after'&&ready.after===true?'after':'before';
