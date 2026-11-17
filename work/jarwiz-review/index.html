@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Jarwiz — A clearer place to begin</title>
+  <title>Jarwiz — From onboarding to a working canvas</title>
   <style>
     @font-face{font-family:Neue;src:url('./NeueMontreal-Regular.otf');font-weight:400;font-display:swap}
     @font-face{font-family:Neue;src:url('./NeueMontreal-Medium.otf');font-weight:500 700;font-display:swap}
@@ -20,42 +20,42 @@
       <span class="edition">01 / Onboarding</span>
     </nav>
     <header class="intro">
-      <p class="eyebrow">A new visual direction</p>
-      <h1>A clearer place to begin.</h1>
-      <p class="description">Choose a focus. Bring a question. Find three directions worth exploring.</p>
+      <p class="eyebrow">From onboarding to a working canvas</p>
+      <h1>Your first thought takes shape.</h1>
+      <p class="description">Choose a starting point. Watch a Doc and a Flow take shape on the same canvas.</p>
     </header>
     <figure class="film">
-      <video id="film" autoplay muted playsinline loop preload="auto" poster="./poster.jpg" aria-label="Jarwiz onboarding: choose Product thinking, describe an onboarding problem, and explore three idea cards">
-        <source src="./onboarding.mp4" type="video/mp4">
-        <a class="fallback" href="./onboarding.mp4">Watch the onboarding film</a>
+      <video id="film" autoplay muted playsinline loop preload="auto" poster="./canvas-poster.jpg" aria-label="Jarwiz onboarding: choose Building a product, ask a question, and create native Doc and Flow cards on the canvas">
+        <source src="./onboarding-canvas.mp4" type="video/mp4">
+        <a class="fallback" href="./onboarding-canvas.mp4">Watch the onboarding film</a>
       </video>
     </figure>
-    <input class="progress" id="progress" type="range" min="0" max="22" step="0.05" value="0" aria-label="Video position">
+    <input class="progress" id="progress" type="range" min="0" max="33.4" step="0.05" value="0" aria-label="Video position">
     <div class="controls">
       <div class="playback">
         <button class="icon-button" id="toggle" aria-label="Pause video"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path id="play-icon" d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg></button>
         <button class="icon-button" id="replay" aria-label="Replay video"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.2 8.5a7 7 0 1 1 .9 5.6M3 3v5.5h5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <button class="icon-button" id="expand" aria-label="View video full screen"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8V3h5m4 0h5v5M3 12v5h5m4 0h5v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <span class="time" id="time" aria-live="off">0:00 / 0:22</span>
+        <span class="time" id="time" aria-live="off">0:00 / 0:33</span>
       </div>
       <div class="chapters" aria-label="Video chapters">
-        <button class="chapter" data-at="0.6" aria-pressed="true"><span>01</span>Choose a focus</button>
-        <button class="chapter" data-at="4.5" aria-pressed="false"><span>02</span>Bring a question</button>
-        <button class="chapter" data-at="10.8" aria-pressed="false"><span>03</span>Explore ideas</button>
+        <button class="chapter" data-at="0" aria-pressed="true"><span>01</span>Onboarding</button>
+        <button class="chapter" data-at="8.27" aria-pressed="false"><span>02</span>First card</button>
+        <button class="chapter" data-at="18.7" aria-pressed="false"><span>03</span>Build on it</button>
       </div>
     </div>
-    <p class="static-note hide" id="motion-note">Press play to watch the 22-second film.</p>
-    <footer class="footer"><span>New screens, built for this product film.</span><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></footer>
+    <p class="static-note hide" id="motion-note">Press play to watch the canvas take shape.</p>
+    <footer class="footer"><span>Jarwiz’s actual product UI · authored example.</span><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></footer>
   </main>
   <script>
     const film=document.querySelector('#film'),toggle=document.querySelector('#toggle'),icon=document.querySelector('#play-icon'),progress=document.querySelector('#progress'),time=document.querySelector('#time'),chapters=[...document.querySelectorAll('.chapter')];
     const clock=n=>`0:${String(Math.floor(n||0)).padStart(2,'0')}`;
-    const update=()=>{const t=film.currentTime;progress.value=t;time.textContent=`${clock(t)} / ${clock(film.duration||22)}`;chapters.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===(t<4.5?0:t<10.8?1:2))));};
+    const update=()=>{const t=film.currentTime;progress.value=t;time.textContent=`${clock(t)} / ${clock(film.duration||33.4)}`;chapters.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===Math.max(0,chapters.findLastIndex(chapter=>t>=Number(chapter.dataset.at))))));};
     const updatePlayback=()=>{toggle.setAttribute('aria-label',film.paused?'Play video':'Pause video');icon.setAttribute('d',film.paused?'M6 3l11 7-11 7z':'M5 3h3v14H5zm7 0h3v14h-3z');};
     const play=()=>film.play().catch(()=>updatePlayback());
     toggle.addEventListener('click',()=>film.paused?play():film.pause());
     document.querySelector('#replay').addEventListener('click',()=>{film.currentTime=0;play();});
-    document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open('./onboarding.mp4','_blank','noopener');}});
+    document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open('./onboarding-canvas.mp4','_blank','noopener');}});
     progress.addEventListener('input',()=>{film.currentTime=Number(progress.value);update();});
     chapters.forEach(button=>button.addEventListener('click',()=>{film.currentTime=Number(button.dataset.at);play();}));
     film.addEventListener('timeupdate',update);film.addEventListener('loadedmetadata',()=>{progress.max=film.duration;update();});film.addEventListener('play',updatePlayback);film.addEventListener('pause',updatePlayback);
