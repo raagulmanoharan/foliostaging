@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Jarwiz — One question. A canvas to work with.</title>
-  <style>
-    @font-face{font-family:Neue;src:url('./NeueMontreal-Regular.otf');font-weight:400;font-display:swap}
+  <style>    @font-face{font-family:Neue;src:url('./NeueMontreal-Regular.otf');font-weight:400;font-display:swap}
     @font-face{font-family:Neue;src:url('./NeueMontreal-Medium.otf');font-weight:500 700;font-display:swap}
     *{box-sizing:border-box}body{margin:0;background:#fff;color:#1b1d1b;font-family:Neue,Arial,sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}a{color:inherit;text-decoration:none}main{max-width:1160px;margin:auto;padding:42px 40px 60px}.masthead{display:flex;align-items:center;justify-content:space-between;font-size:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:500}.brand svg{width:21px;height:21px}.edition{color:#6e746e;font-size:14px}.intro{margin:64px 0 30px;max-width:680px}.eyebrow{font-size:13px;color:#727972;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px}h1{font-size:44px;line-height:1.05;letter-spacing:-1.8px;font-weight:500;margin:0 0 16px}.description{font-size:19px;line-height:1.5;color:#737973;margin:0}.film{margin:0;border-radius:18px;background:#f5f5f2;overflow:hidden;border:1px solid #e7e9e4;position:relative;aspect-ratio:3/2}video{width:100%;height:100%;display:block;object-fit:contain}.controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:17px}.playback{display:flex;align-items:center;gap:8px}.icon-button{width:38px;height:38px;border:1px solid #e4e8e2;border-radius:50%;display:grid;place-items:center;background:white}.icon-button:hover{background:#f3f5f1}.icon-button:focus-visible,.chapter:focus-visible{outline:2px solid #253a2c;outline-offset:4px}.icon-button svg{width:16px;height:16px}.time{font-size:13px;color:#717870;font-variant-numeric:tabular-nums;margin-left:5px}.chapters{display:flex;gap:7px}.chapter{background:#fff;border:1px solid #e4e8e2;border-radius:30px;padding:10px 13px;font-size:13px;color:#737973;transition:background .2s,color .2s,border-color .2s}.chapter[aria-pressed="true"]{background:#20251f;color:#fff;border-color:#20251f}.chapter span{opacity:.6;margin-right:6px}.footer{margin-top:38px;padding-top:21px;border-top:1px solid #eceee9;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#737973}.footer a:hover{color:#1b1d1b}.static-note{margin:12px 0;color:#737973;font-size:14px}.progress{width:100%;accent-color:#303d31;height:2px;margin-top:19px;display:block;cursor:pointer}.fallback{padding:20px}.hide{display:none}
-    .surface-review{margin-top:76px;padding-top:34px;border-top:1px solid #eceee9}.surface-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:25px}.surface-heading h2{font-size:26px;line-height:1.2;letter-spacing:-.7px;font-weight:500;margin:0}.surface-heading p{font-size:13px;line-height:1.5;color:#7c827a;margin:7px 0 0}.surface-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:19px}.surface-tabs{display:flex;align-items:center;gap:22px}.surface-tab{padding:10px 1px;border:0;border-bottom:1.5px solid transparent;color:#8a9088;background:none;font-size:14px;line-height:1.25}.surface-tab[aria-selected="true"]{color:#252c24;border-bottom-color:#252c24}.surface-tab:hover{color:#252c24}.surface-tab:focus-visible,.version-button:focus-visible,.surface-open:focus-visible,.surface-full:focus-visible,.lightbox-button:focus-visible{outline:2px solid #526250;outline-offset:4px}.version-switch{display:flex;align-items:center;padding:3px;background:#f2f4f0;border-radius:8px;gap:2px;flex:none}.version-button{border:0;border-radius:6px;padding:7px 12px;background:transparent;font-size:12px;line-height:1.3;color:#7c8478}.version-button[aria-pressed="true"]{background:white;color:#283024;box-shadow:0 1px 3px #22321f0b}.version-button:disabled{color:#b5bcb0;cursor:default}.surface-figure{margin:0}.surface-stage{position:relative;aspect-ratio:3/2;border:1px solid #e8ebe5;border-radius:15px;overflow:hidden;background:#f6f7f4}.surface-open{display:block;width:100%;height:100%;cursor:zoom-in}.surface-image{width:100%;height:100%;display:block;object-fit:contain}.surface-zoom{position:absolute;right:16px;bottom:16px;width:34px;height:34px;background:#fffffff0;border:1px solid #e7eae3;border-radius:50%;display:grid;place-items:center;color:#697362;box-shadow:0 2px 8px #26312205;pointer-events:none}.surface-zoom svg{width:15px;height:15px}.surface-caption{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-top:14px;font-size:13px;line-height:1.5;color:#7c8477}.surface-caption p{margin:0}.surface-caption strong{font-weight:400;color:#414c3a}.surface-caption-text{margin-left:7px}.surface-full{flex:none;color:#6f7868;white-space:nowrap;font-size:12px;padding-top:1px}.surface-full:hover{color:#243120}.surface-status{font-size:12px;color:#929a8b;margin:9px 0 0;min-height:18px}.surface-status:empty{visibility:hidden}.surface-empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;font-size:14px;color:#8d9687}.surface-empty[hidden]{display:none}.footer-links{display:flex;gap:22px;flex-wrap:wrap;justify-content:flex-end}.surface-lightbox{border:1px solid #e0e5dc;border-radius:16px;padding:0;width:min(1504px,calc(100vw - 48px));max-width:none;max-height:calc(100dvh - 48px);background:#fff;box-shadow:0 28px 100px #0003;overflow:hidden}.surface-lightbox::backdrop{background:#1920169c;backdrop-filter:blur(7px)}.lightbox-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 20px;border-bottom:1px solid #e9ece5}.lightbox-head p{margin:0;font-size:14px;font-weight:500}.lightbox-head p span{font-weight:400;color:#8d9686;margin-left:7px}.lightbox-actions{display:flex;gap:8px;align-items:center}.lightbox-button{height:32px;min-width:32px;display:grid;place-items:center;border:1px solid #e2e7dc;border-radius:7px;background:#fff;color:#687461;font-size:12px;padding:0 10px}.lightbox-button:hover{background:#f5f7f2}.lightbox-button svg{width:15px;height:15px}.lightbox-scroll{max-height:calc(100dvh - 118px);overflow:auto;background:#f5f6f3;overscroll-behavior:contain}.lightbox-image{display:block;max-width:100%;height:auto;margin:auto}.surface-lightbox[data-actual-size="true"] .lightbox-image{max-width:none;width:1440px;max-height:none;margin:0}
-    @media(max-width:700px){main{padding:25px 18px 32px}.intro{margin:48px 0 26px}h1{font-size:35px;letter-spacing:-1.2px}.description{font-size:17px}.film{border-radius:11px;margin:0 -8px;width:calc(100% + 16px)}.controls{align-items:flex-start;flex-wrap:wrap}.chapters{order:2;width:100%;justify-content:space-between;gap:5px}.chapter{flex:1;font-size:12px;padding:11px 8px}.edition{font-size:12px}.footer{margin-top:28px;gap:16px;align-items:flex-start;flex-wrap:wrap}.footer-links{justify-content:flex-start;gap:15px}.time{font-size:12px}.progress{margin-top:16px}.surface-review{margin-top:54px;padding-top:28px}.surface-heading{margin-bottom:19px}.surface-heading h2{font-size:24px}.surface-toolbar{gap:15px;flex-wrap:wrap;margin-bottom:16px}.surface-tabs{gap:21px}.surface-tab{font-size:13px}.version-switch{margin-left:auto}.surface-stage{border-radius:11px}.surface-caption{gap:12px;font-size:12px;flex-wrap:wrap}.surface-caption-text{margin-left:5px}.surface-full{font-size:11px}.surface-zoom{width:30px;height:30px;right:10px;bottom:10px}.surface-lightbox{width:calc(100vw - 20px);max-height:calc(100dvh - 24px);border-radius:12px}.lightbox-head{padding:12px;gap:10px}.lightbox-head p{font-size:12px}.lightbox-scroll{max-height:calc(100dvh - 82px)}.lightbox-button{height:30px;min-width:30px;font-size:11px;padding:0 8px}}
-    @media(max-width:700px){.chapter span{display:none}}
-    .surface-detail-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:10px 0 0}
+    .chapter:disabled{cursor:default;opacity:.45}.progress:disabled{cursor:default}.footer{gap:24px;flex-wrap:wrap}.footer-links{display:flex;gap:22px;flex-wrap:wrap;justify-content:flex-end}
+    .ui-review{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:48px;padding-top:24px;border-top:1px solid #eceee9}.ui-review p{margin:0;color:#7c827a;font-size:15px;line-height:1.5}.ui-review a{flex:none;font-size:14px;color:#394733}.ui-review a:hover{color:#182414}.ui-review a:focus-visible{outline:2px solid #526250;outline-offset:5px}
+    @media(max-width:700px){main{padding:25px 18px 32px}.intro{margin:48px 0 26px}h1{font-size:35px;letter-spacing:-1.2px}.description{font-size:17px}.film{border-radius:11px;margin:0 -8px;width:calc(100% + 16px)}.controls{align-items:flex-start;flex-wrap:wrap}.chapters{order:2;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));width:100%;gap:5px}.chapter{min-width:0;font-size:11px;padding:11px 4px}.chapter span{display:none}.edition{font-size:12px}.footer{margin-top:28px;gap:16px;align-items:flex-start}.footer-links{justify-content:flex-start;gap:15px}.time{font-size:12px}.progress{margin-top:16px}.ui-review{margin-top:36px;padding-top:21px;gap:18px;align-items:flex-start;flex-wrap:wrap}.ui-review p{font-size:14px}.ui-review a{font-size:13px}}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
   </style>
 </head>
@@ -25,138 +23,59 @@
     <header class="intro">
       <p class="eyebrow">From the first question to a working canvas</p>
       <h1>One question. A canvas to work with.</h1>
-      <p class="description">Start with a question and two reports. Jarwiz turns findings from the attachments into research, comparisons, and next steps on one working canvas.</p>
+      <p class="description">One question and two reports become research, opportunities, evidence, a comparison, and a service blueprint.</p>
     </header>
     <figure class="film">
-      <video id="film" autoplay muted playsinline loop preload="auto" poster="./flow-poster.jpg" aria-label="Jarwiz first question: type a prompt, attach two PDF reports, and watch the response take shape on a working canvas">
-        <source src="./onboarding-flow.mp4" type="video/mp4">
-        <a class="fallback" href="./onboarding-flow.mp4">Watch the film</a>
+      <video id="film" autoplay muted playsinline loop preload="auto" poster="./flow-poster.jpg?v=first-flow-v14" aria-label="Jarwiz first flow: a question and two reports become research, opportunities, evidence, a comparison, and a service blueprint">
+        <source src="./onboarding-flow.mp4?v=first-flow-v14" type="video/mp4">
+        <a class="fallback" href="./onboarding-flow.mp4?v=first-flow-v14">Watch the film</a>
       </video>
     </figure>
-    <input class="progress" id="progress" type="range" min="0" max="63.86666666666667" step="0.05" value="0" aria-label="Video position">
+    <input class="progress" id="progress" type="range" min="0" max="96.7" disabled step="0.05" value="0" aria-label="Video position">
     <div class="controls">
       <div class="playback">
         <button class="icon-button" id="toggle" aria-label="Pause video"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path id="play-icon" d="M5 3h3v14H5zm7 0h3v14h-3z"/></svg></button>
         <button class="icon-button" id="replay" aria-label="Replay video"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.2 8.5a7 7 0 1 1 .9 5.6M3 3v5.5h5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <button class="icon-button" id="expand" aria-label="View video full screen"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8V3h5m4 0h5v5M3 12v5h5m4 0h5v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <span class="time" id="time" aria-live="off">0:00 / 1:03</span>
+        <span class="time" id="time" aria-live="off">0:00 / 1:36</span>
       </div>
       <div class="chapters" aria-label="Video chapters">
-        <button class="chapter" data-at="0" aria-pressed="true"><span>01</span>Start</button>
-        <button class="chapter" data-at="4.68" aria-pressed="false"><span>02</span>Files</button>
-        <button class="chapter" data-at="9.01" aria-pressed="false"><span>03</span>Answer</button>
-        <button class="chapter" data-at="59.66" aria-pressed="false"><span>04</span>Canvas</button>
+        <button class="chapter" data-chapter="start" data-at="0" aria-pressed="true"><span>01</span>Start</button>
+        <button class="chapter" data-chapter="research" data-at="9.50" aria-pressed="false"><span>02</span>Research</button>
+        <button class="chapter" data-chapter="explore" data-at="36.06" aria-pressed="false"><span>03</span>Explore</button>
+        <button class="chapter" data-chapter="comparison" data-at="59.36" aria-pressed="false"><span>04</span>Compare</button>
+        <button class="chapter" data-chapter="blueprint" data-at="72.70" aria-pressed="false"><span>05</span>Blueprint</button>
       </div>
     </div>
     <p class="static-note hide" id="motion-note">Press play to watch the canvas take shape.</p>
-    <section class="surface-review" id="surfaces" aria-labelledby="surface-title">
-      <header class="surface-heading"><div><h2 id="surface-title">A closer look at the surfaces.</h2><p>Compare the original UI with the refinement.</p></div></header>
-      <div class="surface-toolbar">
-        <div class="surface-tabs" role="tablist" aria-label="Product surface">
-          <button type="button" class="surface-tab" id="tab-onboarding" role="tab" aria-selected="true" aria-controls="surface-panel" tabindex="0" data-surface="onboarding">Start</button>
-          <button type="button" class="surface-tab" id="tab-canvas" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="canvas">Canvas</button>
-          <button type="button" class="surface-tab" id="tab-prompt" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="prompt">Prompt</button>
-          <button type="button" class="surface-tab" id="tab-cards" role="tab" aria-selected="false" aria-controls="surface-panel" tabindex="-1" data-surface="cards">Cards</button>
-        </div>
-        <div class="version-switch" role="group" aria-label="Screenshot version">
-          <button type="button" class="version-button" data-version="before" aria-pressed="true">Original</button>
-          <button type="button" class="version-button" data-version="after" aria-pressed="false" disabled>Refined</button>
-        </div>
-      </div>
-      <div id="surface-panel" role="tabpanel" aria-labelledby="tab-onboarding" tabindex="0">
-        <figure class="surface-figure">
-          <div class="surface-stage">
-            <a class="surface-open" id="surface-open" href="./surfaces/before-onboarding.png?v=flow" target="_blank" rel="noopener" aria-label="Inspect the original start screenshot">
-              <img class="surface-image" id="surface-image" src="./surfaces/before-onboarding.png?v=flow" width="1440" height="960" alt="Jarwiz’s original start screen" loading="lazy">
-              <span class="surface-zoom" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
-            <div class="surface-empty" id="surface-empty" hidden>This screenshot is being prepared.</div>
-          </div>
-          <figcaption class="surface-caption"><p><strong id="surface-version">Original</strong><span class="surface-caption-text" id="surface-caption">Six starting points before the canvas.</span></p><a class="surface-full" id="surface-full" href="./surfaces/before-onboarding.png?v=flow" target="_blank" rel="noopener">Open full image ↗</a></figcaption>
-        </figure>
-        <p class="surface-status" id="surface-status" role="status">Refined capture coming next.</p>
-        <div class="surface-detail-links"><a class="surface-full" href="./surfaces/after-research.png?v=flow" target="_blank" rel="noopener">Inspect the report insights ↗</a><a class="surface-full" href="./surfaces/after-blueprint.png?v=flow" target="_blank" rel="noopener">Inspect the blueprint ↗</a><a class="surface-full" href="./surfaces/after-comparison.png?v=flow" target="_blank" rel="noopener">Inspect the comparison ↗</a></div>
-      </div>
+    <section class="ui-review" aria-label="Screen details">
+      <p>Inspect every card at full size.</p>
+      <a href="../jarwiz-ui-review/?v=composer-mode">Open UI review ↗</a>
     </section>
     <footer class="footer"><span>Actual Jarwiz UI · Prepared AI responses · Illustrative reports</span><div class="footer-links"><a href="https://github.com/Shopify/polaris-react-archive/blob/main/polaris.shopify.com/content/components/layout-and-structure/empty-state.mdx" target="_blank" rel="noopener">Polaris archive ↗</a><a href="https://github.com/primer/design/blob/main/content/ui-patterns/empty-states.mdx" target="_blank" rel="noopener">GitHub Primer ↗</a><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></div></footer>
   </main>
-  <dialog class="surface-lightbox" id="surface-lightbox" aria-labelledby="lightbox-title" data-actual-size="false">
-    <header class="lightbox-head"><p id="lightbox-title">Start <span>Original</span></p><div class="lightbox-actions"><button type="button" class="lightbox-button" id="lightbox-size" aria-pressed="false">Actual size</button><button type="button" class="lightbox-button" id="lightbox-close" aria-label="Close screenshot"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m5 5 10 10M15 5 5 15" stroke-linecap="round"/></svg></button></div></header>
-    <div class="lightbox-scroll"><img class="lightbox-image" id="lightbox-image" alt=""></div>
-  </dialog>
   <script>
     const film=document.querySelector('#film'),toggle=document.querySelector('#toggle'),icon=document.querySelector('#play-icon'),progress=document.querySelector('#progress'),time=document.querySelector('#time'),chapters=[...document.querySelectorAll('.chapter')];
     const clock=n=>`${Math.floor((n||0)/60)}:${String(Math.floor((n||0)%60)).padStart(2,'0')}`;
-    const update=()=>{const t=film.currentTime;progress.value=t;time.textContent=`${clock(t)} / ${clock(film.duration||63.86666666666667)}`;chapters.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===Math.max(0,chapters.findLastIndex(chapter=>t>=Number(chapter.dataset.at))))));};
+    const duration=()=>Number.isFinite(film.duration)?film.duration:0;
+    const update=()=>{
+      const t=film.currentTime,total=duration();
+      progress.value=t;time.textContent=`${clock(t)} / ${total?clock(total):'—'}`;
+      const active=chapters.filter(button=>button.dataset.at!==undefined&&t>=Number(button.dataset.at)).at(-1);
+      chapters.forEach(button=>button.setAttribute('aria-pressed',String(button===active)));
+    };
     const updatePlayback=()=>{toggle.setAttribute('aria-label',film.paused?'Play video':'Pause video');icon.setAttribute('d',film.paused?'M6 3l11 7-11 7z':'M5 3h3v14H5zm7 0h3v14h-3z');};
-    const play=()=>film.play().catch(()=>updatePlayback());
+    const play=()=>film.play().catch(updatePlayback);
     toggle.addEventListener('click',()=>film.paused?play():film.pause());
     document.querySelector('#replay').addEventListener('click',()=>{film.currentTime=0;play();});
-    document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open(film.currentSrc||'./onboarding-flow.mp4','_blank','noopener');}});
+    document.querySelector('#expand').addEventListener('click',()=>{if(film.webkitEnterFullscreen){film.webkitEnterFullscreen();}else if(film.requestFullscreen){film.requestFullscreen().catch(()=>{});}else{window.open(film.currentSrc||film.querySelector('source').src,'_blank','noopener');}});
     progress.addEventListener('input',()=>{film.currentTime=Number(progress.value);update();});
-    chapters.forEach(button=>button.addEventListener('click',()=>{film.currentTime=Number(button.dataset.at);update();play();}));
-    film.addEventListener('timeupdate',update);film.addEventListener('seeked',update);film.addEventListener('loadedmetadata',()=>{progress.max=film.duration;update();});film.addEventListener('play',updatePlayback);film.addEventListener('pause',updatePlayback);
+    chapters.forEach(button=>button.addEventListener('click',()=>{if(button.dataset.at===undefined)return;film.currentTime=Number(button.dataset.at);update();play();}));
+    film.addEventListener('timeupdate',update);film.addEventListener('seeked',update);
+    const ready=()=>{progress.max=duration()||1;progress.disabled=!duration();update();};
+    film.addEventListener('loadedmetadata',ready);film.addEventListener('durationchange',ready);film.addEventListener('play',updatePlayback);film.addEventListener('pause',updatePlayback);
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){film.autoplay=false;film.pause();document.querySelector('#motion-note').classList.remove('hide');updatePlayback();}
-    const available=async(url,type)=>{try{const response=await fetch(url,{method:'HEAD',cache:'no-store'});return response.ok&&(response.headers.get('content-type')||'').includes(type);}catch{return false;}};
-
-    const surfaces={
-      onboarding:{label:'Start',before:'Six starting points before the canvas.',after:'Begin directly with a question.'},
-      canvas:{label:'Canvas',before:'The original workspace and its navigation.',after:'A quieter canvas with space for a fuller first response.'},
-      prompt:{label:'Prompt',before:'The original prompt and context controls.',after:'A short question, with two PDF reports dropped into the prompt.'},
-      cards:{label:'Cards',before:'Original card spacing, type, and hierarchy.',after:'Research, evidence, a detailed comparison, and a service blueprint on one canvas.'},
-    };
-    const surfaceTabs=[...document.querySelectorAll('[data-surface]')],versionButtons=[...document.querySelectorAll('[data-version]')];
-    const surfacePanel=document.querySelector('#surface-panel'),surfaceImage=document.querySelector('#surface-image'),surfaceOpen=document.querySelector('#surface-open'),surfaceFull=document.querySelector('#surface-full'),surfaceEmpty=document.querySelector('#surface-empty'),surfaceStatus=document.querySelector('#surface-status');
-    const lightbox=document.querySelector('#surface-lightbox'),lightboxImage=document.querySelector('#lightbox-image'),lightboxSize=document.querySelector('#lightbox-size');
-    const imageAvailability=Object.fromEntries(Object.keys(surfaces).map(key=>[key,{before:null,after:null}]));
-    let selectedSurface='onboarding',selectedVersion='after',shownVersion='before',bodyOverflow='';
-    const screenshotPath=(surface,version)=>`./surfaces/${version}-${surface}.png?v=flow`;
-    function renderSurface(){
-      const item=surfaces[selectedSurface],ready=imageAvailability[selectedSurface];
-      shownVersion=selectedVersion==='after'&&ready.after===true?'after':'before';
-      const path=screenshotPath(selectedSurface,shownVersion),label=shownVersion==='before'?'Original':'Refined';
-      surfaceTabs.forEach(button=>{const active=button.dataset.surface===selectedSurface;button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;});
-      versionButtons.forEach(button=>{button.setAttribute('aria-pressed',String(button.dataset.version===shownVersion));button.disabled=button.dataset.version==='after'&&ready.after!==true;});
-      surfacePanel.setAttribute('aria-labelledby',`tab-${selectedSurface}`);
-      if(surfaceImage.getAttribute('src')!==path)surfaceImage.src=path;
-      surfaceImage.alt=`Jarwiz’s ${label.toLowerCase()} ${item.label.toLowerCase()} screen`;
-      surfaceOpen.href=path;surfaceFull.href=path;surfaceOpen.setAttribute('aria-label',`Inspect the ${label.toLowerCase()} ${item.label.toLowerCase()} screenshot`);
-      document.querySelector('#surface-version').textContent=label;
-      document.querySelector('#surface-caption').textContent=item[shownVersion];
-      surfaceStatus.textContent=ready.after===true?'':'Refined capture coming next.';
-      surfaceEmpty.hidden=ready[shownVersion]!==false;
-      surfaceOpen.style.visibility=ready[shownVersion]===false?'hidden':'visible';
-      surfaceFull.hidden=ready[shownVersion]===false;
-    }
-    function selectSurface(key,focus=false){selectedSurface=key;renderSurface();if(focus)document.querySelector(`#tab-${key}`).focus();}
-    surfaceTabs.forEach((button,index)=>{
-      button.addEventListener('click',()=>selectSurface(button.dataset.surface));
-      button.addEventListener('keydown',event=>{let next=index;if(event.key==='ArrowRight')next=(index+1)%surfaceTabs.length;else if(event.key==='ArrowLeft')next=(index-1+surfaceTabs.length)%surfaceTabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=surfaceTabs.length-1;else return;event.preventDefault();selectSurface(surfaceTabs[next].dataset.surface,true);});
-    });
-    versionButtons.forEach(button=>button.addEventListener('click',()=>{selectedVersion=button.dataset.version;renderSurface();}));
-    surfaceImage.addEventListener('error',()=>{imageAvailability[selectedSurface][shownVersion]=false;if(shownVersion==='after'){selectedVersion='before';renderSurface();}else{surfaceEmpty.hidden=false;surfaceOpen.style.visibility='hidden';surfaceFull.hidden=true;}});
-    async function checkScreenshots(){
-      await Promise.all(Object.keys(surfaces).flatMap(key=>['before','after'].map(async version=>{
-        if(imageAvailability[key][version]===true)return;
-        imageAvailability[key][version]=await available(screenshotPath(key,version),'image/');
-      })));
-      renderSurface();
-    }
-    checkScreenshots();
-    const screenshotCheck=setInterval(()=>{if(Object.values(imageAvailability).every(item=>item.after===true)){clearInterval(screenshotCheck);return;}if(!document.hidden)checkScreenshots();},30000);
-    surfaceOpen.addEventListener('click',event=>{
-      if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||typeof lightbox.showModal!=='function')return;
-      event.preventDefault();
-      lightboxImage.src=surfaceImage.src;lightboxImage.alt=surfaceImage.alt;
-      document.querySelector('#lightbox-title').replaceChildren(document.createTextNode(surfaces[selectedSurface].label+' '));
-      const version=document.createElement('span');version.textContent=shownVersion==='before'?'Original':'Refined';document.querySelector('#lightbox-title').append(version);
-      lightbox.dataset.actualSize='false';lightboxSize.textContent='Actual size';lightboxSize.setAttribute('aria-pressed','false');
-      bodyOverflow=document.body.style.overflow;document.body.style.overflow='hidden';lightbox.showModal();
-    });
-    document.querySelector('#lightbox-close').addEventListener('click',()=>lightbox.close());
-    lightbox.addEventListener('close',()=>{document.body.style.overflow=bodyOverflow;});
-    lightbox.addEventListener('click',event=>{const rect=lightbox.getBoundingClientRect();if(event.target===lightbox&&(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom))lightbox.close();});
-    lightboxSize.addEventListener('click',()=>{const actual=lightbox.dataset.actualSize!=='true';lightbox.dataset.actualSize=String(actual);lightboxSize.textContent=actual?'Fit to view':'Actual size';lightboxSize.setAttribute('aria-pressed',String(actual));});
+    if(film.readyState>=1)ready();
   </script>
 </body>
 </html>
