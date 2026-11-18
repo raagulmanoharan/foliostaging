@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Jarwiz — Turn insight into a test.</title>
+  <title>Jarwiz — Sketch a simpler start.</title>
   <style>    @font-face{font-family:Neue;src:url('../jarwiz-review/NeueMontreal-Regular.otf');font-weight:400;font-display:swap}
     @font-face{font-family:Neue;src:url('../jarwiz-review/NeueMontreal-Medium.otf');font-weight:500 700;font-display:swap}
     *{box-sizing:border-box}body{margin:0;background:#fff;color:#1b1d1b;font-family:Neue,Arial,sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}a{color:inherit;text-decoration:none}main{max-width:1160px;margin:auto;padding:42px 40px 60px}.masthead{display:flex;align-items:center;justify-content:space-between;font-size:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:500}.brand svg{width:21px;height:21px}.edition{color:#6e746e;font-size:14px}.intro{margin:64px 0 30px;max-width:680px}.eyebrow{font-size:13px;color:#727972;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px}h1{font-size:44px;line-height:1.05;letter-spacing:-1.8px;font-weight:500;margin:0 0 16px}.description{font-size:19px;line-height:1.5;color:#737973;margin:0}.film{margin:0;border-radius:18px;background:#f5f5f2;overflow:hidden;border:1px solid #e7e9e4;position:relative;aspect-ratio:3/2}video{width:100%;height:100%;display:block;object-fit:contain}.controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:17px}.playback{display:flex;align-items:center;gap:8px}.icon-button{width:38px;height:38px;border:1px solid #e4e8e2;border-radius:50%;display:grid;place-items:center;background:white}.icon-button:hover{background:#f3f5f1}.icon-button:focus-visible,.chapter:focus-visible{outline:2px solid #253a2c;outline-offset:4px}.icon-button svg{width:16px;height:16px}.time{font-size:13px;color:#717870;font-variant-numeric:tabular-nums;margin-left:5px}.chapters{display:flex;gap:7px}.chapter{background:#fff;border:1px solid #e4e8e2;border-radius:30px;padding:10px 13px;font-size:13px;color:#737973;transition:background .2s,color .2s,border-color .2s}.chapter[aria-pressed="true"]{background:#20251f;color:#fff;border-color:#20251f}.chapter span{opacity:.6;margin-right:6px}.footer{margin-top:38px;padding-top:21px;border-top:1px solid #eceee9;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:#737973}.footer a:hover{color:#1b1d1b}.static-note{margin:12px 0;color:#737973;font-size:14px}.progress{width:100%;accent-color:#303d31;height:2px;margin-top:19px;display:block;cursor:pointer}.fallback{padding:20px}.hide{display:none}
@@ -21,14 +21,14 @@
       <span class="edition">02 / With context</span>
     </nav>
     <header class="intro">
-      <p class="eyebrow">From evidence to the next step</p>
-      <h1>Turn insight into a test.</h1>
-      <p class="description">Select the evidence. Add a direction. Give Jarwiz the context to make the next step concrete.</p>
+      <p class="eyebrow">Give Jarwiz the right context</p>
+      <h1>Sketch a simpler start.</h1>
+      <p class="description">A screen and two user needs become a flow worth exploring.</p>
     </header>
     <figure class="film">
-      <video id="film" autoplay muted playsinline loop preload="auto" poster="./poster.jpg?v=grounded-flow-v1" aria-label="Jarwiz with context: select evidence, add a direction, and turn the next step into a concrete test">
-        <source src="./grounded-flow.mp4?v=grounded-flow-v1" type="video/mp4">
-        <a class="fallback" href="./grounded-flow.mp4?v=grounded-flow-v1">Watch the film</a>
+      <video id="film" autoplay muted playsinline loop preload="auto" poster="./poster.jpg?v=grounded-flow-v2" aria-label="Jarwiz with context: combine a setup screen and user feedback to sketch a simpler start">
+        <source src="./grounded-flow.mp4?v=grounded-flow-v2" type="video/mp4">
+        <a class="fallback" href="./grounded-flow.mp4?v=grounded-flow-v2">Watch the film</a>
       </video>
     </figure>
     <input class="progress" id="progress" type="range" min="0" max="15" disabled step="0.05" value="0" aria-label="Video position">
@@ -41,12 +41,12 @@
       </div>
       <div class="chapters" aria-label="Video chapters">
         <button class="chapter" data-chapter="context" data-at="0" aria-pressed="true"><span>01</span>Context</button>
-        <button class="chapter" data-chapter="ask" data-at="1.95" aria-pressed="false"><span>02</span>Ask</button>
-        <button class="chapter" data-chapter="test" data-at="5.617" aria-pressed="false"><span>03</span>Test</button>
+        <button class="chapter" data-chapter="ask" data-at="2.15" aria-pressed="false"><span>02</span>Ask</button>
+        <button class="chapter" data-chapter="flow" data-at="7.4" aria-pressed="false"><span>03</span>Flow</button>
       </div>
     </div>
-    <p class="static-note hide" id="motion-note">Press play to follow the question into a test.</p>
-    <footer class="footer"><span>Actual Jarwiz UI · Prepared AI responses · Illustrative reports</span><div class="footer-links"><a href="../jarwiz-review/?v=first-flow-v21">Watch the first film ↗</a><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></div></footer>
+    <p class="static-note hide" id="motion-note">Press play to follow the screen and feedback into a simpler flow.</p>
+    <footer class="footer"><span>Actual Jarwiz UI · Prepared AI responses · Illustrative scenario</span><div class="footer-links"><a href="../jarwiz-review/?v=first-flow-v21">Watch the first film ↗</a><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></div></footer>
   </main>
   <script>
     const film=document.querySelector('#film'),toggle=document.querySelector('#toggle'),icon=document.querySelector('#play-icon'),progress=document.querySelector('#progress'),time=document.querySelector('#time'),chapters=[...document.querySelectorAll('.chapter')];
@@ -72,7 +72,7 @@
     if(film.readyState>=1)ready();
     async function loadChapterMetadata(){
       try{
-        const response=await fetch('./grounded-flow.json?v=grounded-flow-v1',{cache:'no-store'});
+        const response=await fetch('./grounded-flow.json?v=grounded-flow-v2',{cache:'no-store'});
         if(!response.ok)return;
         const metadata=await response.json(),total=Number(metadata.duration);
         if(!Number.isFinite(total)||total<=0||!Array.isArray(metadata.chapters))return;
