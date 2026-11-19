@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Jarwiz — The next useful reference.</title>
+  <title>Jarwiz — Found these for you.</title>
   <style>
     @font-face{font-family:Neue;src:url('../jarwiz-review/NeueMontreal-Regular.otf');font-weight:400;font-display:swap}
     @font-face{font-family:Neue;src:url('../jarwiz-review/NeueMontreal-Medium.otf');font-weight:500 700;font-display:swap}
     *{box-sizing:border-box}body{margin:0;background:#fff;color:#1b1d1b;font-family:Neue,Arial,sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}a{color:inherit;text-decoration:none}main{max-width:1160px;margin:auto;padding:42px 40px 60px}.masthead{display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:16px}.brand{display:flex;align-items:center;gap:10px;font-weight:500}.brand svg{width:21px;height:21px}.edition{color:#6e746e;font-size:14px}.intro{margin:64px 0 58px;max-width:760px}.eyebrow{font-size:13px;color:#727972;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px}h1{font-size:44px;line-height:1.05;letter-spacing:-1.8px;font-weight:500;margin:0 0 16px}.description{font-size:19px;line-height:1.5;color:#737973;margin:0}.film{margin:0;border-radius:18px;background:#f5f5f2;overflow:hidden;border:1px solid #e7e9e4;position:relative;aspect-ratio:3/2}video{width:100%;height:100%;display:block;object-fit:contain}.controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:17px}.playback{display:flex;align-items:center;gap:8px}.icon-button{width:38px;height:38px;border:1px solid #e4e8e2;border-radius:50%;display:grid;place-items:center;background:white}.icon-button:hover{background:#f3f5f1}.icon-button:focus-visible,.chapter:focus-visible{outline:2px solid #253a2c;outline-offset:4px}.icon-button svg{width:16px;height:16px}.time{font-size:13px;color:#717870;font-variant-numeric:tabular-nums;margin-left:5px}.chapters{display:flex;gap:7px}.chapter{background:#fff;border:1px solid #e4e8e2;border-radius:30px;padding:10px 13px;font-size:13px;color:#737973;transition:background .2s,color .2s,border-color .2s}.chapter[aria-pressed="true"]{background:#20251f;color:#fff;border-color:#20251f}.chapter span{opacity:.6;margin-right:6px}.chapter:disabled{cursor:default;opacity:.45}.footer{margin-top:38px;padding-top:21px;border-top:1px solid #eceee9;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:13px;color:#737973}.footer a:hover{color:#1b1d1b}.footer a:focus-visible{outline:2px solid #253a2c;outline-offset:4px}.footer-links{display:flex;gap:22px;flex-wrap:wrap;justify-content:flex-end}.static-note{margin:12px 0;color:#737973;font-size:14px}.progress{width:100%;accent-color:#303d31;height:2px;margin-top:19px;display:block;cursor:pointer}.progress:disabled{cursor:default}.fallback{padding:20px}.hide{display:none}
     @media(max-width:700px){main{padding:25px 18px 32px}.intro{margin:48px 0 42px}h1{font-size:35px;letter-spacing:-1.2px}.description{font-size:17px}.film{border-radius:11px;margin:0 -8px;width:calc(100% + 16px)}.controls{align-items:flex-start;flex-wrap:wrap}.chapters{order:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;gap:5px}.chapter{min-width:0;font-size:11px;padding:11px 4px}.chapter span{display:none}.edition{font-size:12px}.footer{margin-top:28px;gap:16px;align-items:flex-start}.footer-links{justify-content:flex-start;gap:15px}.time{font-size:12px}.progress{margin-top:16px}}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
-    .demo-section + .demo-section{margin-top:86px}.demo-heading{margin-bottom:23px}.demo-heading h2{display:flex;align-items:baseline;gap:13px;font-size:25px;line-height:1.2;letter-spacing:-.6px;font-weight:500;margin:0}.step-number{font-size:13px;letter-spacing:0;color:#8a9088}.demo-heading p{font-size:17px;line-height:1.5;color:#737973;margin:9px 0 0}.chapters:empty{display:none}.progress:focus-visible{outline:2px solid #526250;outline-offset:7px}.controls{min-height:38px}.static-note{margin-bottom:0}.film:fullscreen{border:0;border-radius:0;background:#151715}video:fullscreen{background:#151715}
-    @media(max-width:700px){.chapters[data-count="4"]{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-section + .demo-section{margin-top:58px}.demo-heading{margin-bottom:19px}.demo-heading h2{font-size:23px;gap:10px}.demo-heading p{font-size:16px;margin-top:8px}.intro{max-width:100%}}
+    .chapters:empty{display:none}.progress:focus-visible{outline:2px solid #526250;outline-offset:7px}.controls{min-height:38px}.static-note{margin-bottom:0}.film:fullscreen{border:0;border-radius:0;background:#151715}video:fullscreen{background:#151715}
+    @media(max-width:700px){.chapters[data-count="4"]{grid-template-columns:repeat(2,minmax(0,1fr))}.intro{max-width:100%}}
   </style>
 </head>
 <body>
@@ -23,15 +23,14 @@
     </nav>
     <header class="intro">
       <p class="eyebrow">A canvas that thinks with you</p>
-      <h1>The next useful reference.</h1>
-      <p class="description">Find relevant guidance, bring it onto the canvas, and turn it into clear acceptance checks.</p>
+      <h1 id="scout-heading">Found these for you.</h1>
+      <p class="description">Scout reads the canvas and brings back relevant links, each with a useful summary.</p>
     </header>
-    <section class="demo-section" data-player="scout" data-name="Scout" data-metadata="./scout-flow.json?v=scout-flow-v1" aria-labelledby="scout-heading">
-      <header class="demo-heading"><h2 id="scout-heading"><span class="step-number">01</span>Discover useful guidance.</h2><p>Scout finds references that build on the work already on your canvas.</p></header>
+    <section class="demo-section" data-player="scout" data-name="Scout" data-metadata="./scout-flow.json?v=scout-flow-v2" aria-labelledby="scout-heading">
       <figure class="film">
-        <video id="scout-film" muted playsinline loop preload="metadata" poster="./poster.jpg?v=scout-flow-v1" aria-label="Scout finds relevant guidance from the context on the canvas, then the chosen reference is added to the board.">
-          <source src="./scout-flow.mp4?v=scout-flow-v1" type="video/mp4">
-          <a class="fallback" href="./scout-flow.mp4?v=scout-flow-v1">Watch the Scout film</a>
+        <video id="scout-film" muted playsinline loop preload="metadata" poster="./poster.jpg?v=scout-flow-v2" aria-label="Scout uses the current canvas to create one card of relevant links, each with a useful summary.">
+          <source src="./scout-flow.mp4?v=scout-flow-v2" type="video/mp4">
+          <a class="fallback" href="./scout-flow.mp4?v=scout-flow-v2">Watch the Scout film</a>
         </video>
       </figure>
       <input class="progress" data-progress type="range" min="0" max="15" disabled step="0.05" value="0" aria-label="Scout video position">
@@ -44,27 +43,7 @@
         </div>
         <div class="chapters" aria-label="Scout video chapters"></div>
       </div>
-      <p class="static-note hide" data-motion-note>Press play to see Scout find a useful reference for the work on your canvas.</p>
-    </section>
-    <section class="demo-section" data-player="apply" data-name="Apply" data-metadata="./apply-flow.json?v=scout-flow-v1" aria-labelledby="apply-heading">
-      <header class="demo-heading"><h2 id="apply-heading"><span class="step-number">02</span>Turn guidance into acceptance checks.</h2><p>Use the reference alongside your PRD to make the requirements testable.</p></header>
-      <figure class="film">
-        <video id="apply-film" muted playsinline loop preload="metadata" poster="./apply-poster.jpg?v=scout-flow-v1" aria-label="Use the reference and the PRD together to create clear acceptance checks grounded in the chosen guidance.">
-          <source src="./apply-flow.mp4?v=scout-flow-v1" type="video/mp4">
-          <a class="fallback" href="./apply-flow.mp4?v=scout-flow-v1">Watch the apply film</a>
-        </video>
-      </figure>
-      <input class="progress" data-progress type="range" min="0" max="15" disabled step="0.05" value="0" aria-label="Apply video position">
-      <div class="controls">
-        <div class="playback">
-          <button class="icon-button" data-action="toggle" aria-label="Play apply video"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path data-play-icon d="M6 3l11 7-11 7z"/></svg></button>
-          <button class="icon-button" data-action="replay" aria-label="Replay apply video"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.2 8.5a7 7 0 1 1 .9 5.6M3 3v5.5h5.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="icon-button" data-action="expand" aria-label="View apply video full screen"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8V3h5m4 0h5v5M3 12v5h5m4 0h5v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <span class="time" data-time aria-live="off">0:00 / —</span>
-        </div>
-        <div class="chapters" aria-label="Apply video chapters"></div>
-      </div>
-      <p class="static-note hide" data-motion-note>Press play to see guidance become clear acceptance checks.</p>
+      <p class="static-note hide" data-motion-note>Press play to see Scout bring relevant links and summaries onto the canvas.</p>
     </section>
     <footer class="footer"><span>Actual Jarwiz UI · Prepared AI responses · Illustrative scenario</span><div class="footer-links"><a href="../jarwiz-review/?v=first-flow-v21">Watch the first film ↗</a><a href="../jarwiz-grounded-review/?v=grounded-flow-v5">Watch Build &amp; Refine ↗</a><a href="../jarwiz-notice-review/?v=prd-flow-v1">Watch Notice &amp; Update ↗</a><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></div></footer>
   </main>
