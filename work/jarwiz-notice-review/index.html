@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Jarwiz — Jarwiz spots what’s missing.</title>
+  <title>Jarwiz — Jarwiz connects the dots.</title>
   <style>
     @font-face{font-family:Neue;src:url('../jarwiz-review/NeueMontreal-Regular.otf');font-weight:400;font-display:swap}
     @font-face{font-family:Neue;src:url('../jarwiz-review/NeueMontreal-Medium.otf');font-weight:500 700;font-display:swap}
@@ -21,13 +21,13 @@
     </nav>
     <header class="intro">
       <p class="eyebrow">A canvas that thinks with you</p>
-      <h1>Jarwiz spots what’s missing.</h1>
-      <p class="description">A new audience joins the pilot. Jarwiz catches the gap in the prototype.</p>
+      <h1>Jarwiz connects the dots.</h1>
+      <p class="description">A spreadsheet shows how people want to start. Jarwiz suggests a change to the prototype.</p>
     </header>
     <figure class="film">
-      <video id="film" muted playsinline loop preload="metadata" poster="./poster.jpg?v=notice-flow-v1" aria-label="A pilot update prompts Jarwiz to notice a missing journey and leave a comment on the prototype">
-        <source src="./notice-flow.mp4?v=notice-flow-v1" type="video/mp4">
-        <a class="fallback" href="./notice-flow.mp4?v=notice-flow-v1">Watch the film</a>
+      <video id="film" muted playsinline loop preload="metadata" poster="./poster.jpg?v=notice-flow-v2" aria-label="Excel onboarding test results arrive on the canvas. Jarwiz reads the data and recommends making Paste my notes the primary button in the prototype.">
+        <source src="./notice-flow.mp4?v=notice-flow-v2" type="video/mp4">
+        <a class="fallback" href="./notice-flow.mp4?v=notice-flow-v2">Watch the film</a>
       </video>
     </figure>
     <input class="progress" id="progress" type="range" min="0" max="15" disabled step="0.05" value="0" aria-label="Video position">
@@ -40,11 +40,11 @@
       </div>
       <div class="chapters" aria-label="Video chapters">
         <button class="chapter" disabled aria-pressed="false"><span>01</span>Context</button>
-        <button class="chapter" disabled aria-pressed="false"><span>02</span>Update</button>
-        <button class="chapter" disabled aria-pressed="false"><span>03</span>Notice</button>
+        <button class="chapter" disabled aria-pressed="false"><span>02</span>New data</button>
+        <button class="chapter" disabled aria-pressed="false"><span>03</span>Jarwiz reads</button>
       </div>
     </div>
-    <p class="static-note hide" id="motion-note">Press play to see Jarwiz notice the missing journey.</p>
+    <p class="static-note hide" id="motion-note">Press play to see Jarwiz connect the test results to a change in the prototype.</p>
     <footer class="footer"><span>Actual Jarwiz UI · Prepared AI responses · Illustrative scenario</span><div class="footer-links"><a href="../jarwiz-grounded-review/?v=grounded-flow-v5">Watch Build &amp; Refine ↗</a><a href="../../case-studies/jarwiz/">Back to the case study ↗</a></div></footer>
   </main>
   <script>
@@ -73,7 +73,7 @@
     if(!motion.matches)play();
     async function loadChapterMetadata(){
       try{
-        const response=await fetch('./notice-flow.json?v=notice-flow-v1',{cache:'no-store'});
+        const response=await fetch('./notice-flow.json?v=notice-flow-v2',{cache:'no-store'});
         if(!response.ok)return;
         const metadata=await response.json(),total=Number(metadata.duration),items=metadata.chapters;
         if(!Number.isFinite(total)||total<=0||!Array.isArray(items)||items.length!==3)return;
