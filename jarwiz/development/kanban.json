@@ -15,7 +15,7 @@
       "No live emails, invitations, user admission, provider writes or production deployment are authorized by this kanban.",
       "Model credentials, provider account access, hosting, licensing and operating ownership are external prerequisites."
     ],
-    "activeBuild": "10 implementation slices locally accepted; integrated first-edit rehearsal remains in review. Five broader release gates remain open.",
+    "activeBuild": "10 implementation slices locally accepted; first-edit rehearsal in review. P0 deployment task JZ-101B added and blocked on the hosting target/configuration. Five release gates remain open.",
     "boardVerification": {
       "date": "2026-11-20",
       "result": "Passed browser checks at 1440, 1024, 390 and 320px: active/full view counts, six columns, filters, detail rail/Escape, gate expansion, refresh, containment and no page overflow.",
@@ -109,7 +109,8 @@
       "status": "pending",
       "itemIds": [
         "JZ-101",
-        "JZ-102"
+        "JZ-102",
+        "JZ-101B"
       ]
     },
     {
@@ -218,12 +219,18 @@
           "path": "docs/launch/kanban.json",
           "note": "Implementation and local acceptance recorded in JZ-101A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
           "date": "2026-11-20"
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/deployment.md",
+          "note": "Actual hosted deployment is explicitly tracked as JZ-101B; local packaging remains complete in JZ-101A.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [
         "Persistent same-origin TLS hosting, deployment credentials, OAuth callback registration and canvas SDK production license coverage are not established."
       ],
-      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-101A.",
+      "nextAction": "Complete deployment task JZ-101B and attach hosted evidence to this parent gate.",
       "sourceRoadmapId": "JZ-101",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -2254,6 +2261,48 @@
       "blockers": [],
       "nextAction": "Local slice accepted. Complete the parent hosted release gate.",
       "sourceRoadmapId": "JZ-102",
+      "assignee": "root",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-101B",
+      "title": "Deploy and verify the closed-beta environment",
+      "description": "Deploy the reviewed Jarwiz release to persistent HTTPS hosting, configure real identity/model services, and prove the hosted product journey, recovery and rollback before cohort admission.",
+      "status": "blocked",
+      "priority": "P0",
+      "crewId": "release",
+      "releaseScope": "build_wave_3",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-101A",
+        "JZ-102A",
+        "JZ-103A",
+        "JZ-104A",
+        "JZ-302A",
+        "JZ-301A"
+      ],
+      "acceptanceCriteria": [
+        "Record a reviewed source revision, successful release CI and an immutable deployable image; preserve unrelated workspace work and the previous compatible rollback artifact.",
+        "Serve the app, authenticated API and WebSocket from one HTTPS origin on a single instance with persistent team, asset, usage and intake storage; initialize a closed admission roster.",
+        "Configure Google OAuth, the selected model funding/BYOK policy, stable encryption-key recovery and production canvas licensing; verify real callbacks and enabled providers without exposing credentials.",
+        "Rehearse private import, grounded generation, edit, reload, teammate invitation, concurrent discussion, viewer restrictions and revocation with dedicated identities; attach evidence to JZ-105A.",
+        "Verify restart/replacement persistence, restore into a separate target, compatible-version rollback, monitoring and the admission pause/revoke procedure.",
+        "Attach the deployed URL, image digest, source revision, verification results and operating owner. Keep cohort admission gated by JZ-110 and the overall release decision."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "docs/launch/deployment.md",
+          "note": "Concrete deployment sequence prepared; host and credentials are pending. Existing Docker/private-beta and recovery checks are local evidence, not a hosted deployment.",
+          "date": "2026-11-20"
+        }
+      ],
+      "blockers": [
+        "Target hosting account/service, persistent volume and beta HTTPS domain have not been provided.",
+        "Beta-origin OAuth/provider configuration, production canvas license and rehearsal/operations ownership remain unconfigured."
+      ],
+      "nextAction": "Confirm the hosting account/service and domain, prepare its deployment configuration, then execute the recorded rollout and hosted acceptance sequence.",
+      "sourceRoadmapId": "JZ-101",
       "assignee": "root",
       "updatedAt": "2026-11-20"
     }
