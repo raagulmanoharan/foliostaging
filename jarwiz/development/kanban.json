@@ -7,15 +7,15 @@
     "baseline": "Current Jarwiz working tree, including existing modified and untracked product modules. No worktree reset or inferred completion.",
     "goal": "Prepare a real closed-beta product through complete tested workflows, then expand feature coverage.",
     "launchState": "not_ready",
-    "launchDecision": "Do not open admission or claim hosted feature readiness until acceptance evidence and external gates pass.",
+    "launchDecision": "Implementation wave delivered. Do not admit a cohort until configured provider/OAuth, hosted durability/recovery, licensing and operational acceptance pass.",
     "workingPolicy": [
       "Feature crews implement independent slices with explicit file ownership.",
-      "A passing deterministic test moves a build slice to review, not the broader live release gate to done.",
+      "Deterministic tests establish local evidence. A slice moves to Done only after its own acceptance review; broader live release gates remain separate.",
       "Done requires recorded acceptance evidence and review; marketing demonstrations are not release evidence.",
       "No live emails, invitations, user admission, provider writes or production deployment are authorized by this kanban.",
       "Model credentials, provider account access, hosting, licensing and operating ownership are external prerequisites."
     ],
-    "activeBuild": "Waves 1\u20132: launch implementation and dependency remediation; external release gates remain pending.",
+    "activeBuild": "10 implementation slices locally accepted; integrated first-edit rehearsal remains in review. Five broader release gates remain open.",
     "boardVerification": {
       "date": "2026-11-20",
       "result": "Passed browser checks at 1440, 1024, 390 and 320px: active/full view counts, six columns, filters, detail rail/Escape, gate expansion, refresh, containment and no page overflow.",
@@ -143,8 +143,8 @@
     {
       "id": "dependency-review",
       "title": "Dependency release review",
-      "description": "Triage relevant advisories and verify compatible remediation before exposing imported material to the beta.",
-      "status": "pending",
+      "description": "Compatible fixes verified. Remaining audit ancestry is the documented broad Tiptap2 range; exact official backport and executable-attribute regression were reviewed. No blanket security-clearance claim.",
+      "status": "passed",
       "itemIds": [
         "JZ-301A"
       ]
@@ -194,7 +194,7 @@
       "priority": "P0",
       "crewId": "release",
       "releaseScope": "closed_beta",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "implemented-unverified",
       "dependencies": [],
       "acceptanceCriteria": [
         "The release build, OAuth callbacks and authenticated WebSocket route use the same staging origin.",
@@ -212,12 +212,18 @@
           "kind": "source_reference",
           "path": "Jarwiz/apps/server/src/team/README.md#runtime-and-mounting",
           "note": "Runtime and storage contract; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/kanban.json",
+          "note": "Implementation and local acceptance recorded in JZ-101A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [
         "Persistent same-origin TLS hosting, deployment credentials, OAuth callback registration and canvas SDK production license coverage are not established."
       ],
-      "nextAction": "Resolve external prerequisite and retain gate until observed.",
+      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-101A.",
       "sourceRoadmapId": "JZ-101",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -230,7 +236,7 @@
       "priority": "P0",
       "crewId": "access",
       "releaseScope": "closed_beta",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "implemented-unverified",
       "dependencies": [
         "JZ-101"
       ],
@@ -254,12 +260,18 @@
           "kind": "source_reference",
           "path": "Jarwiz/apps/server/src/model.ts#L48",
           "note": "Model key selection; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/kanban.json",
+          "note": "Implementation and local acceptance recorded in JZ-102A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [
         "Live approved-account and revocation checks require staging identities and the configured admission environment."
       ],
-      "nextAction": "Resolve external prerequisite and retain gate until observed.",
+      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-102A.",
       "sourceRoadmapId": "JZ-102",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -268,11 +280,11 @@
       "id": "JZ-103",
       "title": "Keep imported evidence private and durable",
       "description": "Give supported private-board uploads an authorized owner and apply the same access check during ingestion, retrieval and extraction.",
-      "status": "backlog",
+      "status": "review",
       "priority": "P0",
       "crewId": "storage",
       "releaseScope": "closed_beta",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "implemented-unverified",
       "dependencies": [
         "JZ-101",
         "JZ-102"
@@ -297,10 +309,16 @@
           "kind": "source_reference",
           "path": "Jarwiz/apps/server/src/team/rooms.ts#L45",
           "note": "Shared snapshot validation; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/kanban.json",
+          "note": "Implementation and local acceptance recorded in JZ-103A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-103A.",
       "sourceRoadmapId": "JZ-103",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -309,7 +327,7 @@
       "id": "JZ-104",
       "title": "Persist and recover private boards",
       "description": "Verify the stateful canvas for individual users and establish a restore drill for the account, saved board and attachments.",
-      "status": "backlog",
+      "status": "review",
       "priority": "P0",
       "crewId": "storage",
       "releaseScope": "closed_beta",
@@ -339,10 +357,16 @@
           "kind": "source_reference",
           "path": "Jarwiz/apps/server/src/team/team.test.ts#L72",
           "note": "Team persistence tests; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/kanban.json",
+          "note": "Implementation and local acceptance recorded in JZ-104A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-104A.",
       "sourceRoadmapId": "JZ-104",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -586,11 +610,11 @@
       "id": "JZ-111",
       "title": "Build reliable web intake before scaling requests",
       "description": "Replace best-effort signup storage with a durable, observable queue and an honest web form when the manual intake volume warrants it.",
-      "status": "backlog",
+      "status": "review",
       "priority": "P2",
       "crewId": "access",
       "releaseScope": "feature_release",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "implemented-unverified",
       "dependencies": [
         "JZ-100",
         "JZ-101",
@@ -611,10 +635,16 @@
           "kind": "source_reference",
           "path": "Jarwiz/apps/server/src/index.ts#L137",
           "note": "Legacy response; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/kanban.json",
+          "note": "Implementation and local acceptance recorded in JZ-111A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-111A.",
       "sourceRoadmapId": "JZ-111",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -653,11 +683,11 @@
       "id": "JZ-120",
       "title": "Complete teammate invite, return and removal",
       "description": "Connect invitation links to the accept API and expose board return and role controls. Verify safe migration of supported attachments before opening shared boards.",
-      "status": "backlog",
+      "status": "review",
       "priority": "P1",
       "crewId": "team",
       "releaseScope": "feature_release",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "implemented-unverified",
       "dependencies": [
         "JZ-102",
         "JZ-103",
@@ -689,10 +719,16 @@
           "kind": "source_reference",
           "path": "Jarwiz/apps/server/src/team/rooms.ts#L45",
           "note": "Snapshot migration boundary; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/kanban.json",
+          "note": "Implementation and local acceptance recorded in JZ-120A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-120A.",
       "sourceRoadmapId": "JZ-120",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -701,11 +737,11 @@
       "id": "JZ-121",
       "title": "Make teammate discussions attributable and durable",
       "description": "Use authenticated member identity on shared comments and keep concurrent replies from overwriting each other.",
-      "status": "backlog",
+      "status": "review",
       "priority": "P1",
       "crewId": "team",
       "releaseScope": "feature_release",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "implemented-unverified",
       "dependencies": [
         "JZ-120"
       ],
@@ -724,10 +760,16 @@
           "kind": "source_reference",
           "path": "Jarwiz/apps/web/test/sharedComments.browser.test.cjs#L60",
           "note": "Browser fixture; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/kanban.json",
+          "note": "Implementation and local acceptance recorded in JZ-121A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-121A.",
       "sourceRoadmapId": "JZ-121",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -810,11 +852,11 @@
       "id": "JZ-124",
       "title": "Surface incoming context and preserve review control",
       "description": "Expose timely update state from manual refresh or configured polling, preserve accepted revisions, and give editors source removal controls.",
-      "status": "backlog",
+      "status": "review",
       "priority": "P1",
       "crewId": "context",
       "releaseScope": "feature_release",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "implemented-unverified",
       "dependencies": [
         "JZ-120"
       ],
@@ -838,10 +880,16 @@
           "kind": "source_reference",
           "path": "Jarwiz/apps/web/src/team/TeamPanel.tsx#L173",
           "note": "Current client review; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/kanban.json",
+          "note": "Implementation and local acceptance recorded in JZ-124A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-124A.",
       "sourceRoadmapId": "JZ-124",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -1138,11 +1186,11 @@
       "id": "JZ-302",
       "title": "Specify the model harness and capability contract",
       "description": "Define a provider-neutral run contract so application workflows can declare the model capabilities they need.",
-      "status": "ready",
+      "status": "review",
       "priority": "P1",
       "crewId": "harness",
       "releaseScope": "feature_release",
-      "implementationStatus": "planned",
+      "implementationStatus": "implemented-unverified",
       "dependencies": [],
       "acceptanceCriteria": [
         "Specify typed input messages, modalities, tool schemas and replies, structured responses, cancellation and usage/cost metadata, plus normalized streaming events and errors.",
@@ -1169,10 +1217,16 @@
           "kind": "source_reference",
           "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
           "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/kanban.json",
+          "note": "Implementation and local acceptance recorded in JZ-302A. This parent retains its broader release criteria; local fixtures do not establish hosted or live-provider readiness.",
+          "date": "2026-11-20"
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Review remaining parent acceptance against configured staging; see completed implementation slice JZ-302A.",
       "sourceRoadmapId": "JZ-302",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -1842,33 +1896,40 @@
       "id": "JZ-111A",
       "title": "Durable, honest beta intake",
       "description": "Return success only after persistent write; deduplicate retries across restart and concurrent requests.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "P0",
       "crewId": "access",
       "releaseScope": "build_wave_1",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "locally-verified",
       "dependencies": [],
       "acceptanceCriteria": [
         "Use a configured persistent store; failed commits return a failure response instead of a successful signup.",
         "Concurrent duplicate requests and process restart preserve one normalized intake record; notification is not repeatedly sent.",
         "Automated tests exercise write failure and duplicate/retry behavior without sending email."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "apps/server/src/signupStore.test.ts",
+          "note": "Durable SQLite intake: 5/5 persistence, concurrent deduplication, migration and failure tests. Notifications occur only after a new committed record. No email sent.",
+          "date": "2026-11-20"
+        }
+      ],
       "blockers": [],
-      "nextAction": "beta_intake crew implementing SQLite persistence, atomic dedupe, strict migration and failure tests.",
+      "nextAction": "Local slice accepted. Parent release gate remains open for hosted/provider verification.",
       "sourceRoadmapId": "JZ-111",
-      "assignee": null,
+      "assignee": "beta_intake",
       "updatedAt": "2026-11-20"
     },
     {
       "id": "JZ-120A",
       "title": "Complete shared-board invite and return UI",
       "description": "Connect existing invitation, board directory and member removal endpoints to the normal app.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "P0",
       "crewId": "team",
       "releaseScope": "build_wave_1",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "locally-verified",
       "dependencies": [],
       "acceptanceCriteria": [
         "The normal app consumes teamInvite, preserves it through sign-in, accepts only an authorized matching account and navigates to the correct board.",
@@ -1876,31 +1937,51 @@
         "Shared boards can be listed and reopened; owners can revoke a non-owner member and viewers cannot expose owner controls.",
         "Automated API/client checks cover the real endpoint contract; live OAuth remains a separate release gate."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "docs/launch/team-journey.md",
+          "note": "5/5 browser journey contracts plus 19/19 team/discussion server tests. Verified pending identity, invite return, directory, owner removal, and admission recheck around mocked OAuth exchange. Real OAuth remains external.",
+          "date": "2026-11-20"
+        }
+      ],
       "blockers": [],
-      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "nextAction": "Local slice accepted. Parent release gate remains open for hosted/provider verification.",
       "sourceRoadmapId": "JZ-120",
       "assignee": "team_journey",
       "updatedAt": "2026-11-20"
     },
     {
       "id": "JZ-121A",
-      "title": "Attribute board discussion to signed-in members",
-      "description": "Replace local You authorship in shared-board comments while preserving existing local history.",
-      "status": "in_progress",
+      "title": "Persist attributable, concurrent board discussions",
+      "description": "Use append-only shared discussion records, verified member authors, retry-safe operations and authenticated model receipts across card types.",
+      "status": "done",
       "priority": "P1",
       "crewId": "team",
       "releaseScope": "build_wave_1",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "locally-verified",
       "dependencies": [],
       "acceptanceCriteria": [
         "New shared-board comments and replies retain verified stable member IDs and display names.",
         "Human and Jarwiz authors remain distinct and existing local comments are readable.",
-        "Revoked/viewer permissions follow the board policy and concurrent same-card retention is tested or explicitly remains a release blocker."
+        "Concurrent replies survive retry/reload without loss or duplication; viewer/revoked writes and client-forged agent messages are rejected."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "docs/launch/team-journey.md",
+          "note": "Authoritative SQLite discussions: 7/7 server checks including 20 parallel-process replies; 2/2 browser checks with distinct authenticated sessions, failed-write retry, reload, role enforcement and server-receipted agent messages.",
+          "date": "2026-11-20"
+        },
+        {
+          "kind": "browser",
+          "path": "docs/launch/team-journey.md",
+          "note": "All-card comment rail4/4 (14 native card types), prototype comments1/1, authoritative shared discussions2/2 pass on stable final Vite configuration.",
+          "date": "2026-11-20"
+        }
+      ],
       "blockers": [],
-      "nextAction": "Review session-derived attribution and viewer guards; server-attested authors and concurrent merge remain separate requirements.",
+      "nextAction": "Local slice accepted. Parent release gate remains open for hosted/provider verification.",
       "sourceRoadmapId": "JZ-121",
       "assignee": "team_journey",
       "updatedAt": "2026-11-20"
@@ -1909,11 +1990,11 @@
       "id": "JZ-124A",
       "title": "Consume source updates and affected artifact events",
       "description": "Make existing accepted-context APIs visible and reconnect-safe in the normal board.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "P1",
       "crewId": "context",
       "releaseScope": "build_wave_1",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "locally-verified",
       "dependencies": [],
       "acceptanceCriteria": [
         "Refresh/reconnect catches up source and event state idempotently and exposes pending revision review.",
@@ -1921,9 +2002,16 @@
         "Affected output names and IDs derive from current persisted dependency data; unrelated cards are excluded.",
         "Disconnect and removal have role-aware controls; stale review or provider failure preserves accepted content."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "docs/launch/connected-context.md",
+          "note": "18 focused server/unit checks and native Tldraw component browser check passed. Exact revision acceptance, stale artifacts, source catch-up, removal and create-copy preservation verified with deterministic providers.",
+          "date": "2026-11-20"
+        }
+      ],
       "blockers": [],
-      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "nextAction": "Local slice accepted. Parent release gate remains open for hosted/provider verification.",
       "sourceRoadmapId": "JZ-124",
       "assignee": "connected_context",
       "updatedAt": "2026-11-20"
@@ -1932,11 +2020,11 @@
       "id": "JZ-302A",
       "title": "Establish provider-neutral harness contract",
       "description": "Introduce a tested typed model boundary with Anthropic compatibility and an explicit second-provider path.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "P1",
       "crewId": "harness",
       "releaseScope": "build_wave_1",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "locally-verified",
       "dependencies": [],
       "acceptanceCriteria": [
         "Normalized requests, streaming events, tool calls, cancellation, usage and errors have executable contract tests.",
@@ -1944,9 +2032,16 @@
         "A second-provider adapter has deterministic transport tests; real model verification is recorded separately.",
         "No API credential is written into board records, URLs, logs or exported data."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "apps/server/src/models/README.md",
+          "note": "16 adapter contract tests plus provider-settings browser passed. Anthropic, OpenAI and configured compatible routes handle streaming/tools/cancellation/errors; native web research capability is explicit. Request/URL credential isolation passed. No paid provider verification.",
+          "date": "2026-11-20"
+        }
+      ],
       "blockers": [],
-      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "nextAction": "Local slice accepted. Parent release gate remains open for hosted/provider verification.",
       "sourceRoadmapId": "JZ-302",
       "assignee": "model_harness",
       "updatedAt": "2026-11-20"
@@ -1955,11 +2050,11 @@
       "id": "JZ-103A",
       "title": "Protect uploads and downstream extraction",
       "description": "Enforce private ownership across asset creation, reads and processing, and define durable storage configuration.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "P0",
       "crewId": "storage",
       "releaseScope": "build_wave_1",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "locally-verified",
       "dependencies": [],
       "acceptanceCriteria": [
         "Anonymous, wrong-account and revoked requests cannot read, overwrite or extract protected uploads.",
@@ -1967,9 +2062,16 @@
         "Local-to-shared migration either preserves authorized assets/references or clearly refuses without losing the original board.",
         "Negative authorization and persistence tests use temporary fixtures and disclose legacy/public-demo boundaries."
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "docs/launch/private-assets.md",
+          "note": "Private ownership/extraction: 26 passed, one optional fixture skipped. Snapshot migration and room tests passed. Actual-server suite additionally verifies cross-account isolation, body limits, restart and WebSocket revocation.",
+          "date": "2026-11-20"
+        }
+      ],
       "blockers": [],
-      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "nextAction": "Local slice accepted. Parent release gate remains open for hosted/provider verification.",
       "sourceRoadmapId": "JZ-103",
       "assignee": "private_assets",
       "updatedAt": "2026-11-20"
@@ -1978,11 +2080,11 @@
       "id": "JZ-101A",
       "title": "Build launch configuration and readiness checks",
       "description": "Make a persistent same-origin deployment reproducible and detect missing launch requirements.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "P0",
       "crewId": "release",
       "releaseScope": "build_wave_1",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "locally-verified",
       "dependencies": [],
       "acceptanceCriteria": [
         "Readiness checks required configured origins, persistent storage, secrets and service capabilities without leaking values.",
@@ -1991,10 +2093,27 @@
         "Actual hosting, OAuth and license gates remain pending until externally verified."
       ],
       "evidence": [
-        "Root tests: 5/5 admission, origin, viewer mutation, transactional budget, restart and legacy migration checks passed. Full route integration in progress."
+        {
+          "kind": "test",
+          "path": "docs/launch/private-beta.md",
+          "note": "Root tests: 5/5 admission, origin, viewer mutation, transactional budget, restart and legacy migration checks passed. Full route integration in progress.",
+          "date": "2026-11-20"
+        },
+        {
+          "kind": "test",
+          "path": "docs/launch/private-beta-integration.md",
+          "note": "Actual-server integration8/8: admission, role/origin boundaries, uploads, restart, WebSocket revocation, static bundle and 12 encoded traversal variants. Docker packaging check in progress.",
+          "date": "2026-11-20"
+        },
+        {
+          "kind": "test",
+          "date": "2026-11-20",
+          "path": "docs/launch/private-beta.md",
+          "note": "Node22 Docker clean build and production-only locked dependency install pass. Nonroot, network-isolated container serves actual shell/health, reports private access and denies anonymous boards/readiness. Missing private configuration exits before listening. Actual Mermaid-scoped KaTeX0.18.2 assertion passes after production install. No ports or provider access exposed."
+        }
       ],
       "blockers": [],
-      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "nextAction": "Use the documented profile for configured hosted rehearsal; parent hosting/OAuth/license gates remain open.",
       "sourceRoadmapId": "JZ-101",
       "assignee": "root",
       "updatedAt": "2026-11-20"
@@ -2003,11 +2122,11 @@
       "id": "JZ-105A",
       "title": "Run a reproducible product release regression",
       "description": "Establish current build/test baseline and exercise the core source-to-output workflow with repeatable fixtures.",
-      "status": "in_progress",
+      "status": "review",
       "priority": "P0",
       "crewId": "release",
       "releaseScope": "build_wave_1",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "locally-verified",
       "dependencies": [],
       "acceptanceCriteria": [
         "Typecheck/build and relevant unit/browser suites run against current working tree and record failures rather than hiding them.",
@@ -2021,10 +2140,19 @@
           "path": "docs/launch/baseline.md",
           "note": "Baseline crew reports typecheck/build pass, 111 unit passes with one optional film-fixture skip, and isolated prototype sandbox browser pass. Integrated launch:check result pending confirmation. CI changes have not run remotely.",
           "date": "2026-11-20"
+        },
+        {
+          "kind": "test",
+          "date": "2026-11-20",
+          "path": "docs/launch/baseline.md",
+          "command": "npm run launch:check",
+          "note": "Final integrated check:188 tests187pass1optional workbookskip; all workspace typechecks and production builds pass. Actual-server8/8, recovery5/5 and targeted browser checks for team entry, authoritative two-user discussion, all14 card comments, prototypes, maps, models and Mermaid math pass. CI authored, not remotely run. Full configured first-edit rehearsal remains open."
         }
       ],
-      "blockers": [],
-      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "blockers": [
+        "Live provider/OAuth and intended staging environment are not configured in this workspace."
+      ],
+      "nextAction": "Complete the integrated first-source-to-edit rehearsal with configured provider/OAuth, keyboard and interruption checks before accepting this broader workflow slice.",
       "sourceRoadmapId": "JZ-105",
       "assignee": "launch_baseline",
       "updatedAt": "2026-11-20"
@@ -2033,11 +2161,11 @@
       "id": "JZ-301A",
       "title": "Triage and remediate release dependency advisories",
       "description": "Assess reachable dependency advisories, apply compatible fixes and document any remaining release risk with evidence.",
-      "status": "in_progress",
+      "status": "done",
       "priority": "P0",
       "crewId": "release",
       "releaseScope": "build_wave_2",
-      "implementationStatus": "needs-work",
+      "implementationStatus": "locally-verified",
       "dependencies": [],
       "acceptanceCriteria": [
         "Review current npm audit findings against installed versions and actual ingestion/rendering/server entry points; distinguish affected package counts from reachable vulnerabilities.",
@@ -2050,12 +2178,83 @@
           "path": "docs/launch/baseline.md",
           "note": "Baseline crew reported 70 affected dependency entries including a critical MapLibre advisory. Inspected app uses textContent rather than Popup.setHTML; other relevant spreadsheet, rich text and server paths require triage. This is not an exploitability conclusion.",
           "date": "2026-11-20"
+        },
+        {
+          "kind": "test",
+          "path": "docs/launch/dependency-triage.md",
+          "note": "Official SheetJS0.20.3, MapLibre6.19, Hono/node adapter and compatible tooling updated. Current audit0critical/0high/33moderate/2low. Native map browser and parsing tests passed; residual advisory assessment ongoing.",
+          "date": "2026-11-20"
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/dependency-triage.md",
+          "date": "2026-11-20",
+          "note": "Final audit:0critical/0high/0low;33moderate ancestry entries trace to an overbroad Tiptap2 advisory. Official2.27.3 tarball byte-matches installed patched mergeAttributes and rejects inherited executable attributes in regression. Scoped KaTeX0.18.2 fixes demonstrated inherited-trust bypass and renders native Mermaid math correctly. Clean npmci verified; npm11 npm-ls override reporting quirk documented."
         }
       ],
       "blockers": [],
-      "nextAction": "Dependency remediation crew is assessing reachable advisories and compatible fixes.",
+      "nextAction": "Keep lockfile regression checks; monitor upstream advisory correction for the verified Tiptap2 backport.",
       "sourceRoadmapId": "JZ-301",
       "assignee": "launch_baseline",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-104A",
+      "title": "Build and verify private-data backup and restore",
+      "description": "Create checksummed, quiesced backups of private stores and restore into a new target without overwriting existing data.",
+      "status": "done",
+      "priority": "P0",
+      "crewId": "storage",
+      "releaseScope": "build_wave_2",
+      "implementationStatus": "locally-verified",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Backup covers team, assets, usage and intake with SHA256 integrity and SQLite validation.",
+        "Restore rejects corruption, path traversal, symlinks, overlap and existing destinations.",
+        "A restored fixture reopens boards, discussions, uploads, encrypted provider records, budgets and signup records. Hosted restore remains separate."
+      ],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "docs/launch/recovery.md",
+          "note": "5/5 recovery tests pass, including CLI round trip, real store reopen, failure cleanup and malicious/corrupt manifests. Original encryption key is separately required.",
+          "date": "2026-11-20"
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Local slice accepted. Complete the parent hosted release gate.",
+      "sourceRoadmapId": "JZ-104",
+      "assignee": "private_assets",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-102A",
+      "title": "Enforce private admission and durable AI budgets",
+      "description": "Separate verified identity from beta entitlement and reserve account/global model capacity atomically.",
+      "status": "done",
+      "priority": "P0",
+      "crewId": "access",
+      "releaseScope": "build_wave_2",
+      "implementationStatus": "locally-verified",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Anonymous, pending and revoked accounts cannot access private data or invoke funded generation.",
+        "Persistent account and global reservations enforce limits under concurrency and survive restart.",
+        "BYOK validation cannot bypass owner budgets using mixed legacy keys or keyless compatible endpoints.",
+        "Real provider costs and hosted identity are explicitly separate verification."
+      ],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "docs/launch/private-beta.md",
+          "note": "Admission/budget unit and Hono middleware regressions passed. Independent model-crew review closed mixed-key and keyless-endpoint budget bypasses; actual-server integration verifies entitlement and revocation.",
+          "date": "2026-11-20"
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Local slice accepted. Complete the parent hosted release gate.",
+      "sourceRoadmapId": "JZ-102",
+      "assignee": "root",
       "updatedAt": "2026-11-20"
     }
   ]
