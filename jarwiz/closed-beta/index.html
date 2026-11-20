@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f7f6f2" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="description" content="Gather project material, explore it with AI, and make editable documents, diagrams, prototypes, and dashboards on a visual canvas." />
     <title>Jarwiz — Research, plan, and create on one AI canvas</title>
     <link rel="preload" href="/foliostaging/work/jarwiz-launch-v1/fonts/InterVariable-v4.1.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" crossorigin href="/foliostaging/assets/jarwizBeta-Bn4g4ojs.css">
+    <script type="module" crossorigin src="/foliostaging/assets/jarwizBeta-CUEW6iyp.js"></script>
+    <link rel="modulepreload" crossorigin href="/foliostaging/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="stylesheet" crossorigin href="/foliostaging/assets/jarwizBeta-CbPNc18Y.css">
   </head>
   <body id="top">
     <svg xmlns="http://www.w3.org/2000/svg" class="symbol-library" aria-hidden="true" focusable="false">
@@ -16,295 +18,167 @@
       <symbol id="i-external" viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10"/></symbol>
       <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v15m-6-6 6 6 6-6"/></symbol>
       <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 20V5m-6 6 6-6 6 6"/></symbol>
-      <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zm0 0v6h6M8 13h8m-8 4h6"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></symbol>
       <symbol id="i-flow" viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="5" rx="1"/><rect x="2" y="16" width="8" height="5" rx="1"/><rect x="14" y="16" width="8" height="5" rx="1"/><path d="M12 8v4m-6 4v-4h12v4"/></symbol>
-      <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18m-13 4-2 2 2 2m8-4 2 2-2 2"/></symbol>
       <symbol id="i-chart" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 16v-4m4 4V8m4 8v-6"/></symbol>
-      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-2 2m2 6a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l2-2"/></symbol>
-      <symbol id="i-canvas" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></symbol>
-      <symbol id="i-note" viewBox="0 0 24 24"><path d="M20 14V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9l6-6Zm0 0h-4a2 2 0 0 0-2 2v4M7 8h8m-8 4h5"/></symbol>
-      <symbol id="i-comment" viewBox="0 0 24 24"><path d="M20 14a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zM8 9h8m-8 3h5"/></symbol>
-      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
-      <symbol id="i-cursor" viewBox="0 0 24 24"><path d="m5 3 15 9-7 2-3 7z"/></symbol>
-      <symbol id="i-paperclip" viewBox="0 0 24 24"><path d="m8 13 6-6a3 3 0 0 1 4 4l-8 8a5 5 0 0 1-7-7l9-9a3 3 0 0 1 4 4l-8 8"/></symbol>
-      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M19 10c0 5.5-7 10-7 10S5 15.5 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zm0 0v6h6M8 13h8m-8 4h6"/></symbol>
+      <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18m-13 4-2 2 2 2m8-4 2 2-2 2"/></symbol>
+      <symbol id="i-stack" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></symbol>
       <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
     </svg>
     <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header wrap">
       <a class="brand" href="#top" aria-label="Jarwiz home"><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg>Jarwiz</a>
       <nav class="main-nav" aria-label="Main navigation">
-        <a href="#workspace">Workspace</a>
-        <a href="#create">What you can make</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#how-it-works">How it works</a>
       </nav>
       <a class="button button--header" href="#invite">Request an invite <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </header>
 
     <main id="main" tabindex="-1">
-      <section class="hero wrap" aria-labelledby="hero-title">
-        <div class="hero-intro">
-          <div class="hero-title"><p class="hero-label">Closed beta</p><h1 id="hero-title">Research, plan, and create on one AI canvas.</h1></div>
-          <div class="hero-summary">
-            <p>Lay out your notes, links, and files. Ask questions across them, then turn what you learn into a document you can edit, a diagram you can follow, or a prototype you can try.</p>
-            <div class="hero-actions"><a class="button button--primary" href="#invite">Request an invite <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="text-link" href="#workspace">Explore the workspace <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a></div>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-intro wrap">
+          <p class="hero-label">Closed beta</p>
+          <h1 id="hero-title">Research, plan, and create on one AI canvas.</h1>
+          <p class="hero-summary">Gather your material, ask questions across it, and make documents, diagrams, prototypes, and dashboards you can keep working on.</p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#invite">Request an invite <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="text-link" href="#use-cases">Explore use cases <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
           </div>
         </div>
 
-        <figure class="scene hero-scene">
-          <div class="scene-frame">
-            <div class="scene-bar"><svg class="icon" aria-hidden="true"><use href="#i-canvas"/></svg><span>Boards</span><svg class="icon breadcrumb-divider" aria-hidden="true"><use href="#i-chevron"/></svg><strong>Neighborhood print fair</strong></div>
-            <div class="hero-board dotted">
-              <aside class="board-toolbar" aria-hidden="true">
-                <span class="tool-selected"><svg class="icon"><use href="#i-cursor"/></svg></span>
-                <span><svg class="icon"><use href="#i-note"/></svg></span>
-                <span><svg class="icon"><use href="#i-paperclip"/></svg></span>
-                <span><svg class="icon"><use href="#i-spark"/></svg></span>
-              </aside>
-              <div class="hero-cards">
-                <div class="hero-sources">
-                  <article class="card hero-note">
-                    <div class="card-bar"><svg class="icon tint-amber" aria-hidden="true"><use href="#i-note"/></svg>Organizer notes</div>
-                    <div class="card-body">
-                      <h3>What visitors need</h3>
-                      <p>Show where to enter and where to find the printing workshops.</p>
-                    </div>
-                  </article>
-                  <article class="card hero-file">
-                    <div class="card-bar"><svg class="icon tint-blue" aria-hidden="true"><use href="#i-doc"/></svg>Venue floor plan.pdf</div>
-                    <div class="card-body"><p>Public entrance through the courtyard. Workshop tables in the back room.</p></div>
-                  </article>
-                </div>
-                <article class="card hero-map">
-                  <div class="card-bar"><svg class="icon tint-blue" aria-hidden="true"><use href="#i-doc"/></svg>Venue floor plan</div>
-                  <div class="floor-plan">
-                    <svg viewBox="0 0 260 178" role="img" aria-label="Courtyard below the main hall, with workshops in the back room">
-                      <defs>
-                        <pattern id="plan-lines" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v6" stroke="#cec9d8" stroke-width="1"/></pattern>
-                        <marker id="plan-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="m0 0 10 5-10 5z" fill="#6453af"/></marker>
-                      </defs>
-                      <path d="M26 22h208v118H26z" fill="#f8f7f4" stroke="#898692" stroke-width="1.3"/>
-                      <path d="M158 22h76v70h-76z" fill="url(#plan-lines)" stroke="#898692" stroke-width="1.3"/>
-                      <path d="M97 22v18H26m0 57h55v43m153-30h-43v30M108 140h39" fill="none" stroke="#898692" stroke-width="1.3"/>
-                      <path d="M128 163V111c0-9 4-14 13-14h35c10 0 19-10 19-21" fill="none" stroke="#6453af" stroke-width="1.6" stroke-dasharray="4 4" marker-end="url(#plan-arrow)"/>
-                      <text x="63" y="71">Main hall</text>
-                      <text x="167" y="59">Back room</text>
-                      <text x="25" y="167">Courtyard</text>
-                    </svg>
-                  </div>
-                </article>
-                <article class="card hero-guide">
-                  <div class="card-bar"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-doc"/></svg>Visitor guide</div>
-                  <div class="guide-paper">
-                    <span class="guide-kicker">Field guide</span>
-                    <p class="guide-title">Neighborhood<br />print fair</p>
-                    <div class="guide-rule" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-                    <p class="guide-directions">Enter through the courtyard. The workshops are in the back room.</p>
-                    <svg class="guide-stamp" viewBox="0 0 70 70" aria-hidden="true"><circle cx="35" cy="35" r="31"/><path d="M35 5v60M5 35h60M13 13l44 44m0-44L13 57M24 8l22 54M8 24l54 22m0-22L8 46M46 8 24 62"/></svg>
-                  </div>
-                  <div class="card-foot"><span class="source-chip"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>Venue floor plan.pdf</span></div>
-                </article>
-              </div>
-              <div class="composer hero-composer">
-                <div class="composer-prompt"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-spark"/></svg>Draft a visitor guide from this board.</div>
-                <div class="composer-foot"><span class="source-chip"><svg class="icon" aria-hidden="true"><use href="#i-paperclip"/></svg>Venue floor plan.pdf</span><span class="source-chip">Organizer notes</span><span class="composer-send" aria-hidden="true"><svg class="icon"><use href="#i-up"/></svg></span></div>
-              </div>
-            </div>
+        <div class="hero-stage wrap">
+          <div class="preview-slot preview-slot--hero" data-media-slot="canvas-overview">
+            <div class="preview-label"><span>Product preview space</span><strong>Canvas overview</strong></div>
           </div>
-          <figcaption class="caption"><span>Illustrative product scene</span> <span>A visitor guide takes shape beside the material it came from.</span></figcaption>
-        </figure>
+        </div>
       </section>
 
-      <section class="work-section wrap" id="workspace" aria-labelledby="gather-title" tabindex="-1">
-        <div class="gather-layout">
-          <div class="section-copy">
-            <h2 id="gather-title">Put the project in view.</h2>
-            <p>Drop in a PDF, paste a link, or add a note as an idea comes to you. Move related items together. Keep the floor plan beside the program, and the details you need are there when you start writing.</p>
+      <section class="work-section wrap" id="use-cases" aria-labelledby="cases-title" tabindex="-1">
+        <div class="section-intro">
+          <h2 id="cases-title">Start with your project.</h2>
+          <p>Make sense of research, test a plan, or organize the details of something you’re doing next.</p>
+        </div>
+
+        <div class="case-tabs" role="tablist" aria-label="Use cases" hidden>
+          <button type="button" role="tab" id="tab-research" data-case="research" aria-controls="case-research" aria-selected="true"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Research &amp; synthesis</button>
+          <button type="button" role="tab" id="tab-planning" data-case="planning" aria-controls="case-planning" aria-selected="false" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-flow"/></svg>Product planning</button>
+          <button type="button" role="tab" id="tab-analysis" data-case="analysis" aria-controls="case-analysis" aria-selected="false" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg>Business analysis</button>
+          <button type="button" role="tab" id="tab-personal" data-case="personal" aria-controls="case-personal" aria-selected="false" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-map"/></svg>Personal planning</button>
+        </div>
+
+        <div class="case-panels">
+          <section class="case-panel case-panel--research" id="case-research" role="tabpanel" aria-labelledby="tab-research" tabindex="0">
+            <div class="case-copy">
+              <h3>Find what the sources say.</h3>
+              <p>Collect reports, notes, and links. Compare findings and turn the patterns you see into a brief you can edit.</p>
+            </div>
+            <div class="preview-slot preview-slot--case" data-media-slot="research-synthesis">
+              <div class="preview-label"><span>Use case preview space</span><strong>Sources and research brief</strong></div>
+            </div>
+          </section>
+
+          <section class="case-panel case-panel--planning" id="case-planning" role="tabpanel" aria-labelledby="tab-planning" tabindex="0">
+            <div class="case-copy">
+              <h3>Give a product idea a shape.</h3>
+              <p>Lay out the journey, gather the requirements, and turn a proposed change into a prototype you can try.</p>
+            </div>
+            <div class="preview-slot preview-slot--case" data-media-slot="product-planning">
+              <div class="preview-label"><span>Use case preview space</span><strong>Journey map and prototype</strong></div>
+            </div>
+          </section>
+
+          <section class="case-panel case-panel--analysis" id="case-analysis" role="tabpanel" aria-labelledby="tab-analysis" tabindex="0">
+            <div class="case-copy">
+              <h3>See what the numbers add up to.</h3>
+              <p>Bring in a spreadsheet. Summarize what changed, compare results, and put the figures you want to follow in a dashboard.</p>
+            </div>
+            <div class="preview-slot preview-slot--case" data-media-slot="business-analysis">
+              <div class="preview-label"><span>Use case preview space</span><strong>Spreadsheet and dashboard</strong></div>
+            </div>
+          </section>
+
+          <section class="case-panel case-panel--personal" id="case-personal" role="tabpanel" aria-labelledby="tab-personal" tabindex="0">
+            <div class="case-copy">
+              <h3>Turn scattered ideas into a plan.</h3>
+              <p>Bring plans, links, and preferences together. Compare options and make a plan that fits your time and budget.</p>
+            </div>
+            <div class="preview-slot preview-slot--case" data-media-slot="personal-planning">
+              <div class="preview-label"><span>Use case preview space</span><strong>Planning board and itinerary</strong></div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="how" id="how-it-works" aria-labelledby="how-title" tabindex="-1">
+        <div class="wrap">
+          <div class="section-intro">
+            <h2 id="how-title">Keep the work and its context together.</h2>
+            <p>Start with the material you already have. Work through a question, then keep the result on the same board.</p>
           </div>
-          <figure class="scene gather-scene">
-            <div class="gather-board dotted">
-              <article class="card gather-map">
-                <div class="card-bar"><svg class="icon tint-blue" aria-hidden="true"><use href="#i-doc"/></svg>Venue floor plan.pdf</div>
-                <div class="floor-plan">
-                  <svg viewBox="0 0 260 140" role="img" aria-label="Courtyard, main hall and back room">
-                    <path d="M19 18h222v89H19z" fill="#f8f7f4" stroke="#898692" stroke-width="1.3"/>
-                    <path d="M159 18h82v55h-82z" fill="#eae5f5" stroke="#898692" stroke-width="1.3"/>
-                    <path d="M128 125V82h52c14 0 23-8 23-20" fill="none" stroke="#6453af" stroke-width="1.6" stroke-dasharray="4 4"/>
-                    <text x="46" y="58">Main hall</text><text x="168" y="49">Back room</text><text x="18" y="129">Courtyard</text>
-                  </svg>
-                </div>
-              </article>
-              <article class="card gather-program">
-                <div class="card-bar"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-link"/></svg>Fair program</div>
-                <div class="card-body"><h3>On the program</h3><p>Poster tables · Main hall</p><p>Workshops · Back room</p></div>
-              </article>
-              <article class="card gather-note">
-                <div class="card-bar"><svg class="icon tint-amber" aria-hidden="true"><use href="#i-note"/></svg>Organizer notes</div>
-                <div class="card-body"><h3>Visitor entrance</h3><p>Visitors enter through the courtyard.</p></div>
-              </article>
-            </div>
-            <figcaption class="caption"><span>Illustrative product scene</span> <span>The floor plan, program, and organizer notes grouped on one board.</span></figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="work-section wrap" id="research" aria-labelledby="research-title">
-        <div class="section-copy section-copy--split">
-          <h2 id="research-title">Ask a question across your sources.</h2>
-          <p>Select the material you want Jarwiz to use. Ask it to compare options, pull out a theme, or suggest a next step. Read the answer beside the sources and decide what belongs in your project.</p>
-        </div>
-        <figure class="scene research-scene">
-          <div class="scene-frame">
-            <div class="scene-bar"><svg class="icon" aria-hidden="true"><use href="#i-canvas"/></svg><strong>Neighborhood print fair</strong><span class="scene-bar-end">Source and answer</span></div>
-            <div class="research-board dotted">
-              <div class="research-inputs">
-                <article class="card research-source">
-                  <div class="card-bar"><svg class="icon tint-blue" aria-hidden="true"><use href="#i-doc"/></svg>Venue floor plan</div>
-                  <div class="pdf-page"><h3>Public layout</h3><p>Walk from the courtyard through the main hall. The workshop tables are in the <mark>back room</mark>.</p></div>
-                </article>
-                <article class="card research-note">
-                  <div class="card-bar"><svg class="icon tint-amber" aria-hidden="true"><use href="#i-note"/></svg>Organizer notes</div>
-                  <div class="card-body"><p>Visitors enter through the courtyard.</p></div>
-                </article>
-              </div>
-              <div class="research-response">
-                <div class="composer research-composer">
-                  <div class="composer-prompt"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-spark"/></svg>Where should the first workshop sign go?</div>
-                  <div class="composer-foot"><span class="source-chip"><svg class="icon" aria-hidden="true"><use href="#i-paperclip"/></svg>Venue floor plan</span><span class="source-chip">Organizer notes</span></div>
-                </div>
-                <article class="card response-card">
-                  <div class="card-bar"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-spark"/></svg>Jarwiz answer</div>
-                  <div class="card-body"><p>At the courtyard entrance. Visitors arrive there, and the workshop tables are in the back room. A sign here can point them through the main hall.</p></div>
-                  <div class="card-foot"><span class="source-chip"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>Venue floor plan</span><span class="source-chip"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>Organizer notes</span></div>
-                </article>
-              </div>
-            </div>
+          <div class="workflow">
+            <article class="workflow-step">
+              <svg class="icon step-icon" aria-hidden="true"><use href="#i-stack"/></svg>
+              <h3>Gather your material.</h3>
+              <p>Add notes, links, images, PDFs, or spreadsheets. Arrange related pieces on the board.</p>
+            </article>
+            <article class="workflow-step">
+              <svg class="icon step-icon" aria-hidden="true"><use href="#i-search"/></svg>
+              <h3>Ask with context.</h3>
+              <p>Choose the sources Jarwiz should use. Ask it to compare options, find themes, or suggest a next step.</p>
+            </article>
+            <article class="workflow-step">
+              <svg class="icon step-icon" aria-hidden="true"><use href="#i-doc"/></svg>
+              <h3>Build on the result.</h3>
+              <p>Keep what you learn beside the original material. Edit it yourself or ask a follow-up as the project changes.</p>
+            </article>
           </div>
-          <figcaption class="caption"><span>Illustrative product scene</span> <span>A signage question answered using two sources on the fair board.</span></figcaption>
-        </figure>
-      </section>
-
-      <section class="work-section wrap" id="create" aria-labelledby="create-title" tabindex="-1">
-        <div class="section-copy section-copy--split">
-          <h2 id="create-title">Make the thing your project needs.</h2>
-          <p>Choose a format that fits the question. Write a brief from an interview, map a process someone can follow, or try an interface before handing it to a developer. You can keep working on the result right on the board.</p>
-        </div>
-        <div class="gallery">
-          <figure class="scene gallery-panel">
-            <div class="scene-frame">
-              <div class="scene-bar"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-doc"/></svg><strong>Documents</strong></div>
-              <div class="gallery-stage gallery-stage--document">
-                <article class="publication">
-                  <p class="paper-meta">Publication draft</p>
-                  <h3>Field Notes<br />Issue outline</h3>
-                  <ol class="publication-list">
-                    <li><strong>The maker</strong><span>Open with how they got started and what they make today.</span></li>
-                    <li><strong>Inside the studio</strong><span>Walk through their workspace and the tools they return to.</span></li>
-                    <li><strong>In their own words</strong><span>Close with a short reflection drawn from the interview.</span></li>
-                  </ol>
-                </article>
-              </div>
-            </div>
-            <figcaption class="caption"><span>Illustrative document</span> <span>Shape interview notes into an outline for the next issue.</span></figcaption>
-          </figure>
-
-          <figure class="scene gallery-panel">
-            <div class="scene-frame">
-              <div class="scene-bar"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-flow"/></svg><strong>Diagrams</strong></div>
-              <div class="gallery-stage gallery-stage--diagram dotted">
-                <h3>Repair café · Intake flow</h3>
-                <div class="repair-flow" aria-label="Repair intake flow">
-                  <div class="flow-start"><span>Receive item</span><svg class="icon flow-arrow" aria-hidden="true"><use href="#i-arrow"/></svg><span>Assess repair</span></div>
-                  <svg class="icon flow-arrow" aria-hidden="true"><use href="#i-down"/></svg>
-                  <div class="flow-node flow-node--question">Repair possible?</div>
-                  <div class="flow-branches">
-                    <div><small>Yes</small><span>Repair</span><svg class="icon flow-arrow" aria-hidden="true"><use href="#i-down"/></svg><span>Test</span><svg class="icon flow-arrow" aria-hidden="true"><use href="#i-down"/></svg><span>Arrange pickup</span></div>
-                    <div><small>No</small><span>Explain options</span><svg class="icon flow-arrow" aria-hidden="true"><use href="#i-down"/></svg><span>Return item</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <figcaption class="caption"><span>Illustrative diagram</span> <span>Map a repair request from the first report to pickup.</span></figcaption>
-          </figure>
-
-          <figure class="scene gallery-panel">
-            <div class="scene-frame">
-              <div class="scene-bar"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-window"/></svg><strong>Prototypes</strong></div>
-              <div class="gallery-stage gallery-stage--prototype">
-                <div class="booking">
-                  <div class="booking-screen">
-                    <h3>Book a room</h3>
-                    <svg class="room-illustration" viewBox="0 0 240 104" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration of the reading room with a window, bookcase, and table">
-                      <path fill="#e3e8db" d="M0 0h240v104H0z"/><path fill="#c6d0b6" d="M0 77h240v27H0z"/>
-                      <path d="M20 77V14h47v63m-47-20h47m-47-21h47m-37 0V21m10 15V20m14 16-5-12m-18 33V42m12 15V41m12 16V45" fill="none" stroke="#58664b" stroke-width="2"/>
-                      <path d="M148 13h62v50h-62z" fill="#f8eed6" stroke="#58664b" stroke-width="2"/><path d="M179 13v50m-31-24h62" stroke="#58664b" stroke-width="2"/>
-                      <path d="M87 69h66l14 10H73z" fill="#93634b"/><path d="m83 79-3 17m76-17 3 17" stroke="#684b3c" stroke-width="3"/>
-                      <path d="M110 69v-7h18v7" fill="#fff5df" stroke="#684b3c" stroke-width="1.5"/>
-                    </svg>
-                    <div class="booking-selection"><div><strong>Reading room</strong><small>Seats up to 6</small></div><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div>
-                  </div>
-                  <svg class="icon booking-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
-                  <div class="booking-screen booking-screen--review">
-                    <h3>Review booking</h3>
-                    <dl><div><dt>Room</dt><dd>Reading room</dd></div><div><dt>When</dt><dd>Saturday, 10–11 am</dd></div><div><dt>Guests</dt><dd>4 people</dd></div></dl>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <figcaption class="caption"><span>Illustrative prototype</span> <span>Turn a room-booking sketch into a flow you can try.</span></figcaption>
-          </figure>
-
-          <figure class="scene gallery-panel">
-            <div class="scene-frame">
-              <div class="scene-bar"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-chart"/></svg><strong>Dashboards</strong></div>
-              <div class="gallery-stage gallery-stage--dashboard">
-                <article class="dashboard">
-                  <h3>Workshop bookings</h3>
-                  <div class="occupancy"><div><strong>33 <small>/ 42 places booked</small></strong><span>9 available</span></div><div class="chart-track" aria-hidden="true"><span></span></div></div>
-                  <ul class="chart-rows">
-                    <li><span>Print basics</span><strong>8 / 12</strong></li>
-                    <li><span>Poster lettering <small>Waitlist only</small></span><strong>10 / 10</strong></li>
-                    <li><span>Bookbinding</span><strong>6 / 8</strong></li>
-                    <li><span>Monoprint</span><strong>9 / 12</strong></li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-            <figcaption class="caption"><span>Illustrative dashboard</span> <span>Explore a workshop schedule and see which sessions have space.</span></figcaption>
-          </figure>
         </div>
       </section>
 
-      <section class="work-section wrap" id="refine" aria-labelledby="refine-title">
-        <div class="section-copy section-copy--split">
+      <section class="formats work-section wrap" aria-labelledby="formats-title">
+        <div class="section-intro">
+          <h2 id="formats-title">Make the thing your project needs.</h2>
+          <p>Write something to share, map a process, try an interface, or show what’s happening in your data.</p>
+        </div>
+        <div class="format-grid">
+          <article class="format format--document">
+            <div class="format-copy"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg><div><h3>Documents</h3><p>Turn reading and notes into an editable brief.</p></div></div>
+            <div class="preview-slot" data-media-slot="document"><div class="preview-label"><span>Output preview space</span><strong>Research brief</strong></div></div>
+          </article>
+          <article class="format format--diagram">
+            <div class="format-copy"><svg class="icon" aria-hidden="true"><use href="#i-flow"/></svg><div><h3>Diagrams</h3><p>Map steps and decisions so a process is easier to follow.</p></div></div>
+            <div class="preview-slot" data-media-slot="diagram"><div class="preview-label"><span>Output preview space</span><strong>Process map</strong></div></div>
+          </article>
+          <article class="format format--prototype">
+            <div class="format-copy"><svg class="icon" aria-hidden="true"><use href="#i-window"/></svg><div><h3>Prototypes</h3><p>Turn a sketch or requirements into a flow you can try.</p></div></div>
+            <div class="preview-slot" data-media-slot="prototype"><div class="preview-label"><span>Output preview space</span><strong>Interface walkthrough</strong></div></div>
+          </article>
+          <article class="format format--dashboard">
+            <div class="format-copy"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><div><h3>Dashboards</h3><p>Put the figures and trends that matter in one view.</p></div></div>
+            <div class="preview-slot" data-media-slot="dashboard"><div class="preview-label"><span>Output preview space</span><strong>Metrics and trends</strong></div></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="refine work-section wrap" aria-labelledby="refine-title">
+        <div class="section-intro">
           <h2 id="refine-title">Give the first draft another pass.</h2>
-          <p>Add a new constraint, ask a follow-up question, or change a detail yourself. The earlier material stays on the canvas, so you can revise the draft in the context of the project.</p>
+          <p>Add a constraint, ask a follow-up, or point to the part you want to change. Review what Jarwiz suggests before applying it.</p>
         </div>
-        <div class="revision-layout">
-          <figure class="scene refine-scene">
-            <div class="scene-frame">
-              <div class="scene-bar"><svg class="icon" aria-hidden="true"><use href="#i-canvas"/></svg><strong>Neighborhood print fair</strong><span class="scene-bar-end">Visitor guide</span></div>
-              <div class="refine-board">
-                <div class="refine-document dotted">
-                  <article class="card">
-                    <div class="card-bar"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-doc"/></svg>Revised visitor guide</div>
-                    <div class="card-body"><h3>Getting to the fair</h3><p>Enter through the courtyard. <mark>Before noon, start in the main hall. The back-room workshops open at noon.</mark></p></div>
-                    <div class="card-foot"><span class="source-chip"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>Organizer notes</span></div>
-                  </article>
-                </div>
-                <aside class="comment-rail" aria-label="Illustrative comments">
-                  <div class="rail-title"><svg class="icon" aria-hidden="true"><use href="#i-comment"/></svg>Comments</div>
-                  <div class="rail-comment">
-                    <div class="rail-author"><span class="rail-avatar"><svg class="icon" aria-hidden="true"><use href="#i-note"/></svg></span><strong>New organizer’s note</strong></div>
-                    <p>The back room opens at noon.</p>
-                    <div class="rail-suggestion"><span>Follow-up prompt</span><p>Add a morning arrival note to the guide.</p></div>
-                  </div>
-                </aside>
-              </div>
-            </div>
-            <figcaption class="caption"><span>Illustrative product scene</span> <span>A new opening time leads to a revision of the visitor guide.</span></figcaption>
-          </figure>
-          <aside class="team-note"><svg class="icon tint-violet" aria-hidden="true"><use href="#i-comment"/></svg><div><span>In development</span><h3>Shared workspaces</h3><p>We’re building toward shared boards where teammates can discuss a draft and bring updates from connected tools into the same workspace.</p></div></aside>
+        <div class="refine-stage">
+          <div class="preview-slot preview-slot--refine" data-media-slot="contextual-refinement">
+            <div class="preview-label"><span>Product preview space</span><strong>Draft and comments</strong></div>
+          </div>
         </div>
+        <aside class="next-workspaces" aria-labelledby="next-title">
+          <h3 id="next-title">In development</h3>
+          <div><h4>Shared workspaces</h4><p>We’re building shared boards where teammates can work together and discuss drafts in context.</p></div>
+          <div><h4>Connected sources</h4><p>We’re developing connections that bring selected updates from other tools onto the board.</p></div>
+        </aside>
       </section>
 
       <section class="closing" id="open-platform" aria-labelledby="open-title">
