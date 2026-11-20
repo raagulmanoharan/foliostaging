@@ -1,0 +1,2062 @@
+{
+  "schemaVersion": 1,
+  "metadata": {
+    "title": "Jarwiz product launch kanban",
+    "updatedAt": "2026-11-20",
+    "sourceRoadmap": "/workspace/Folio/docs/jarwiz-beta-roadmap.json",
+    "baseline": "Current Jarwiz working tree, including existing modified and untracked product modules. No worktree reset or inferred completion.",
+    "goal": "Prepare a real closed-beta product through complete tested workflows, then expand feature coverage.",
+    "launchState": "not_ready",
+    "launchDecision": "Do not open admission or claim hosted feature readiness until acceptance evidence and external gates pass.",
+    "workingPolicy": [
+      "Feature crews implement independent slices with explicit file ownership.",
+      "A passing deterministic test moves a build slice to review, not the broader live release gate to done.",
+      "Done requires recorded acceptance evidence and review; marketing demonstrations are not release evidence.",
+      "No live emails, invitations, user admission, provider writes or production deployment are authorized by this kanban.",
+      "Model credentials, provider account access, hosting, licensing and operating ownership are external prerequisites."
+    ],
+    "activeBuild": "Waves 1\u20132: launch implementation and dependency remediation; external release gates remain pending.",
+    "boardVerification": {
+      "date": "2026-11-20",
+      "result": "Passed browser checks at 1440, 1024, 390 and 320px: active/full view counts, six columns, filters, detail rail/Escape, gate expansion, refresh, containment and no page overflow.",
+      "artifact": "/tmp/jarwiz-launch-kanban/check.json",
+      "command": "node /tmp/jarwiz-launch-kanban/check.cjs"
+    }
+  },
+  "columns": [
+    {
+      "id": "backlog",
+      "label": "Backlog"
+    },
+    {
+      "id": "ready",
+      "label": "Ready"
+    },
+    {
+      "id": "in_progress",
+      "label": "In progress"
+    },
+    {
+      "id": "review",
+      "label": "Review"
+    },
+    {
+      "id": "blocked",
+      "label": "Blocked"
+    },
+    {
+      "id": "done",
+      "label": "Done"
+    }
+  ],
+  "crews": [
+    {
+      "id": "access",
+      "name": "Access and beta operations",
+      "scope": "Admission, budget enforcement, reliable intake and operational readiness"
+    },
+    {
+      "id": "storage",
+      "name": "Private data and recovery",
+      "scope": "Authenticated assets, persistent boards, migrations and restore"
+    },
+    {
+      "id": "team",
+      "name": "Teams and collaboration",
+      "scope": "Invite/join/reopen/revoke, attributable comments and concurrent sessions"
+    },
+    {
+      "id": "context",
+      "name": "Sources and grounded work",
+      "scope": "Source selection, citations, refresh/review and affected artifacts"
+    },
+    {
+      "id": "harness",
+      "name": "Model and tool harness",
+      "scope": "Provider-neutral execution, capabilities, credentials and extensions"
+    },
+    {
+      "id": "workspace",
+      "name": "Canvas and artifacts",
+      "scope": "Canvas authoring, ingest, editable outputs, organization and handoff"
+    },
+    {
+      "id": "release",
+      "name": "Release and workflow verification",
+      "scope": "Build/typecheck/tests, real workflow evidence, same-origin deployment and release gates"
+    },
+    {
+      "id": "pm",
+      "name": "Product and launch coordination",
+      "scope": "Prioritization, acceptance review, category coverage and honest launch status"
+    }
+  ],
+  "gates": [
+    {
+      "id": "intake",
+      "title": "Personal intake and support",
+      "description": "Verify the email handoff, operational roster and support owner.",
+      "status": "pending",
+      "itemIds": [
+        "JZ-100",
+        "JZ-110"
+      ]
+    },
+    {
+      "id": "access",
+      "title": "Invited account access",
+      "description": "Enforce admission, funded model limits and revocation.",
+      "status": "pending",
+      "itemIds": [
+        "JZ-101",
+        "JZ-102"
+      ]
+    },
+    {
+      "id": "private-evidence",
+      "title": "Private source material",
+      "description": "Prove supported uploads and extraction stay private.",
+      "status": "pending",
+      "itemIds": [
+        "JZ-103"
+      ]
+    },
+    {
+      "id": "recovery",
+      "title": "Saved board recovery",
+      "description": "Demonstrate return after restart and tested restore.",
+      "status": "pending",
+      "itemIds": [
+        "JZ-104"
+      ]
+    },
+    {
+      "id": "activation",
+      "title": "Evidence-to-edit rehearsal",
+      "description": "Import, cite, edit and reopen work through the real beta path.",
+      "status": "pending",
+      "itemIds": [
+        "JZ-105",
+        "JZ-106"
+      ]
+    },
+    {
+      "id": "dependency-review",
+      "title": "Dependency release review",
+      "description": "Triage relevant advisories and verify compatible remediation before exposing imported material to the beta.",
+      "status": "pending",
+      "itemIds": [
+        "JZ-301A"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "JZ-100",
+      "title": "Operate personal beta intake",
+      "description": "Use the published email address for initial requests. Keep request, approval and invitation receipt separate.",
+      "status": "blocked",
+      "priority": "P0",
+      "crewId": "access",
+      "releaseScope": "closed_beta",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "The staging CTA opens a draft to the correct address and the address is copyable for webmail.",
+        "A named operator can log a test request in a restricted roster, approve or decline it and verify the resulting invitation state with a local sink or staging mailbox.",
+        "The preview makes no receipt, delivery, timing or admission claim at click."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-future-launch-spec.md",
+          "note": "Future launch brief; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/site/index.html#L1094",
+          "note": "Existing published contact; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [
+        "A named operator must own the restricted intake roster and support inbox; no email is sent by this work."
+      ],
+      "nextAction": "Resolve external prerequisite and retain gate until observed.",
+      "sourceRoadmapId": "JZ-100",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-101",
+      "title": "Stand up a durable invite environment",
+      "description": "Host the authorized app, team API and WebSocket under one TLS origin with persistent storage, a pinned Node runtime and explicit readiness.",
+      "status": "blocked",
+      "priority": "P0",
+      "crewId": "release",
+      "releaseScope": "closed_beta",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "The release build, OAuth callbacks and authenticated WebSocket route use the same staging origin.",
+        "Room DB, account DB and attachments use persistent paths, and encryption material is recoverable separately.",
+        "Readiness fails on missing required state, and operators can observe error categories, stop admissions and roll back the release.",
+        "Record production license coverage for the deployed canvas SDK before inviting end users."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/render.yaml#L8",
+          "note": "Existing free host; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/README.md#runtime-and-mounting",
+          "note": "Runtime and storage contract; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [
+        "Persistent same-origin TLS hosting, deployment credentials, OAuth callback registration and canvas SDK production license coverage are not established."
+      ],
+      "nextAction": "Resolve external prerequisite and retain gate until observed.",
+      "sourceRoadmapId": "JZ-101",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-102",
+      "title": "Admit and revoke approved beta accounts",
+      "description": "Bind beta access to an approved verified Google identity. Keep workspace entitlement, board membership and model spend enforcement explicit.",
+      "status": "blocked",
+      "priority": "P0",
+      "crewId": "access",
+      "releaseScope": "closed_beta",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-101"
+      ],
+      "acceptanceCriteria": [
+        "Only approved verified accounts obtain beta workspace and funded model access. Wrong identity, expired approval and revoked access receive readable recovery states.",
+        "Server-funded model access stops after revocation or persisted budget exhaustion, including concurrent requests and background actions.",
+        "Separate the public example from beta routes and verify request limits and telemetry with staging identities."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/index.ts#L92",
+          "note": "Google identity callback; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/pilot.ts#L26",
+          "note": "Pilot code budget; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/model.ts#L48",
+          "note": "Model key selection; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [
+        "Live approved-account and revocation checks require staging identities and the configured admission environment."
+      ],
+      "nextAction": "Resolve external prerequisite and retain gate until observed.",
+      "sourceRoadmapId": "JZ-102",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-103",
+      "title": "Keep imported evidence private and durable",
+      "description": "Give supported private-board uploads an authorized owner and apply the same access check during ingestion, retrieval and extraction.",
+      "status": "backlog",
+      "priority": "P0",
+      "crewId": "storage",
+      "releaseScope": "closed_beta",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-101",
+        "JZ-102"
+      ],
+      "acceptanceCriteria": [
+        "Anonymous, other-account and revoked users cannot fetch, replace or process a private asset on any beta path.",
+        "An admitted user can upload a supported file and reopen/render it after restart or service restore; rejected files give an actionable error.",
+        "Verify that browser caches, generated output previews and export paths respect the same access and data-retention policy."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/index.ts#L174",
+          "note": "Public legacy asset routes; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/assets.ts#L34",
+          "note": "Temporary asset directory; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/rooms.ts#L45",
+          "note": "Shared snapshot validation; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-103",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-104",
+      "title": "Persist and recover private boards",
+      "description": "Verify the stateful canvas for individual users and establish a restore drill for the account, saved board and attachments.",
+      "status": "backlog",
+      "priority": "P0",
+      "crewId": "storage",
+      "releaseScope": "closed_beta",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [
+        "JZ-101",
+        "JZ-102",
+        "JZ-103"
+      ],
+      "acceptanceCriteria": [
+        "An admitted user can reopen the correct board, with its source cards, edits and citation references, after refresh, restart and redeploy.",
+        "Restore a representative private board, account ownership and private attachments from a backup into staging.",
+        "Test same-origin authenticated WebSocket access and planned app rollback. A failed restore is visible to operators."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/rooms.ts#L22",
+          "note": "Room storage and authorization; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/App.tsx#L286",
+          "note": "Local board persistence; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/team.test.ts#L72",
+          "note": "Team persistence tests; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-104",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-105",
+      "title": "Get from first source to first useful edit",
+      "description": "Rehearse an admitted solo user's normal path from a blank board through evidence import, real Ask, an editable result and the next visit.",
+      "status": "backlog",
+      "priority": "P0",
+      "crewId": "release",
+      "releaseScope": "closed_beta",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [
+        "JZ-102",
+        "JZ-103",
+        "JZ-104",
+        "JZ-106"
+      ],
+      "acceptanceCriteria": [
+        "A supported-browser staging session imports text and a representative PDF, chooses a source, generates a useful editable brief or table through the real backend, edits it and reopens it.",
+        "Connection loss, cancel, bad upload and unavailable or exhausted model states preserve prior work, with retry or recovery available.",
+        "Keyboard-accessible paths cover opening the board, attaching material, asking and reopening the result."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ingest/attachments.ts#L96",
+          "note": "Attachment preparation; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ask/useAsk.ts#L141",
+          "note": "Ask source handling; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/lib/backend.ts#L19",
+          "note": "Backend states; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-105",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-106",
+      "title": "Verify the evidence behind an answer",
+      "description": "Prove the PDF passage round trip and source selection for a reliable first-session answer. Distinguish scoped source facts from proposals.",
+      "status": "backlog",
+      "priority": "P0",
+      "crewId": "context",
+      "releaseScope": "closed_beta",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [
+        "JZ-102",
+        "JZ-103"
+      ],
+      "acceptanceCriteria": [
+        "Select a known report passage, Ask from the card and click the cited page in the generated response. Open the original PDF at the correct page after reload.",
+        "A two-source fixture can distinguish the source used from a plausible but irrelevant source, and a missing or unreadable input yields explicit uncertainty.",
+        "Check that reported figures and quotes match the cited page and that recommendations are presented as proposals."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ask/SelectionAsk.tsx#L23",
+          "note": "Passage selection; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/DocMarkdown.tsx#L355",
+          "note": "Page citation rendering; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/assets.pdf.test.ts#L20",
+          "note": "PDF extraction tests; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-106",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-107",
+      "title": "Validate clickable prototypes and scoped revisions",
+      "description": "Check one generated multi-screen prototype through preview, interaction, annotation and an approved correction.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "workspace",
+      "releaseScope": "feature_release",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [
+        "JZ-105"
+      ],
+      "acceptanceCriteria": [
+        "A real generated two-screen prototype is interactive and usable after reopen. Browser checks verify iframe isolation.",
+        "An annotation proposes a single scoped change which applies after explicit approval. Other screens, behavior and source references remain intact.",
+        "Preview loading, retry, cancellation and invalid generation preserve the previous usable artifact. Resolve or explain the reproducible standalone preview failure."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/PrototypeRunner.tsx#L17",
+          "note": "Prototype runner; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/test/prototypePreview.browser.test.ts#L12",
+          "note": "Sandbox preview test; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/prototypeRefinement.test.ts#L15",
+          "note": "Refinement validation; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-107",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-108",
+      "title": "Validate one actionable dashboard",
+      "description": "Use a known pipeline workbook and prepared account notes to verify the numbers, evidence and follow-up in one dashboard.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "workspace",
+      "releaseScope": "feature_release",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [
+        "JZ-105",
+        "JZ-125"
+      ],
+      "acceptanceCriteria": [
+        "The native dashboard matches known account IDs, sums, currencies and denominators and handles blank or inconsistent rows visibly.",
+        "Open the target account. Its next action is supported by the supplied note and the forecast stays unchanged when evidence clears only one blocker.",
+        "The dashboard reopens with original sources. Prepared snapshots are labelled in the story."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/dashboard/library.tsx#L561",
+          "note": "Dashboard vocabulary; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/test/dashboardStream.test.ts#L16",
+          "note": "Dashboard stream checks; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-108",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-109",
+      "title": "Verify the Markdown and PDF handoffs",
+      "description": "Produce a shareable Markdown summary and a slideshow through the browser's print-to-PDF path.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "workspace",
+      "releaseScope": "feature_release",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [
+        "JZ-105"
+      ],
+      "acceptanceCriteria": [
+        "The enabled formats open from staging, retain critical claims and source references, and use the correct board title and scope.",
+        "A browser comparison confirms readable pages, charts and citations. Generation failure or print cancellation leaves the board and previous export intact.",
+        "Use accurate format labels for Markdown download and browser PDF printing."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/export/ExportMenu.tsx#L60",
+          "note": "Board export menu; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/export/download.ts#L30",
+          "note": "Browser printing; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-109",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-110",
+      "title": "Prepare the first cohort and support handoff",
+      "description": "Rehearse the complete invite, first edit and return workflow, and set up support and research before admitting participants.",
+      "status": "blocked",
+      "priority": "P0",
+      "crewId": "access",
+      "releaseScope": "closed_beta",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-100",
+        "JZ-104",
+        "JZ-105",
+        "JZ-106"
+      ],
+      "acceptanceCriteria": [
+        "An owner is assigned for access, triage, incident escalation and pause or rollback. The cohort has clear instructions, consent and a support contact.",
+        "A dry run exercises invite, first useful edit, same-board return and issue handoff with two distinct staging identities that keep their boards private.",
+        "Agree the recording method, denominators and the condition for pausing admission. Keep sensitive beta material out of telemetry."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-future-launch-spec.md",
+          "note": "First session and return value; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-beta-capability-audit.md",
+          "note": "Product readiness baseline; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [
+        "Cohort owner, rehearsal identities and operational pause/rollback ownership are unassigned."
+      ],
+      "nextAction": "Resolve external prerequisite and retain gate until observed.",
+      "sourceRoadmapId": "JZ-110",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-111",
+      "title": "Build reliable web intake before scaling requests",
+      "description": "Replace best-effort signup storage with a durable, observable queue and an honest web form when the manual intake volume warrants it.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "access",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-100",
+        "JZ-101",
+        "JZ-112"
+      ],
+      "acceptanceCriteria": [
+        "Normalize requests into an atomic durable record, deduplicating retries and concurrent requests across restarts.",
+        "Confirm success only after the write commits. Test timeouts, failure, rate limits and proxy origin with no false success.",
+        "If confirmation is enabled, verify a delivery sink, keep admission separate and give operators intake status, retention and deletion controls."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/beta.ts#L52",
+          "note": "Best-effort JSONL; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/index.ts#L137",
+          "note": "Legacy response; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-111",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-112",
+      "title": "Observe first useful edits and real return visits",
+      "description": "Follow projects started by invited designers or product leads and observe how they use the board when the evidence or question changes.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "pm",
+      "releaseScope": "feature_release",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-110"
+      ],
+      "acceptanceCriteria": [
+        "Report admitted, initial evidence imported, first useful edit and same-board return as successes over eligible attempts, with friction and assistance observations.",
+        "In a return session, bring changed material or a new question and observe where the participant can recover source and rationale.",
+        "Document evidence for advancing or deferring decision lineage, impact review and branching without publishing participant data."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-future-launch-spec.md",
+          "note": "Return-value study plan; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-112",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-120",
+      "title": "Complete teammate invite, return and removal",
+      "description": "Connect invitation links to the accept API and expose board return and role controls. Verify safe migration of supported attachments before opening shared boards.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "team",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-102",
+        "JZ-103",
+        "JZ-104"
+      ],
+      "acceptanceCriteria": [
+        "An authorized owner creates an email-bound editor or viewer link. A second approved verified user follows it from a signed-out session, signs in, accepts and lands in the intended board.",
+        "Expired, forwarded and already-used links recover gracefully. Viewers are read-only, and owners can revoke membership and disconnect active revoked sessions.",
+        "Admitted members can discover and reopen shared boards after leaving and after reconnect. The UI uses real member data.",
+        "Share a board containing supported uploads. The shared copy opens with authorized attachment access and intact citations. Refusal, timeout and cancellation leave the original accessible."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/index.ts#L146",
+          "note": "Create and accept endpoints; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/team/TeamPanel.tsx#L105",
+          "note": "Copy-link UI; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/App.tsx#L325",
+          "note": "Current routing; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/rooms.ts#L45",
+          "note": "Snapshot migration boundary; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-120",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-121",
+      "title": "Make teammate discussions attributable and durable",
+      "description": "Use authenticated member identity on shared comments and keep concurrent replies from overwriting each other.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "team",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-120"
+      ],
+      "acceptanceCriteria": [
+        "Two independent authorized sessions post on the same card at once. Both messages and their verified authors survive reconnect and reload.",
+        "Ordinary threads and prototype annotations continue to distinguish human and Jarwiz authors. Viewer and revoked controls respect the stated roles.",
+        "A suggested change stays in the thread until an authorized person applies it. Local boards retain their existing discussion history."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ask/noticeThreads.ts#L44",
+          "note": "Current shape metadata and local author defaults; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/test/sharedComments.browser.test.cjs#L60",
+          "note": "Browser fixture; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-121",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-122",
+      "title": "Verify selected Google Docs as board context",
+      "description": "Configure staging Google OAuth and Picker and validate a native Google Doc through selection, review, retrieval and access loss.",
+      "status": "blocked",
+      "priority": "P1",
+      "crewId": "context",
+      "releaseScope": "feature_release",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [
+        "JZ-120"
+      ],
+      "acceptanceCriteria": [
+        "A dedicated staging account selects one authorized native Doc. The UI explains the board copy and shows it pending until approved.",
+        "Provider cancellation, expired consent, unsupported type and access removal are recoverable. Disconnect stops refreshing and explains the retained copy.",
+        "Teammates can see the accepted board copy according to role, and the connector performs only its documented read operations."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/team/ConnectedSourcePicker.tsx#L9",
+          "note": "Google Picker; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/providers.ts#L20",
+          "note": "Google scope and reads; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [
+        "Requires configured Google OAuth/Picker credentials and an authorized disposable staging document."
+      ],
+      "nextAction": "Resolve external prerequisite and retain gate until observed.",
+      "sourceRoadmapId": "JZ-122",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-123",
+      "title": "Verify Slack channel snapshots",
+      "description": "Connect one accessible Slack channel, show the recent-message boundary and preserve accepted snapshots across provider errors.",
+      "status": "blocked",
+      "priority": "P1",
+      "crewId": "context",
+      "releaseScope": "feature_release",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [
+        "JZ-120"
+      ],
+      "acceptanceCriteria": [
+        "A dedicated staging workspace lists accessible channels and reads a selected bounded channel and eligible threads through actual OAuth.",
+        "The UI describes incomplete thread coverage and last checked state. Rate-limit, permission-loss and disconnect preserve the previous accepted version for the stated board-copy policy.",
+        "Confirmation accurately describes visibility. The connector makes no provider write or export of unrelated channel material."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/providers.ts#L87",
+          "note": "Slack history and replies; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/team.test.ts#L151",
+          "note": "Bounded coverage tests; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [
+        "Requires configured Slack OAuth credentials and an authorized disposable staging workspace."
+      ],
+      "nextAction": "Resolve external prerequisite and retain gate until observed.",
+      "sourceRoadmapId": "JZ-123",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-124",
+      "title": "Surface incoming context and preserve review control",
+      "description": "Expose timely update state from manual refresh or configured polling, preserve accepted revisions, and give editors source removal controls.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "context",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-120"
+      ],
+      "acceptanceCriteria": [
+        "Across a provider fixture and at least one configured connector, a staged revision surfaces after refresh or scheduled check with a timestamp and readable diff.",
+        "Pending content stays out of answers until an authorized editor accepts that exact revision. A stale diff prompts fresh review and preserves previously accepted evidence.",
+        "An editor can remove a shared copy and the connection owner can disconnect. Reconnect reads update state idempotently across two authorized sessions."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/index.ts#L176",
+          "note": "Source revision endpoints; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/index.ts#L210",
+          "note": "Opt-in polling; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/team/TeamPanel.tsx#L173",
+          "note": "Current client review; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-124",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-125",
+      "title": "Replace study-only workflow evidence",
+      "description": "Keep illustrative material labelled and use a separately reproducible normal-app scenario to support claims about current mechanisms.",
+      "status": "ready",
+      "priority": "P1",
+      "crewId": "release",
+      "releaseScope": "feature_release",
+      "implementationStatus": "demo-only",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Flag study identities, source snapshots, Slack history ranges, apparent presence and named affected outputs wherever example material uses them.",
+        "Keep capture flags and canned responses outside the access flow. Record the normal app route and source fixture for a repeatable evidence-backed check.",
+        "Mark future decision, draft impact and branch scenes as concept previews in any capture or static composition."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/team/store.ts#L38",
+          "note": "Study team switch and named outputs; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/ask.ts#L810",
+          "note": "Scripted Ask; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-future-launch-spec.md",
+          "note": "Public scene contract; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-125",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-126",
+      "title": "Show affected work and one approved revision",
+      "description": "Turn accepted source dependency events into inspectable stale markers and a deliberate fix for one artifact. Validate Notice as a separate, quiet on-board signal.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "context",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-106",
+        "JZ-124"
+      ],
+      "acceptanceCriteria": [
+        "The list of impacted cards comes from persisted used-source dependencies. It stays accurate after a reload or reconnect and excludes unrelated cards.",
+        "A source reference opens the actual evidence passage or honestly bounded revision evidence, while its historical version remains findable under the sharing policy.",
+        "Accepting new context leaves artifacts intact. An explicitly approved fix updates one target, with an undo path and preservation on failure, cancellation or a newer draft edit.",
+        "Notice remains tied to meaningful on-board changes, stays quiet while editing where appropriate, and cannot trigger an unapproved rewrite."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/store.ts#L217",
+          "note": "Revision and dependency events; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/team/store.ts#L176",
+          "note": "Current UI ignores affected artifact IDs; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ask/sync.ts#L169",
+          "note": "Existing automatic canvas sync; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ask/useNotice.ts#L18",
+          "note": "Active board Notice; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-126",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-201",
+      "title": "Trace one decision to evidence and drafts",
+      "description": "Start on a personal board with an uploaded report. Add a durable record for an authored choice, rationale, exact source version or passage and dependent drafts.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "context",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-106",
+        "JZ-112"
+      ],
+      "acceptanceCriteria": [
+        "Author one representative decision, link the precise source version and passage, distinguish a rationale from source evidence, and link two dependent drafts.",
+        "Attaching a revised report and reopening the board preserves historical links and shows which evidence changed. Access follows the same board policy.",
+        "A second reader can find the reason and evidence from the draft and identify the other affected draft without an explanation from the author."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-future-launch-spec.md",
+          "note": "Planned decision direction; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/store.ts#L249",
+          "note": "Existing citation dependency primitives; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-201",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-202",
+      "title": "Review proposed changes across related drafts",
+      "description": "Start with a manually added report revision or a changed decision. Propose separate before-and-after edits for a brief and an editable in-project review deck.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "workspace",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-201",
+        "JZ-133"
+      ],
+      "acceptanceCriteria": [
+        "A brief and a board-owned editable review deck each preserve their own revision identity. Two draft proposals identify their affected passages and evidence versions independently.",
+        "Accept one change and defer the other. Reload, coworker edits, retry and stale approvals never alter the deferred draft or erase newer work.",
+        "The history records who made each decision and which edit applied. Previously downloaded exports retain their original content."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-future-launch-spec.md",
+          "note": "Planned impact review; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/index.ts#L191",
+          "note": "Existing accepted-source events; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/export/ExportMenu.tsx#L111",
+          "note": "Current export is a handoff; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-202",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-203",
+      "title": "Compare and adopt a project branch",
+      "description": "Once real projects reveal a need for alternatives, start two versions from the same evidence and decision state, compare outcomes and explicitly adopt one with its rationale.",
+      "status": "backlog",
+      "priority": "P3",
+      "crewId": "workspace",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-107",
+        "JZ-201"
+      ],
+      "acceptanceCriteria": [
+        "Two named alternatives start from the same visible baseline and keep their changes separate across at least two linked artifacts.",
+        "The comparison explains differences, evidence and tradeoffs. Adopting one version is explicit, handles later edits without silent overwrite and retains the rationale.",
+        "A user can recover the original and reopen the unselected alternative. Verify the workflow against real comparison needs before broad release."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-future-launch-spec.md",
+          "note": "Planned branch direction; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/packages/shared/src/prototypeSet.ts",
+          "note": "Existing prototype alternatives; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-203",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-300",
+      "title": "Establish dependency and distribution rights",
+      "description": "Record the MIT scope of first-party code and inventory licenses for the exact shipped browser and server dependencies and media. Resolve the tldraw 5.1 distribution boundary.",
+      "status": "blocked",
+      "priority": "P1",
+      "crewId": "release",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Review the installed tldraw SDK and sync packages, asset/font licenses, commercial production requirements, redistribution terms and licensing-key requirements.",
+        "Record which components are covered by Jarwiz MIT. Verify any applicable production agreement for the intended host and include full verbatim required third-party license copies and notices in the distributed software, preserving key enforcement.",
+        "Unrestricted self-host release depends on verified license coverage for downstream operators or a permissively licensed alternative passing canvas, shared-board and data-migration tests. Obtain owner approval for any first-party license change."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/LICENSE",
+          "note": "First-party MIT license; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/package.json",
+          "note": "Canvas dependencies; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/.github/workflows/pages.yml#L59",
+          "note": "Canvas license build input; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [
+        "Production SDK license/distribution coverage requires owner confirmation; source code cannot establish entitlement."
+      ],
+      "nextAction": "Resolve external prerequisite and retain gate until observed.",
+      "sourceRoadmapId": "JZ-300",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-301",
+      "title": "Publish a reproducible self-host and contributor path",
+      "description": "Make the public source build and run from a clean clone through a documented development and persistent self-host path.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "release",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-300"
+      ],
+      "acceptanceCriteria": [
+        "A fresh clone uses the supported Node version of at least 22.13, the lockfile and documented install, dev, build, check and test commands.",
+        "A clean TLS same-origin deploy initializes a private owner account and persists rooms, attachments and optional provider configuration. Reopen a saved board after restart and restore.",
+        "Publish example environment variables with placeholders, CI smoke checks, contribution and issue guidance, versioned releases and a vulnerability reporting contact. Document opt-in network and service dependencies."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/README.md#L27",
+          "note": "Current setup requirements; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/package.json",
+          "note": "Actual runtime engine; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/README.md#runtime-and-mounting",
+          "note": "Persistent team deployment; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-301",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-302",
+      "title": "Specify the model harness and capability contract",
+      "description": "Define a provider-neutral run contract so application workflows can declare the model capabilities they need.",
+      "status": "ready",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "feature_release",
+      "implementationStatus": "planned",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Specify typed input messages, modalities, tool schemas and replies, structured responses, cancellation and usage/cost metadata, plus normalized streaming events and errors.",
+        "Publish an explicit capability matrix for streaming, tool loop, vision, structured output, context and usage reporting per tested model and endpoint. Preflight each feature requirement and explain unavailable capabilities.",
+        "Use a deterministic test adapter to verify event order, tool IDs, partial output policy, schema rejection, normalized failure, cancellation and budget hooks. Capture unmeterable usage explicitly."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/model.ts#L22",
+          "note": "Current Anthropic client; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/textStream.ts#L60",
+          "note": "Provider-specific stream; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/agents/runtime.ts#L372",
+          "note": "Provider-specific tool loop; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-302",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-303",
+      "title": "Scope model credentials and endpoint access",
+      "description": "Implement server-managed keys and model endpoint settings with clear owner, scope, rotation and network controls.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-302"
+      ],
+      "acceptanceCriteria": [
+        "No credential appears in board snapshots, exports, browser persistence, model tool payloads, URLs or logs. Encrypt persisted credentials and allow validation, removal and rotation.",
+        "Only the authorized owner can configure a connection. Server-funded budgets and user-owned usage remain separate and enforceable across concurrent requests.",
+        "A self-host operator may explicitly configure a local endpoint. Hosted service only dials configured allowed destinations with validation of redirects and network boundaries. UI clearly identifies the provider receiving data."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/lib/api.ts#L17",
+          "note": "Current browser key storage and header; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/model.ts#L48",
+          "note": "Current key selection; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-303",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-304",
+      "title": "Implement and verify Anthropic and OpenAI model adapters",
+      "description": "Use native Anthropic and OpenAI APIs behind the same harness and preserve the current Anthropic behavior.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "feature_release",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-302",
+        "JZ-303"
+      ],
+      "acceptanceCriteria": [
+        "Provider contract tests cover streamed and structured results, image input, tool calls and replies, cancellation, errors and budgets on a named tested model from each provider.",
+        "On each provider, use the same supplied source to generate an editable artifact, make a useful edit and ask a grounded follow-up. Switch providers in the same board and verify its saved work, edit history and provenance remain accessible.",
+        "Keep existing Anthropic-only configurations working during migration. Model/provider selection is explicit and failures never silently send context to another provider."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/ask.ts#L568",
+          "note": "Ask vision and model tools; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/model.ts#L63",
+          "note": "Anthropic client; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-304",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-305",
+      "title": "Add native Google and compatible local model endpoints",
+      "description": "Add a native Google adapter and a tested OpenAI-compatible endpoint adapter, including an Ollama self-host example.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "harness",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-303",
+        "JZ-304"
+      ],
+      "acceptanceCriteria": [
+        "Validate native Google and a documented Ollama deployment against the same harness tests and one real compatible end-to-end workflow each.",
+        "Report the model-dependent capabilities of each configured endpoint. Unsupported modality, schema or tool features fail preflight with a named reason.",
+        "When optional services are disabled, a local text-only workflow completes without sending its material to a hosted model or research provider."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/model.ts#L63",
+          "note": "Current single hosted provider path; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/lib/backend.ts#L19",
+          "note": "Current sidecar and demo capabilities; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-305",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-306",
+      "title": "Decouple research and tool execution from model providers",
+      "description": "Run search, retrieval and canvas actions through server-managed tools usable by models that support the required tool capabilities.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-302",
+        "JZ-303"
+      ],
+      "acceptanceCriteria": [
+        "Give each tool a typed schema, permission and scope check, timeout, budget and normalized result or error. Missing or disabled tools surface a clear state.",
+        "Verify retrieval, search-result attribution and stable source identity from two model adapters. Keep search optional and support supplied-source-only runs.",
+        "Disclose network destinations for research tools and validate untrusted text, URLs and tool actions before use. Shared content remains scoped to a permitted board."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/webTools.ts",
+          "note": "Provider-native web search; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/agents/runtime.ts#L44",
+          "note": "Canvas/tool runtime; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-306",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-307",
+      "title": "Move every AI entry point onto the harness",
+      "description": "Route Ask, Compose, agents, Notice, discovery, link summaries, OCR/vision where modeled, recommendations, prototypes, dashboards and exports via the model harness.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "feature_release",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-304",
+        "JZ-306"
+      ],
+      "acceptanceCriteria": [
+        "Inventory every model call. Migrate each production invocation and confine SDK imports and provider-specific error handling to adapters or explicitly documented legacy paths disabled for configurable runs.",
+        "Run a per-workflow capability and regression matrix on two actual model providers. Verify tool choice, structure validation, citations, cancellation, normalized failure, and no accidental double spend.",
+        "When a chosen model cannot deliver a workflow, explain the missing capability and preserve the board. Capture a supported-model matrix before advertising model-agnostic use."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/generate.ts",
+          "note": "Generate path; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/export.ts#L147",
+          "note": "Export provider path; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/agents/runtime.ts#L372",
+          "note": "Runtime providers; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/tldr.ts",
+          "note": "Model summaries; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-307",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-308",
+      "title": "Publish extension APIs for tools, agents and card renderers",
+      "description": "Expose versioned contracts for registering a tool, configuring an agent and rendering a typed custom card in self-hosted Jarwiz.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "harness",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-301",
+        "JZ-306",
+        "JZ-307"
+      ],
+      "acceptanceCriteria": [
+        "Publish a versioned manifest and SDK contract for requested permissions, tool inputs/outputs, agent configuration, typed card content and migration/uninstall behavior.",
+        "Install an example outside core source that contributes one of each extension type. Admit only enabled permissions, and isolate or explicitly trust each extension execution surface.",
+        "Invalid schemas, missing permissions, renderer failure and version mismatches surface actionable errors with the core board still usable. Document compatibility and versioning."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/agents/runtime.ts",
+          "note": "Built-in agent runtime; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/shapes/index.ts",
+          "note": "Current built-in card registry; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-308",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-130",
+      "title": "Complete core canvas authoring and facilitation primitives",
+      "description": "Make diagramming, planning and workshop boards legible and comfortable on one canvas.",
+      "status": "ready",
+      "priority": "P1",
+      "crewId": "workspace",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Use the normal app to create and revise text, shapes, cards, connectors, frames and groups. Support multi-select, style and layout controls, duplication, keyboard shortcuts and sensible undo.",
+        "Navigate a dense multi-frame board and present frames in order. Verify selection, zoom and connectors remain usable after copy, reload and asset migration.",
+        "Complete visual ideation and system-diagramming journeys from a blank board. Ship starter layouts for a system diagram, planning board and workshop. Cover keyboard-only authoring and feature-level screen-reader feedback."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/CanvasToolbar.tsx",
+          "note": "Canvas toolbar; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/shapes/index.ts",
+          "note": "Built-in types; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/agents/tidyBoard.ts",
+          "note": "Board layout utilities; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-130",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-131",
+      "title": "Fill heterogeneous input gaps and source operations",
+      "description": "Baseline paste, links, images, PDF, workbook and video text, then add commonly needed document and presentation imports and reliable citation coordinates.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "workspace",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "implemented-unverified",
+      "dependencies": [
+        "JZ-103"
+      ],
+      "acceptanceCriteria": [
+        "Test a representative supported set across paste, drop and picker, including extraction for CSV/XLSX, multipage PDF, OCR, image and video transcript paths where available.",
+        "Define a documented matrix for DOCX, PPTX and mixed-media ingestion. Ship the highest-demand validated formats with stable page, slide, sheet or passage references.",
+        "Handle missing captions, oversized or encrypted files and unsupported types with specific recovery. Verify permissions, restart and re-upload history."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ingest/registerIngestion.ts",
+          "note": "Source ingestion; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ingest/attachments.ts",
+          "note": "Text and uploaded attachment handling; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/assets.ts",
+          "note": "Uploaded PDF parsing; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-131",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-132",
+      "title": "Ground research and synthesis in selectable project context",
+      "description": "Support selected-card and board-context work, explicit project retrieval, cited web research when enabled, and transparent context inclusion.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "context",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-106",
+        "JZ-131"
+      ],
+      "acceptanceCriteria": [
+        "In an authorized project with irrelevant distractors, answer across multiple supported sources and show exactly which sources and relevant passages contributed.",
+        "Pass a source-scope benchmark for omitted, stale, inaccessible or misleading evidence. Keep a supplied-source-only mode and distinguish web research from authored source material.",
+        "Revisit a prior question, switch context scope and verify citation links still work after reopening or source replacement."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ask/useAsk.ts#L141",
+          "note": "Selected and ambient context; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/index.ts#L540",
+          "note": "Current Ask request assembly; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/CardSources.tsx#L16",
+          "note": "Source references; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-132",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-133",
+      "title": "Make major output types genuinely editable",
+      "description": "Deliver a consistent create, edit, undo and reuse loop for docs, tables, diagrams, dashboards, clickable prototypes and in-project presentations.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "workspace",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-105",
+        "JZ-130"
+      ],
+      "acceptanceCriteria": [
+        "Create and meaningfully edit each named output type via its normal canvas route, with sources preserved after re-open. Allow manual structured edits where advertised.",
+        "Slides are board-owned editable artifacts with reorder, content edits and presentation, followed by a separate PDF export.",
+        "Test partial generation, stale refinements, undo, import/export expectations and access checks with known input/output suites."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/RichDocEditor.tsx",
+          "note": "Editable rich document; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/shapes/tableCellEdit.ts",
+          "note": "Table edits; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/export/ExportMenu.tsx#L87",
+          "note": "Current slideshow export; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-133",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-134",
+      "title": "Run multiplayer workshops and review sessions",
+      "description": "Enable shared editing, reliable presence, role-aware review and basic facilitation across team boards.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "team",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-120",
+        "JZ-121",
+        "JZ-130"
+      ],
+      "acceptanceCriteria": [
+        "Three authorized sessions can edit concurrently, see truthful named presence, follow a presenter and leave attributable review.",
+        "A facilitator can share a frame sequence and use defined timer and voting actions; viewers see only actions appropriate for their role.",
+        "TLS reconnect, concurrent edits, revoked users and lost sessions converge without duplicated comments, lost saved edits or synthetic presence."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/rooms.ts#L83",
+          "note": "Shared room storage; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/team/TeamPanel.tsx#L17",
+          "note": "Current team status UI; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ask/noticeThreads.ts#L44",
+          "note": "Comment persistence; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-134",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-135",
+      "title": "Organize boards into projects and preserve project history",
+      "description": "Give users a cross-device board directory, project grouping, permission-aware search and usable version history.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "workspace",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-104",
+        "JZ-120"
+      ],
+      "acceptanceCriteria": [
+        "Users may group, name, find, duplicate, archive and restore authorized boards within a project from a second session.",
+        "Search covers titles and supported card text without exposing inaccessible board content or metadata.",
+        "Recovered versions retain connected references and clear ownership. Restore preserves newer edits in a recoverable state."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/boards/boardStore.ts",
+          "note": "Local board metadata; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/boards/boardSearch.ts",
+          "note": "Current browser board search; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/index.ts#L146",
+          "note": "Authorized board listing; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-135",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-136",
+      "title": "Support portable handoff across compatible tools",
+      "description": "Verify Markdown and PDF, then prioritize typed exports and a versioned editable board archive for project continuity.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "workspace",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "needs-work",
+      "dependencies": [
+        "JZ-109",
+        "JZ-131",
+        "JZ-133"
+      ],
+      "acceptanceCriteria": [
+        "Compact supported artifact exports include Markdown/PDF, tabular CSV and vector diagram output as applicable, with accurate labels and references.",
+        "Export then import an authorized board archive between two clean installations and compare supported card content, layout, valid assets and references.",
+        "Unsupported content and excluded credentials are visible in an export report. Test portability failure, accessibility, scope and version compatibility."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/boards/backup.ts#L160",
+          "note": "Local board packaging; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/export/ExportMenu.tsx#L60",
+          "note": "Markdown and PDF; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-136",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-137",
+      "title": "Broaden repository and data-source integrations",
+      "description": "Expand the connector surface beyond selected Google Docs and recent Slack history as validated needs emerge.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "context",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-122",
+        "JZ-123",
+        "JZ-124",
+        "JZ-131"
+      ],
+      "acceptanceCriteria": [
+        "Document candidate coverage for selected Google Drive files or Sheets, Notion and one cohort-priority work or storage provider. Choose and verify the first new read connector against the same contract.",
+        "Prove consent, data scope, refresh, limits, disconnect, stale permissions, revocation and board-copy retention for each enabled connector.",
+        "Advertise only verified file types and refresh policies. OAuth provider changes must not alter a board artifact without the specified approval."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/README.md#actual-connector-scope",
+          "note": "Current connector scope; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/server/src/team/index.ts#L176",
+          "note": "Provider review endpoints; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-137",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-138",
+      "title": "Prove category coverage with representative workflows",
+      "description": "Benchmarks use real entry points for distinct work, from research and planning to workshops, visual design and data/reporting.",
+      "status": "backlog",
+      "priority": "P1",
+      "crewId": "pm",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-107",
+        "JZ-108",
+        "JZ-132",
+        "JZ-133",
+        "JZ-134",
+        "JZ-135",
+        "JZ-136",
+        "JZ-137"
+      ],
+      "acceptanceCriteria": [
+        "Run a manual system diagram, multi-source research brief, editable design prototype, worksheet-backed business review with export and collaborative workshop or roadmap session. Record unsupported steps and verify artifact editing and handoff where appropriate.",
+        "Check keyboard navigation, readable dense boards, load/reopen time, stream cancellation and recovery at representative project sizes.",
+        "Publish a sourced coverage matrix with tested versions and caveats. Claim category parity only for verified rows and preserve an explicit backlog for missing common capability."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "Jarwiz/apps/web/src/ui/EmbedUseCases.tsx#L155",
+          "note": "Existing seeded use cases; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-canvas-reference-review.md",
+          "note": "Reference canvas products; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "source_reference",
+          "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
+          "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "sourceRoadmapId": "JZ-138",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-111A",
+      "title": "Durable, honest beta intake",
+      "description": "Return success only after persistent write; deduplicate retries across restart and concurrent requests.",
+      "status": "in_progress",
+      "priority": "P0",
+      "crewId": "access",
+      "releaseScope": "build_wave_1",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Use a configured persistent store; failed commits return a failure response instead of a successful signup.",
+        "Concurrent duplicate requests and process restart preserve one normalized intake record; notification is not repeatedly sent.",
+        "Automated tests exercise write failure and duplicate/retry behavior without sending email."
+      ],
+      "evidence": [],
+      "blockers": [],
+      "nextAction": "beta_intake crew implementing SQLite persistence, atomic dedupe, strict migration and failure tests.",
+      "sourceRoadmapId": "JZ-111",
+      "assignee": null,
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-120A",
+      "title": "Complete shared-board invite and return UI",
+      "description": "Connect existing invitation, board directory and member removal endpoints to the normal app.",
+      "status": "in_progress",
+      "priority": "P0",
+      "crewId": "team",
+      "releaseScope": "build_wave_1",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "The normal app consumes teamInvite, preserves it through sign-in, accepts only an authorized matching account and navigates to the correct board.",
+        "Expired, invalid, already-used and wrong-account invites show recoverable states; successful consumption removes the token from the address bar.",
+        "Shared boards can be listed and reopened; owners can revoke a non-owner member and viewers cannot expose owner controls.",
+        "Automated API/client checks cover the real endpoint contract; live OAuth remains a separate release gate."
+      ],
+      "evidence": [],
+      "blockers": [],
+      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "sourceRoadmapId": "JZ-120",
+      "assignee": "team_journey",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-121A",
+      "title": "Attribute board discussion to signed-in members",
+      "description": "Replace local You authorship in shared-board comments while preserving existing local history.",
+      "status": "in_progress",
+      "priority": "P1",
+      "crewId": "team",
+      "releaseScope": "build_wave_1",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "New shared-board comments and replies retain verified stable member IDs and display names.",
+        "Human and Jarwiz authors remain distinct and existing local comments are readable.",
+        "Revoked/viewer permissions follow the board policy and concurrent same-card retention is tested or explicitly remains a release blocker."
+      ],
+      "evidence": [],
+      "blockers": [],
+      "nextAction": "Review session-derived attribution and viewer guards; server-attested authors and concurrent merge remain separate requirements.",
+      "sourceRoadmapId": "JZ-121",
+      "assignee": "team_journey",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-124A",
+      "title": "Consume source updates and affected artifact events",
+      "description": "Make existing accepted-context APIs visible and reconnect-safe in the normal board.",
+      "status": "in_progress",
+      "priority": "P1",
+      "crewId": "context",
+      "releaseScope": "build_wave_1",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Refresh/reconnect catches up source and event state idempotently and exposes pending revision review.",
+        "Pending content never enters accepted retrieval; accepting exact latest revision updates context but leaves generated artifacts unchanged.",
+        "Affected output names and IDs derive from current persisted dependency data; unrelated cards are excluded.",
+        "Disconnect and removal have role-aware controls; stale review or provider failure preserves accepted content."
+      ],
+      "evidence": [],
+      "blockers": [],
+      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "sourceRoadmapId": "JZ-124",
+      "assignee": "connected_context",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-302A",
+      "title": "Establish provider-neutral harness contract",
+      "description": "Introduce a tested typed model boundary with Anthropic compatibility and an explicit second-provider path.",
+      "status": "in_progress",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "build_wave_1",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Normalized requests, streaming events, tool calls, cancellation, usage and errors have executable contract tests.",
+        "Existing Anthropic workflows remain functional and unsupported provider capabilities fail explicitly without silent fallback.",
+        "A second-provider adapter has deterministic transport tests; real model verification is recorded separately.",
+        "No API credential is written into board records, URLs, logs or exported data."
+      ],
+      "evidence": [],
+      "blockers": [],
+      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "sourceRoadmapId": "JZ-302",
+      "assignee": "model_harness",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-103A",
+      "title": "Protect uploads and downstream extraction",
+      "description": "Enforce private ownership across asset creation, reads and processing, and define durable storage configuration.",
+      "status": "in_progress",
+      "priority": "P0",
+      "crewId": "storage",
+      "releaseScope": "build_wave_1",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Anonymous, wrong-account and revoked requests cannot read, overwrite or extract protected uploads.",
+        "Private asset metadata survives storage reopen and supported valid requests still extract normally.",
+        "Local-to-shared migration either preserves authorized assets/references or clearly refuses without losing the original board.",
+        "Negative authorization and persistence tests use temporary fixtures and disclose legacy/public-demo boundaries."
+      ],
+      "evidence": [],
+      "blockers": [],
+      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "sourceRoadmapId": "JZ-103",
+      "assignee": "private_assets",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-101A",
+      "title": "Build launch configuration and readiness checks",
+      "description": "Make a persistent same-origin deployment reproducible and detect missing launch requirements.",
+      "status": "in_progress",
+      "priority": "P0",
+      "crewId": "release",
+      "releaseScope": "build_wave_1",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Readiness checks required configured origins, persistent storage, secrets and service capabilities without leaking values.",
+        "Misconfiguration fails explicitly; documented configuration provides app/API/WebSocket routing and persistent paths.",
+        "Scripts and examples build with the supported Node version and separate demo from configured beta use.",
+        "Actual hosting, OAuth and license gates remain pending until externally verified."
+      ],
+      "evidence": [
+        "Root tests: 5/5 admission, origin, viewer mutation, transactional budget, restart and legacy migration checks passed. Full route integration in progress."
+      ],
+      "blockers": [],
+      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "sourceRoadmapId": "JZ-101",
+      "assignee": "root",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-105A",
+      "title": "Run a reproducible product release regression",
+      "description": "Establish current build/test baseline and exercise the core source-to-output workflow with repeatable fixtures.",
+      "status": "in_progress",
+      "priority": "P0",
+      "crewId": "release",
+      "releaseScope": "build_wave_1",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Typecheck/build and relevant unit/browser suites run against current working tree and record failures rather than hiding them.",
+        "Import, source selection, generation transport, editing and saved return are exercised on normal product surfaces.",
+        "Prototype sandbox, cancellation/recovery and known-data dashboard checks are included where release-enabled.",
+        "Fixture evidence is labeled; paid/live-model, OAuth and production durability are not inferred from deterministic tests."
+      ],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "docs/launch/baseline.md",
+          "note": "Baseline crew reports typecheck/build pass, 111 unit passes with one optional film-fixture skip, and isolated prototype sandbox browser pass. Integrated launch:check result pending confirmation. CI changes have not run remotely.",
+          "date": "2026-11-20"
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Implement and validate this slice in the assigned crew; attach results for integration review.",
+      "sourceRoadmapId": "JZ-105",
+      "assignee": "launch_baseline",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-301A",
+      "title": "Triage and remediate release dependency advisories",
+      "description": "Assess reachable dependency advisories, apply compatible fixes and document any remaining release risk with evidence.",
+      "status": "in_progress",
+      "priority": "P0",
+      "crewId": "release",
+      "releaseScope": "build_wave_2",
+      "implementationStatus": "needs-work",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Review current npm audit findings against installed versions and actual ingestion/rendering/server entry points; distinguish affected package counts from reachable vulnerabilities.",
+        "Apply compatible updates or bounded mitigations and rerun affected parsing, rendering, API and build checks.",
+        "Record residual advisories, exposure, owner and release decision. No blanket clean-security claim follows from passing tests."
+      ],
+      "evidence": [
+        {
+          "kind": "test",
+          "path": "docs/launch/baseline.md",
+          "note": "Baseline crew reported 70 affected dependency entries including a critical MapLibre advisory. Inspected app uses textContent rather than Popup.setHTML; other relevant spreadsheet, rich text and server paths require triage. This is not an exploitability conclusion.",
+          "date": "2026-11-20"
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Dependency remediation crew is assessing reachable advisories and compatible fixes.",
+      "sourceRoadmapId": "JZ-301",
+      "assignee": "launch_baseline",
+      "updatedAt": "2026-11-20"
+    }
+  ]
+}
