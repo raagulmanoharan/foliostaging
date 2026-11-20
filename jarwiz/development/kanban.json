@@ -15,12 +15,25 @@
       "No live emails, invitations, user admission, provider writes or production deployment are authorized by this kanban.",
       "Model credentials, provider account access, hosting, licensing and operating ownership are external prerequisites."
     ],
-    "activeBuild": "10 implementation slices locally accepted; first-edit rehearsal in review. P0 deployment task JZ-101B added and blocked on the hosting target/configuration. Five release gates remain open.",
+    "activeBuild": "Website completed with approved product films and native screenshots. Remaining product features are queued in Backlog; 10 accepted implementation slices, hosted reviews and deployment blockers remain unchanged.",
     "boardVerification": {
       "date": "2026-11-20",
       "result": "Passed browser checks at 1440, 1024, 390 and 320px: active/full view counts, six columns, filters, detail rail/Escape, gate expansion, refresh, containment and no page overflow.",
       "artifact": "/tmp/jarwiz-launch-kanban/check.json",
       "command": "node /tmp/jarwiz-launch-kanban/check.cjs"
+    },
+    "backlogAudit": {
+      "date": "2026-11-20",
+      "sourceRoadmapItems": 41,
+      "sourceRoadmapItemsRetained": 41,
+      "unstartedItemsMovedToBacklog": [
+        "JZ-125",
+        "JZ-130"
+      ],
+      "newFollowUps": [
+        "JZ-121B"
+      ],
+      "note": "All original feature epics are represented. No duplicate parity epics were added. Current provider implementation evidence was reconciled; actual release blockers and acceptance reviews remain distinct from unstarted feature work."
     }
   },
   "columns": [
@@ -905,7 +918,7 @@
       "id": "JZ-125",
       "title": "Replace study-only workflow evidence",
       "description": "Keep illustrative material labelled and use a separately reproducible normal-app scenario to support claims about current mechanisms.",
-      "status": "ready",
+      "status": "backlog",
       "priority": "P1",
       "crewId": "release",
       "releaseScope": "feature_release",
@@ -931,10 +944,16 @@
           "kind": "source_reference",
           "path": "Folio/docs/jarwiz-future-launch-spec.md",
           "note": "Public scene contract; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/README.md",
+          "date": "2026-11-20",
+          "note": "Unstarted product work returned to Backlog at the user\u2019s request while the launch website is completed. Existing implementation evidence and acceptance criteria are unchanged."
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Queued for the next product-development wave. Preserve the current website focus; start only when this slice is assigned.",
       "sourceRoadmapId": "JZ-125",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -1286,7 +1305,7 @@
       "priority": "P1",
       "crewId": "harness",
       "releaseScope": "feature_release",
-      "implementationStatus": "planned",
+      "implementationStatus": "implemented-unverified",
       "dependencies": [
         "JZ-302",
         "JZ-303"
@@ -1311,10 +1330,16 @@
           "kind": "source_reference",
           "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
           "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "apps/server/src/models/README.md",
+          "date": "2026-11-20",
+          "note": "JZ-302A delivered native Anthropic and OpenAI transports with local protocol/application tests. Real model quality, vision, billing and cross-provider source-to-edit workflows remain unverified."
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Verify the existing adapters on named configured models and complete the cross-provider workflow criteria; do not rebuild the delivered transports.",
       "sourceRoadmapId": "JZ-304",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -1327,7 +1352,7 @@
       "priority": "P2",
       "crewId": "harness",
       "releaseScope": "later_coverage",
-      "implementationStatus": "planned",
+      "implementationStatus": "needs-work",
       "dependencies": [
         "JZ-303",
         "JZ-304"
@@ -1352,10 +1377,16 @@
           "kind": "source_reference",
           "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
           "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "apps/server/src/models/README.md",
+          "date": "2026-11-20",
+          "note": "The OpenAI-compatible transport and explicit endpoint capability flags are implemented in JZ-302A. Native Google support and a real documented Ollama/local-only workflow remain pending."
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Implement the native Google adapter and verify the existing compatible transport against an actual local deployment with network-boundary evidence.",
       "sourceRoadmapId": "JZ-305",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -1498,7 +1529,7 @@
       "id": "JZ-130",
       "title": "Complete core canvas authoring and facilitation primitives",
       "description": "Make diagramming, planning and workshop boards legible and comfortable on one canvas.",
-      "status": "ready",
+      "status": "backlog",
       "priority": "P1",
       "crewId": "workspace",
       "releaseScope": "later_coverage",
@@ -1529,10 +1560,16 @@
           "kind": "source_reference",
           "path": "Folio/docs/jarwiz-open-workspace-strategy.md",
           "note": "Open workspace strategy and coverage; implementation evidence only, not current end-to-end verification."
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/README.md",
+          "date": "2026-11-20",
+          "note": "Unstarted product work returned to Backlog at the user\u2019s request while the launch website is completed. Existing implementation evidence and acceptance criteria are unchanged."
         }
       ],
       "blockers": [],
-      "nextAction": "Implement or verify the acceptance scenario with recorded evidence.",
+      "nextAction": "Queued for the next product-development wave. Preserve the current website focus; start only when this slice is assigned.",
       "sourceRoadmapId": "JZ-130",
       "assignee": null,
       "updatedAt": "2026-11-20"
@@ -2304,6 +2341,45 @@
       "nextAction": "Confirm the hosting account/service and domain, prepare its deployment configuration, then execute the recorded rollout and hosted acceptance sequence.",
       "sourceRoadmapId": "JZ-101",
       "assignee": "root",
+      "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-121B",
+      "title": "Recover unsent discussion drafts after interruption",
+      "description": "Make human comment drafts and unsent discussion operations recoverable across reload or network interruption without crossing account/board boundaries.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "team",
+      "releaseScope": "later_coverage",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-121A"
+      ],
+      "acceptanceCriteria": [
+        "Persist bounded human drafts and pending human operations by authenticated account and board; recover them after a reload only after current session and board permissions are revalidated.",
+        "Retry with the original operation ID so reconnection cannot duplicate a saved message. Preserve a newer reply while an earlier operation retries and show clear saved, pending and failed states.",
+        "Clear recovered local drafts on explicit sign-out/account switch, and never display or submit one account\u2019s queued content as another account. Revoked access prevents replay and offers a safe discard path.",
+        "Do not persist provider keys, session tokens or expiring agent receipts in the queue. An expired or stale agent proposal requires a new authorized request rather than replaying an assistant claim.",
+        "Verify offline/reload/reconnect, server-committed-but-response-lost retries, viewer/revoked roles, account switching and storage-quota failure with separate browser contexts."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "apps/web/src/team/discussions.ts",
+          "date": "2026-11-20",
+          "note": "Current shared discussion cache and pending operation array are in memory; resetSharedDiscussions clears them. Existing idempotent server operations provide the basis for safe replay."
+        },
+        {
+          "kind": "source_reference",
+          "path": "docs/launch/team-journey.md",
+          "date": "2026-11-20",
+          "note": "The delivered UI explicitly warns users to keep the page open until pending changes save. This follow-up extends interruption recovery; it does not invalidate verified concurrent saved-message persistence in JZ-121A."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Design the bounded per-account draft/outbox persistence and sign-out cleanup, then implement recovery on the existing idempotent discussion API.",
+      "sourceRoadmapId": "JZ-121",
+      "assignee": null,
       "updatedAt": "2026-11-20"
     }
   ]
