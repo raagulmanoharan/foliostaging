@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "metadata": {
     "title": "Jarwiz product launch kanban",
-    "updatedAt": "2026-11-20",
+    "updatedAt": "2026-11-21",
     "sourceRoadmap": "/workspace/Folio/docs/jarwiz-beta-roadmap.json",
     "baseline": "Current Jarwiz working tree, including existing modified and untracked product modules. No worktree reset or inferred completion.",
     "goal": "Prepare a real closed-beta product through complete tested workflows, then expand feature coverage.",
@@ -12,10 +12,10 @@
       "Feature crews implement independent slices with explicit file ownership.",
       "Deterministic tests establish local evidence. A slice moves to Done only after its own acceptance review; broader live release gates remain separate.",
       "Done requires recorded acceptance evidence and review; marketing demonstrations are not release evidence.",
-      "No live emails, invitations, user admission, provider writes or production deployment are authorized by this kanban.",
+      "The user authorized private staging deployment and release rehearsal on2026-11-21. Hosting access and test configuration are still required; cohort admission and external email are not automatic.",
       "Model credentials, provider account access, hosting, licensing and operating ownership are external prerequisites."
     ],
-    "activeBuild": "Website completed with approved product films and native screenshots. Remaining product features are queued in Backlog; 10 accepted implementation slices, hosted reviews and deployment blockers remain unchanged.",
+    "activeBuild": "Private-staging rehearsal underway: fresh local build/browser checks and deployment preflight tooling. Hosted deployment, real OAuth/models and two-account verification are blocked on target access and secrets.",
     "boardVerification": {
       "date": "2026-11-20",
       "result": "Passed browser checks at 1440, 1024, 390 and 320px: active/full view counts, six columns, filters, detail rail/Escape, gate expansion, refresh, containment and no page overflow.",
@@ -151,7 +151,8 @@
       "status": "pending",
       "itemIds": [
         "JZ-105",
-        "JZ-106"
+        "JZ-106",
+        "JZ-105B"
       ]
     },
     {
@@ -2166,7 +2167,7 @@
       "id": "JZ-105A",
       "title": "Run a reproducible product release regression",
       "description": "Establish current build/test baseline and exercise the core source-to-output workflow with repeatable fixtures.",
-      "status": "review",
+      "status": "in_progress",
       "priority": "P0",
       "crewId": "release",
       "releaseScope": "build_wave_1",
@@ -2194,12 +2195,12 @@
         }
       ],
       "blockers": [
-        "Live provider/OAuth and intended staging environment are not configured in this workspace."
+        "Hosted full-flow acceptance still requires staging access, real provider configuration and two dedicated test identities."
       ],
-      "nextAction": "Complete the integrated first-source-to-edit rehearsal with configured provider/OAuth, keyboard and interruption checks before accepting this broader workflow slice.",
+      "nextAction": "Run fresh production build and targeted browser rehearsal; attach results separately from hosted evidence.",
       "sourceRoadmapId": "JZ-105",
-      "assignee": "launch_baseline",
-      "updatedAt": "2026-11-20"
+      "assignee": "release_verify",
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "JZ-301A",
@@ -2332,16 +2333,22 @@
           "path": "docs/launch/deployment.md",
           "note": "Concrete deployment sequence prepared; host and credentials are pending. Existing Docker/private-beta and recovery checks are local evidence, not a hosted deployment.",
           "date": "2026-11-20"
+        },
+        {
+          "kind": "review",
+          "path": "docs/launch/deployment.md",
+          "date": "2026-11-21",
+          "note": "Environment capability audit confirms only portfolio content API secret is configured. No Jarwiz host connection or OAuth/model secret is available. User authorized rehearsal; actual deployment remains blocked on missing configuration, not repeated permission."
         }
       ],
       "blockers": [
         "Target hosting account/service, persistent volume and beta HTTPS domain have not been provided.",
         "Beta-origin OAuth/provider configuration, production canvas license and rehearsal/operations ownership remain unconfigured."
       ],
-      "nextAction": "Confirm the hosting account/service and domain, prepare its deployment configuration, then execute the recorded rollout and hosted acceptance sequence.",
+      "nextAction": "Hosting target/domain requested. Configure target access and secrets, then deploy behind closed admission and execute the hosted rehearsal.",
       "sourceRoadmapId": "JZ-101",
       "assignee": "root",
-      "updatedAt": "2026-11-20"
+      "updatedAt": "2026-11-21"
     },
     {
       "id": "JZ-121B",
@@ -2381,6 +2388,43 @@
       "sourceRoadmapId": "JZ-121",
       "assignee": null,
       "updatedAt": "2026-11-20"
+    },
+    {
+      "id": "JZ-105B",
+      "title": "Rehearse the hosted product with two real test accounts",
+      "description": "Record the complete private-beta journey against the deployed service, including live identity/model providers, data boundaries and recovery. Keep local fixture evidence separate.",
+      "status": "blocked",
+      "priority": "P0",
+      "crewId": "release",
+      "releaseScope": "build_wave_3",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-101B"
+      ],
+      "acceptanceCriteria": [
+        "Two dedicated identities sign in through real OAuth; owner/editor/viewer/invite/revoke flows enforce the intended access.",
+        "Import representative material, generate grounded outputs through the configured model, edit, discuss and reopen saved work; inspect the source-to-answer relationship.",
+        "Verify enabled Drive/Slack source consent, staged revision review, removal and revocation; disabled integrations are clearly excluded from release.",
+        "Exercise cancellation, provider failure, budget limits and interruptions without losing existing work.",
+        "Verify hosted replacement/restart, backup-to-new-target restore with separate key/current admission roster, and supported rollback.",
+        "Record per-flow observed results, evidence and unresolved defects; do not close gates from fixture results alone."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "path": "docs/launch/rehearsal.md",
+          "note": "Flow matrix and result ledger being prepared. Hosted checks have not run.",
+          "date": "2026-11-21"
+        }
+      ],
+      "blockers": [
+        "No target hosting account/service or beta HTTPS origin is configured.",
+        "Real OAuth/model configuration, production canvas license and two dedicated test identities are unavailable."
+      ],
+      "nextAction": "Use the rehearsal matrix once JZ-101B provides the configured staging service.",
+      "sourceRoadmapId": "JZ-105",
+      "assignee": "root",
+      "updatedAt": "2026-11-21"
     }
   ]
 }
