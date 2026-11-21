@@ -12,10 +12,10 @@
       "Feature crews implement independent slices with explicit file ownership.",
       "Deterministic tests establish local evidence. A slice moves to Done only after its own acceptance review; broader live release gates remain separate.",
       "Done requires recorded acceptance evidence and review; marketing demonstrations are not release evidence.",
-      "The user authorized private staging deployment and release rehearsal on2026-11-21. Hosting access and test configuration are still required; cohort admission and external email are not automatic.",
+      "The user authorized private staging deployment and release rehearsal on 2026-11-21. Hosting access and test configuration are still required; cohort admission and external email are not automatic.",
       "Model credentials, provider account access, hosting, licensing and operating ownership are external prerequisites."
     ],
-    "activeBuild": "Private-staging rehearsal underway: fresh local build/browser checks and deployment preflight tooling. Hosted deployment, real OAuth/models and two-account verification are blocked on target access and secrets.",
+    "activeBuild": "Local release rehearsal completed and in review: fresh build/typechecks, 190 unit passes, nine selected production-browser checks, Docker build and seven anonymous container checks. Hosted deployment and 28 real-account flows remain blocked on configuration.",
     "boardVerification": {
       "date": "2026-11-20",
       "result": "Passed browser checks at 1440, 1024, 390 and 320px: active/full view counts, six columns, filters, detail rail/Escape, gate expansion, refresh, containment and no page overflow.",
@@ -34,6 +34,12 @@
         "JZ-121B"
       ],
       "note": "All original feature epics are represented. No duplicate parity epics were added. Current provider implementation evidence was reconciled; actual release blockers and acceptance reviews remain distinct from unstarted feature work."
+    },
+    "publicKanbanSync": {
+      "status": "blocked",
+      "date": "2026-11-21",
+      "reason": "GitHub credential is invalid; public kanban has not received this rehearsal update. Canonical local ledger and publication copies are saved.",
+      "nextAction": "Restore GitHub authentication, then publish the prepared tracking update."
     }
   },
   "columns": [
@@ -2167,7 +2173,7 @@
       "id": "JZ-105A",
       "title": "Run a reproducible product release regression",
       "description": "Establish current build/test baseline and exercise the core source-to-output workflow with repeatable fixtures.",
-      "status": "in_progress",
+      "status": "review",
       "priority": "P0",
       "crewId": "release",
       "releaseScope": "build_wave_1",
@@ -2192,14 +2198,21 @@
           "path": "docs/launch/baseline.md",
           "command": "npm run launch:check",
           "note": "Final integrated check:188 tests187pass1optional workbookskip; all workspace typechecks and production builds pass. Actual-server8/8, recovery5/5 and targeted browser checks for team entry, authoritative two-user discussion, all14 card comments, prototypes, maps, models and Mermaid math pass. CI authored, not remotely run. Full configured first-edit rehearsal remains open."
+        },
+        {
+          "kind": "test",
+          "date": "2026-11-21",
+          "path": "docs/launch/rehearsal-build.md",
+          "command": "npm run launch:check; npm test; selected production browser suites; Docker build and scripts/check-staging.mjs",
+          "note": "Fresh typechecks and production builds passed. Final suite: 191 tests, 190 passed, one optional workbook skip. Nine distinct targeted browser checks passed with intercepted identity/model responses; persistent PDF test now supports production assets. Fresh Node 22 image build and seven anonymous container checks passed. Full hosted flows and live providers remain untested."
         }
       ],
       "blockers": [
         "Hosted full-flow acceptance still requires staging access, real provider configuration and two dedicated test identities."
       ],
-      "nextAction": "Run fresh production build and targeted browser rehearsal; attach results separately from hosted evidence.",
+      "nextAction": "Review fresh local receipts and explicit exclusions in rehearsal-build.md; execute the separate hosted acceptance matrix under JZ-105B once staging is configured.",
       "sourceRoadmapId": "JZ-105",
-      "assignee": "release_verify",
+      "assignee": "root",
       "updatedAt": "2026-11-21"
     },
     {
@@ -2339,11 +2352,18 @@
           "path": "docs/launch/deployment.md",
           "date": "2026-11-21",
           "note": "Environment capability audit confirms only portfolio content API secret is configured. No Jarwiz host connection or OAuth/model secret is available. User authorized rehearsal; actual deployment remains blocked on missing configuration, not repeated permission."
+        },
+        {
+          "kind": "test",
+          "date": "2026-11-21",
+          "path": "docs/launch/rehearsal-container-preflight.json",
+          "note": "Fresh local image passed seven anonymous deployment checks with synthetic configuration and no external network. This does not establish a hosted deployment."
         }
       ],
       "blockers": [
         "Target hosting account/service, persistent volume and beta HTTPS domain have not been provided.",
-        "Beta-origin OAuth/provider configuration, production canvas license and rehearsal/operations ownership remain unconfigured."
+        "Beta-origin OAuth/provider configuration, production canvas license and rehearsal/operations ownership remain unconfigured.",
+        "GitHub credential is invalid; release source/CI and public kanban publication cannot proceed with the current access."
       ],
       "nextAction": "Hosting target/domain requested. Configure target access and secrets, then deploy behind closed admission and execute the hosted rehearsal.",
       "sourceRoadmapId": "JZ-101",
@@ -2413,8 +2433,14 @@
         {
           "kind": "source_reference",
           "path": "docs/launch/rehearsal.md",
-          "note": "Flow matrix and result ledger being prepared. Hosted checks have not run.",
+          "note": "Completed 28-flow hosted acceptance matrix with per-flow prerequisites, expected observations and evidence slots. All 28 remain blocked; zero hosted flows executed.",
           "date": "2026-11-21"
+        },
+        {
+          "kind": "source_reference",
+          "date": "2026-11-21",
+          "path": "docs/launch/rehearsal-results.json",
+          "note": "Machine-readable hosted result ledger and separate local receipts. Recovery requires current admission roster and encryption/configuration recovery in addition to data backup."
         }
       ],
       "blockers": [
