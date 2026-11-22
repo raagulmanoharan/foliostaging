@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "metadata": {
     "title": "Jarwiz product launch kanban",
-    "updatedAt": "2026-11-21",
+    "updatedAt": "2026-11-22",
     "sourceRoadmap": "/workspace/Folio/docs/jarwiz-beta-roadmap.json",
     "baseline": "Current Jarwiz working tree, including existing modified and untracked product modules. No worktree reset or inferred completion.",
     "goal": "Prepare a real closed-beta product through complete tested workflows, then expand feature coverage.",
@@ -15,7 +15,7 @@
       "The user authorized private staging deployment and release rehearsal on 2026-11-21. Hosting access and test configuration are still required; cohort admission and external email are not automatic.",
       "Model credentials, provider account access, hosting, licensing and operating ownership are external prerequisites."
     ],
-    "activeBuild": "Local release rehearsal completed and in review: fresh build/typechecks, 190 unit passes, nine selected production-browser checks, Docker build and seven anonymous container checks. Hosted deployment and 28 real-account flows remain blocked on configuration.",
+    "activeBuild": "ChatGPT local subscription implementation is in review. Final verification: 214 unit passes, one optional skip, eight targeted browser checks, successful typechecks/builds and actual local-server smoke. Live subscription acceptance, hosted enrollment and Claude approval remain separate blockers.",
     "boardVerification": {
       "date": "2026-11-20",
       "result": "Passed browser checks at 1440, 1024, 390 and 320px: active/full view counts, six columns, filters, detail rail/Escape, gate expansion, refresh, containment and no page overflow.",
@@ -36,10 +36,9 @@
       "note": "All original feature epics are represented. No duplicate parity epics were added. Current provider implementation evidence was reconciled; actual release blockers and acceptance reviews remain distinct from unstarted feature work."
     },
     "publicKanbanSync": {
-      "status": "blocked",
-      "date": "2026-11-21",
-      "reason": "GitHub credential is invalid; public kanban has not received this rehearsal update. Canonical local ledger and publication copies are saved.",
-      "nextAction": "Restore GitHub authentication, then publish the prepared tracking update."
+      "status": "published",
+      "date": "2026-11-22",
+      "note": "GitHub authentication restored. This update publishes the previously queued release rehearsal and the current personal-subscription tasks; it does not deploy the product."
     }
   },
   "columns": [
@@ -2451,6 +2450,151 @@
       "sourceRoadmapId": "JZ-105",
       "assignee": "root",
       "updatedAt": "2026-11-21"
+    },
+    {
+      "id": "JZ-309",
+      "title": "Connect a personal ChatGPT subscription",
+      "description": "OAuth sign-in and account-scoped Responses generation for explicitly enabled local Jarwiz installations.",
+      "status": "review",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "build_wave_3",
+      "implementationStatus": "locally-verified",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Validate PKCE/state/nonce/signature/issuer/audience and granted plan permissions; isolate accounts and keep tokens out of browser storage.",
+        "Refresh credentials safely, list permitted models, stream real Responses events into canvas generation, and require terminal completion.",
+        "Support cancel, reconnect, switch account and disconnect; no silent paid API fallback.",
+        "Block remotely hosted/private-beta use until provider onboarding; test OAuth boundaries and ordinary product UI with explicit fixtures."
+      ],
+      "evidence": [
+        {
+          "kind": "test",
+          "date": "2026-11-22",
+          "path": "docs/launch/subscriptions.md",
+          "note": "Implemented OAuth/account/model lifecycle, public Responses adapter, normal native-card generation, local launcher and polished settings. Final unit suite: 215 tests, 214 passed, one optional skip. Seven new subscription browser cases plus existing API-key regression passed; typechecks and production builds passed. Actual local server/UI smoke passed without real OAuth. Independent review completed; no live allowance consumed."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Review implementation and evidence in subscriptions.md; run JZ-309A with a dedicated real account. Do not enable hosted plan usage from these fixture results.",
+      "assignee": "root",
+      "updatedAt": "2026-11-22"
+    },
+    {
+      "id": "JZ-310",
+      "title": "Enable subscription access for the hosted beta",
+      "description": "Complete provider onboarding before exposing ChatGPT plan usage on the remotely hosted Jarwiz service.",
+      "status": "blocked",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "build_wave_3",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-309"
+      ],
+      "acceptanceCriteria": [
+        "Obtain provider approval/client configuration for hosted plan usage.",
+        "Add per-user encrypted storage, permissions and live two-account validation before enabling."
+      ],
+      "evidence": [
+        {
+          "kind": "source_reference",
+          "date": "2026-11-22",
+          "path": "docs/launch/subscriptions.md",
+          "note": "Provider requirements and implementation plan in progress; no live subscription verification."
+        }
+      ],
+      "blockers": [
+        "OpenAI hosted/paid app enrollment and credentials are not available."
+      ],
+      "nextAction": "Resolve provider requirements before enabling.",
+      "assignee": "root",
+      "updatedAt": "2026-11-22"
+    },
+    {
+      "id": "JZ-311",
+      "title": "Enable Claude subscription access when provider-approved",
+      "description": "Determine the supported path without collecting Claude subscription credentials or exposing shared host access.",
+      "status": "blocked",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "build_wave_3",
+      "implementationStatus": "planned",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Document current Claude provider requirements.",
+        "Keep API-key access available; do not present an unsupported subscription login.",
+        "Scope official unmodified CLI integration separately from general model routing."
+      ],
+      "evidence": [
+        {
+          "kind": "review",
+          "date": "2026-11-22",
+          "path": "docs/launch/subscriptions.md",
+          "note": "Reviewed current official Claude Code legal and Agent SDK docs. No session tokens extracted and no unsupported login exposed. API-key route preserved; local ChatGPT mode disables legacy host CLI fallback."
+        }
+      ],
+      "blockers": [
+        "Anthropic does not allow generic Claude.ai subscription login for third-party agents without approval. No approval is available."
+      ],
+      "nextAction": "Seek Anthropic approval for a general subscription-backed Jarwiz agent, or execute the separate official-client integration task JZ-312.",
+      "assignee": "root",
+      "updatedAt": "2026-11-22"
+    },
+    {
+      "id": "JZ-309A",
+      "title": "Verify ChatGPT subscription with a real account",
+      "description": "Exercise owner-driven consent, attachment-grounded generation, model switching, limits, renewal and revocation against the actual provider.",
+      "status": "blocked",
+      "priority": "P1",
+      "crewId": "harness",
+      "releaseScope": "build_wave_3",
+      "implementationStatus": "planned",
+      "dependencies": [
+        "JZ-309"
+      ],
+      "acceptanceCriteria": [
+        "A dedicated eligible account completes official consent and model discovery on loopback.",
+        "A supplied document produces a useful editable native card through the live Responses endpoint; verify attribution and save/reopen.",
+        "Observe account/model changes, expiration/renewal, plan-limit handling and disconnect/revoke without API billing fallback.",
+        "Record provider evidence separately from fixture tests; do not infer hosted availability."
+      ],
+      "evidence": [],
+      "blockers": [
+        "Requires a dedicated eligible ChatGPT account and its owner to complete provider sign-in. No live account consent or model call has run."
+      ],
+      "nextAction": "Use npm run start:subscriptions and perform the documented real-account acceptance flow.",
+      "assignee": "root",
+      "updatedAt": "2026-11-22"
+    },
+    {
+      "id": "JZ-312",
+      "title": "Connect the official Claude Code client as a local agent",
+      "description": "Explore an explicit integration with the unchanged official client, independently authenticated through Anthropic, instead of collecting subscription credentials.",
+      "status": "backlog",
+      "priority": "P2",
+      "crewId": "harness",
+      "releaseScope": "build_wave_3",
+      "implementationStatus": "planned",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Confirm current official-client hosting/integration terms for the proposed distribution.",
+        "Require explicit local opt-in and read actual auth status; binary presence alone never means connected.",
+        "Keep Claude authentication in its official flow and keep credentials out of Jarwiz.",
+        "Define and test useful supported canvas workflows, permissions, cancellation and error states; never silently borrow a shared host login."
+      ],
+      "evidence": [
+        {
+          "kind": "review",
+          "date": "2026-11-22",
+          "path": "docs/launch/subscriptions.md",
+          "note": "Official unmodified CLI is a distinct permitted route subject to its terms; existing sidecar is not verified subscription onboarding."
+        }
+      ],
+      "blockers": [],
+      "nextAction": "Design a bounded official-client adapter and validate its terms and supported workflow before implementation.",
+      "assignee": null,
+      "updatedAt": "2026-11-22"
     }
   ]
 }
