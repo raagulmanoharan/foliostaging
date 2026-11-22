@@ -2357,17 +2357,22 @@
           "date": "2026-11-21",
           "path": "docs/launch/rehearsal-container-preflight.json",
           "note": "Fresh local image passed seven anonymous deployment checks with synthetic configuration and no external network. This does not establish a hosted deployment."
+        },
+        {
+          "kind": "review",
+          "date": "2026-11-22",
+          "path": "docs/launch/subscriptions.md",
+          "note": "GitHub authentication is restored and queued kanban updates were pushed. Product hosting, provider setup and actual hosted acceptance remain unresolved; tracking publication does not deploy Jarwiz."
         }
       ],
       "blockers": [
         "Target hosting account/service, persistent volume and beta HTTPS domain have not been provided.",
-        "Beta-origin OAuth/provider configuration, production canvas license and rehearsal/operations ownership remain unconfigured.",
-        "GitHub credential is invalid; release source/CI and public kanban publication cannot proceed with the current access."
+        "Beta-origin OAuth/provider configuration, production canvas license and rehearsal/operations ownership remain unconfigured."
       ],
       "nextAction": "Hosting target/domain requested. Configure target access and secrets, then deploy behind closed admission and execute the hosted rehearsal.",
       "sourceRoadmapId": "JZ-101",
       "assignee": "root",
-      "updatedAt": "2026-11-21"
+      "updatedAt": "2026-11-22"
     },
     {
       "id": "JZ-121B",
