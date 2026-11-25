@@ -12,8 +12,8 @@
          and PT Serif (the agents' articles). -->
     <title>Raagul Manoharan</title>
     <script type="module" crossorigin src="/foliostaging/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
-    <script type="module" crossorigin src="/foliostaging/assets/main-D4LLsSm2.js"></script>
-    <link rel="stylesheet" crossorigin href="/foliostaging/assets/main-BUDDIXfw.css">
+    <script type="module" crossorigin src="/foliostaging/assets/main-CEpOQp2t.js"></script>
+    <link rel="stylesheet" crossorigin href="/foliostaging/assets/main-BkROx3hn.css">
   </head>
   <body class="portfolio-home">
     <!-- Custom cursor (fine-pointer devices only) -->
@@ -168,21 +168,10 @@
           </figure>
         </article>
       </section>
-      <details class="more-projects" id="more-projects">
-        <summary class="projects-toggle"><span class="show-more-label">Show more projects</span><span class="show-less-label">Show fewer projects</span><span class="projects-toggle-arrow" aria-hidden="true">↓</span></summary>
-        <div class="project-tile-grid more-projects-grid">
-          <article class="project-tile">
-            <div class="project-tile-media project-placeholder" role="img" aria-label="Project preview placeholder"><span>Project preview</span></div>
-            <h3>Project 04</h3>
-            <p>Case study to be added.</p>
-          </article>
-          <article class="project-tile">
-            <div class="project-tile-media project-placeholder" role="img" aria-label="Project preview placeholder"><span>Project preview</span></div>
-            <h3>Project 05</h3>
-            <p>Case study to be added.</p>
-          </article>
-        </div>
-      </details>
+      <div class="more-projects" id="more-projects">
+        <button class="projects-toggle" type="button" data-load-projects aria-controls="work">Show more projects <span aria-hidden="true">↓</span></button>
+        <span class="project-load-status" role="status" aria-live="polite"></span>
+      </div>
       <section class="side-projects" id="stray-light" aria-labelledby="side-projects-title">
         <header class="side-projects-heading">
           <h2 class="gallery-title" id="side-projects-title">
@@ -193,25 +182,14 @@
           <p class="gallery-note">Experiments that never found a project to live in.</p>
         </header>
         <div class="project-tile-grid">
-          <article class="project-tile">
-            <a class="project-tile-media" href="/foliostaging/fray/wurdle-cryopluvium.jpg" target="_blank" rel="noopener" aria-label="View the Wurdle experiment at full size">
-              <img src="/foliostaging/fray/wurdle-cryopluvium.jpg" alt="Wurdle's CryOpluvium: an imagined scientific phenomenon presented on a phone" width="2000" height="1500" loading="lazy">
-            </a>
-            <h3>Wurdle</h3>
-            <p>A whole scientific phenomenon, dreamed up from an absurd concept.</p>
-          </article>
-          <article class="project-tile">
-            <div class="project-tile-media side-video" data-side-video>
-              <button class="side-video-cover" type="button" data-side-video-play aria-label="Play the VST demo with Fluid Innovation">
-                <span class="side-video-title">Fluid<br>Innovation</span>
-                <span class="side-video-play"><span aria-hidden="true">▷</span> Play demo</span>
-              </button>
-              <template><iframe src="https://www.youtube-nocookie.com/embed/IPJFrbW7CIg?start=50&amp;autoplay=1" title="A VST designed with Fluid Innovation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></template>
-            </div>
-            <h3>Fluid Innovation</h3>
-            <p>A VST designed from the ground up with Fluid Innovation.</p>
-            <a class="side-video-link" href="https://www.youtube.com/watch?v=IPJFrbW7CIg&amp;t=50s" target="_blank" rel="noopener">Watch on YouTube ↗</a>
-          </article>
+          <a class="side-project-tile" href="/foliostaging/projects/wurdle.html" aria-label="Open Wurdle project">
+            <img src="/foliostaging/fray/wurdle-cryopluvium.jpg" alt="Wurdle's CryOpluvium experiment presented on a phone" width="2000" height="1500" loading="lazy">
+            <div class="side-project-overlay"><h3>Wurdle <span aria-hidden="true">↗</span></h3><p>A whole scientific phenomenon, dreamed up from an absurd concept.</p></div>
+          </a>
+          <a class="side-project-tile" href="/foliostaging/projects/fluid-innovation.html" aria-label="Open Fluid Innovation project">
+            <img src="/foliostaging/fray/fluid-innovation-cover.svg" alt="Audio waveform cover for the Fluid Innovation project" width="1200" height="900" loading="lazy">
+            <div class="side-project-overlay"><h3>Fluid Innovation <span aria-hidden="true">↗</span></h3><p>A VST designed from the ground up with Fluid Innovation.</p></div>
+          </a>
         </div>
       </section>
     </main>
