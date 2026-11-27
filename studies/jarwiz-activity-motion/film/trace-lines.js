@@ -11,7 +11,11 @@ window.connectTrace = function(list, root, rows) {
     svg.append(path);
     return path;
   };
-  const branches=rows.map(()=>({stem:makePath(),elbow:makePath()}));
+  const branches=rows.map(()=>{
+    const marker=document.createElementNS(ns,'circle');
+    marker.setAttribute('r','2.7');svg.append(marker);
+    return {stem:makePath(),marker};
+  });
   list.prepend(svg);
   function layout(){
     const base=list.getBoundingClientRect();
@@ -21,13 +25,12 @@ window.connectTrace = function(list, root, rows) {
     const x=(parent.x+parent.width/2-base.x)/zoom;
     let y=(parent.bottom-base.y)/zoom;
     rows.forEach((row,i)=>{
-      const icon=row.getBoundingClientRect(),endX=(icon.left-base.left)/zoom-2;
+      const icon=row.getBoundingClientRect();
       const endY=(icon.top+icon.height/2-base.top)/zoom;
-      const bend=Math.min(6,Math.max(0,(endX-x)/2));
-      const join=endY-bend;
-      branches[i].stem.setAttribute('d',`M ${x} ${y} V ${join}`);
-      branches[i].elbow.setAttribute('d',`M ${x} ${join} Q ${x} ${endY} ${x+bend} ${endY} H ${endX}`);
-      y=join;
+      branches[i].stem.setAttribute('d',`M ${x} ${y} V ${endY-3}`);
+      branches[i].marker.setAttribute('cx',x);
+      branches[i].marker.setAttribute('cy',endY);
+      y=endY+3;
     });
   }
   layout();

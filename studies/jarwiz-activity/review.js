@@ -59,9 +59,11 @@ function paintTask(row,index,finished){
     if(row.kind==='create'&&role==='Writer'){
       view.list.append(el('p','Jarwiz passed both findings to the writer.','handoff just-added'));
     }
-    const n=el('details',null,'node just-added'),summary=el('summary'),words=el('span'),line=el('span',assignment+'…','finding');
+    const n=el('details',null,'node just-added'),summary=el('summary'),words=el('span'),line=el('span','In progress…','finding');
     n.dataset.role=role;
-    words.append(el('b',role),line);
+    const heading=el('b',assignment);
+    heading.append(el('small',role,'specialist'));
+    words.append(heading,line);
     const glyph=el('span',{Summarizer:'≡',Researcher:'⌕',Writer:'✎'}[role],'glyph');glyph.ariaHidden='true';
     summary.append(glyph,words);
     const evidence=el('div',null,'evidence');evidence.append(el('small','Received'),el('span',source));
@@ -69,7 +71,17 @@ function paintTask(row,index,finished){
   }else{
     const {line,evidence}=view.tasks[index];line.textContent=finding;
     evidence.append(el('small','Returned to Jarwiz'),el('span',detail));
-    if(role==='Researcher'){const link=el('a','Open sample guide ↗');link.href=reportURL;link.target='_blank';link.rel='noreferrer';evidence.append(el('br'),link);}
+    if(role==='Researcher'){
+      const sources=el('div',null,'source-list');sources.append(el('small','Sources in this run'));
+      for(const [name,origin] of [['First-run signup','Board sketch'],['Trying the product','Board document'],['Sample reports','Microsoft Learn']]){
+        const entry=el('div');
+        if(origin==='Microsoft Learn'){
+          const a=el('a',name+' ↗');a.href=reportURL;a.target='_blank';a.rel='noreferrer';entry.append(a);
+        }else entry.append(name);
+        entry.append(el('span',origin));sources.append(entry);
+      }
+      view.list.append(sources);
+      const link=el('a','Open sample guide ↗');link.href=reportURL;link.target='_blank';link.rel='noreferrer';evidence.append(el('br'),link);}
   }
 }
 function updateConnections(view){
