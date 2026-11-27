@@ -4,6 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jarwiz · Signup activity</title>
+<script>
+  if (new URLSearchParams(location.search).get('view') === 'board') {
+    const root = document.documentElement;
+    root.dataset.view = 'board';
+    const fitPanel = () => root.style.setProperty('--board-scale', innerWidth / 423);
+    fitPanel();
+    window.addEventListener('resize', fitPanel);
+  }
+</script>
 <link rel="stylesheet" href="../../studies/jarwiz-activity-motion/film/audit-ui.css">
 <style>
 @font-face {
@@ -239,13 +248,6 @@ details[open] > summary > .chevron { transform: translateY(-2px) rotate(45deg); 
 </section>
 <script src="../../studies/jarwiz-activity-motion/film/audit-ui.js"></script>
 <script>
-  if (new URLSearchParams(location.search).get('view') === 'board') {
-    const root = document.documentElement;
-    root.dataset.view = 'board';
-    const fitPanel = () => root.style.setProperty('--board-scale', innerWidth / 423);
-    fitPanel();
-    window.addEventListener('resize', fitPanel);
-  }
   document.querySelectorAll('[data-role]').forEach(role => {
     role.replaceWith(auditUI.agent(role.dataset.role));
   });
