@@ -6,7 +6,7 @@
 .jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:12px}
 @media(max-width:600px){.jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:8px}}
 
-/* Fit the full portrait capture by height inside the shared 16:11 frame. */
+/* The board occupies 1040 of the master frame’s 1320 pixels. */
 .jarwiz-case .activity-stage {
   display: grid;
   place-items: center;
@@ -17,8 +17,8 @@
 }
 .activity-stage .activity-panel {
   display: block;
-  height: 96%;
-  aspect-ratio: 423 / 726;
+  height: 78.787879%;
+  aspect-ratio: 423 / 800;
   overflow: hidden;
   border-radius: 1.023cqw;
   box-shadow: 0 .91cqw 2.5cqw #171b2226, 0 .114cqw .341cqw #171b221c;
@@ -28,11 +28,11 @@
 .activity-panel:focus-visible { outline: 2px solid #594e71; outline-offset: 3px; }
 
 /* The generic artwork viewer fits landscape images by width. */
-.dialog-scroll:has(> img[src$="/activity-trace-detail.webp"]) {
+.dialog-scroll:has(> img[src$="/activity-trace-sidebar.webp"]) {
   align-items: center;
   justify-content: center;
 }
-.dialog-scroll > img[src$="/activity-trace-detail.webp"] {
+.dialog-scroll > img[src$="/activity-trace-sidebar.webp"] {
   width: auto;
   height: auto;
   min-width: 0;
