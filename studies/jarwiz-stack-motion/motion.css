@@ -7,3 +7,7 @@ main{max-width:1584px}.lab-layout{display:grid;grid-template-columns:minmax(0,1f
 .stack-flight-layer{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:visible;isolation:isolate}.stack-flight{position:absolute;left:0;top:0;width:48px;height:60px;transform-origin:center;pointer-events:none;will-change:transform,opacity}.stack-flight .entry-preview{transform:none!important;transition:none!important;border-color:#ffffff20}
 
 .context-popover.is-arranging .entry-preview{transform:none}
+
+/* The deck is the frontmost surface; every link unfolds behind its parent. */
+.context-region{position:relative;z-index:3}.stack-flight-layer{z-index:1}.stack-link{z-index:-1}.stack-link>.entry-preview{position:relative;z-index:1}.stack-flight-layer>.stack-link{z-index:0}
+.is-arranging #dock-labels{transition:none}

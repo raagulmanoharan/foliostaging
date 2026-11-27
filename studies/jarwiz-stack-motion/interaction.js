@@ -18,7 +18,11 @@ function freezeMotion(){
 function clearFlights(){flightLayer.replaceChildren();flights.clear();list.style.visibility='';arranging=false;popover.classList.remove('is-arranging')}
 function stackOrigins(){return [...previews.children].map(el=>{const m=new DOMMatrixReadOnly(getComputedStyle(el).transform);return{id:el.dataset.context,rect:el.getBoundingClientRect(),width:el.offsetWidth,height:el.offsetHeight,angle:Math.atan2(m.b,m.a)*180/Math.PI}})}
 function flightPose(rect,angle=0,width=48,height=60){const r=flightLayer.getBoundingClientRect();return `translate(${rect.x+rect.width/2-r.x-24}px,${rect.y+rect.height/2-r.y-30}px) rotate(${angle}deg) scale(${width/48},${height/60})`}
-function originPose(entry,origins){const o=origins.find(o=>o.id===entry.dataset.context)||origins.at(-1);return flightPose(o.rect,o.angle,o.width,o.height)}
+function deckPose(origins,open){
+ if(open){const o=origins.at(-1);return flightPose(o.rect,o.angle,o.width,o.height)}
+ const el=previews.lastElementChild,style=getComputedStyle(el),r=previews.getBoundingClientRect(),s=window.stackMotion,layer=Number(style.getPropertyValue('--layer')),tilt=Number(style.getPropertyValue('--tilt')),lift=el.matches(':hover')?-s.hoverLift:0;
+ return flightPose({x:r.x+2+layer*s.idleSpacing,y:r.y+5+lift,width:34,height:42},tilt*s.idleFan,34,42);
+}
 function setStackTiming(open){const s=window.stackMotion;stackGroup.style.setProperty('--stack-duration',(open?s.openDuration:s.closeDuration)+'ms');stackGroup.style.setProperty('--stack-ease',open?window.stackEase(s.openEase,s.curve):window.stackEase(s.closeEase));}
 function transitionStack(open,{immediate=false}={}){
  if(open&&!selected.size)return;
@@ -32,18 +36,26 @@ function transitionStack(open,{immediate=false}={}){
  placeComposer();
  const s=window.stackMotion,easing=open?window.stackEase(s.openEase,s.curve):window.stackEase(s.closeEase),entries=[...list.children];
  arranging=true;popover.classList.add('is-arranging');list.style.visibility='hidden';
- // Fly lightweight previews outside the scrollport. The real, interactive
- // entries stay in layout and take over only once all cards have settled.
- const poses=entries.map(entry=>{
-  const id=entry.dataset.context;let el=flights.get(id);
-  if(!el){el=document.createElement('div');el.className='stack-flight';const preview=entry.querySelector('.entry-preview').cloneNode(true);preview.querySelector('button')?.remove();el.append(preview);flightLayer.append(el);flights.set(id,el);el.style.transform=open?originPose(entry,origins):flightPose(entry.getBoundingClientRect());el.style.opacity=open?'0':'1'}
-  return {entry,el,from:el.style.transform,opacity:Number(el.style.opacity),to:open?flightPose(entry.getBoundingClientRect()):originPose(entry,origins)};
+ // Each link is a child behind the preceding card. Relative motion creates
+ // a physical accordion: no independent flights, fades, or crossing layers.
+ const chain=[...entries].reverse(),identity='translate(0px,0px) rotate(0deg) scale(1)',deck=deckPose(origins,open);
+ let parent=flightLayer,parentRect=null;
+ const poses=chain.map((entry,i)=>{
+  const id=entry.dataset.context,rect=entry.getBoundingClientRect();let el=flights.get(id);
+  if(!el){
+   el=document.createElement('div');el.className='stack-flight stack-link';el.dataset.chainIndex=String(i);
+   const preview=entry.querySelector('.entry-preview').cloneNode(true);preview.querySelector('button')?.remove();el.append(preview);parent.append(el);flights.set(id,el);
+   el.style.transform=open?(i===0?deck:identity):(i===0?flightPose(rect):`translate(${rect.x-parentRect.x}px,${rect.y-parentRect.y}px) rotate(0deg) scale(1)`);
+   el.style.opacity='1';
+  }
+  const to=open?(i===0?flightPose(rect):`translate(${rect.x-parentRect.x}px,${rect.y-parentRect.y}px) rotate(0deg) scale(1)`):(i===0?deck:identity);
+  parent=el;parentRect=rect;
+  return {el,from:el.style.transform,to};
  });
- motionAnimations=poses.map(({el,from,opacity,to},i)=>el.animate([
-  {transform:from,opacity,offset:0},
-  {opacity:open?1:opacity,offset:open?.16:.72},
-  {transform:to,opacity:open?1:0,offset:1}
- ],{duration:open?s.openDuration:s.closeDuration,delay:interrupted?0:open?(entries.length-1-i)*s.stagger:i*s.stagger/2,easing,fill:'both'}));
+ motionAnimations=poses.map(({el,from,to},i)=>el.animate([
+  {transform:from,opacity:1},
+  {transform:to,opacity:1}
+ ],{duration:open?s.openDuration:s.closeDuration,delay:interrupted?0:(open?i:chain.length-1-i)*s.stagger,easing,fill:'both'}));
  const animations=motionAnimations;
  Promise.allSettled(animations.map(a=>a.finished)).then(()=>{
   if(run!==arrangement)return;
