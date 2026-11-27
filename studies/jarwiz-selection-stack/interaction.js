@@ -8,11 +8,11 @@ let arranging=false,arrangement=0;
 function closePopover(){arrangement++;arranging=false;popover.classList.remove('is-arranging');list.getAnimations({subtree:true}).forEach(a=>a.cancel());popover.hidden=true;stack.setAttribute('aria-expanded','false');stackGroup.classList.remove('is-open')}
 function openPopover(){
  if(!selected.size)return;
- const origins=[...previews.children].map(el=>({id:el.dataset.context,rect:el.getBoundingClientRect()}));
+ const origins=[...previews.children].map(el=>{const m=new DOMMatrixReadOnly(getComputedStyle(el).transform);return{id:el.dataset.context,rect:el.getBoundingClientRect(),width:el.offsetWidth,height:el.offsetHeight,angle:Math.atan2(m.b,m.a)*180/Math.PI}});
  popover.hidden=false;stack.setAttribute('aria-expanded','true');stackGroup.classList.add('is-open');list.scrollTop=0;placeComposer();
  if(reduced.matches)return;
  const run=++arrangement;arranging=true;popover.classList.add('is-arranging');
- const animations=[...list.children].map((entry,i)=>{const target=entry.getBoundingClientRect(),source=(origins.find(o=>o.id===entry.dataset.context)||origins.at(-1)).rect,dx=source.x+source.width/2-target.x-target.width/2,dy=source.y+source.height/2-target.y-target.height/2;return entry.animate([{transform:`translate(${dx}px,${dy}px) rotate(0deg) scale(${source.width/target.width},${source.height/target.height})`,opacity:.9},{transform:'translate(0,0) rotate(0deg) scale(1)',opacity:1}],{duration:380,delay:(list.children.length-1-i)*18,easing:'cubic-bezier(.22,1,.36,1)'})});
+ const animations=[...list.children].map((entry,i)=>{const target=entry.getBoundingClientRect(),origin=origins.find(o=>o.id===entry.dataset.context)||origins.at(-1),source=origin.rect,dx=source.x+source.width/2-target.x-target.width/2,dy=source.y+source.height/2-target.y-target.height/2;return entry.animate([{transform:`translate(${dx}px,${dy}px) rotate(${origin.angle}deg) scale(${origin.width/target.width},${origin.height/target.height})`,opacity:.9},{transform:'translate(0,0) rotate(0deg) scale(1)',opacity:1}],{duration:380,delay:(list.children.length-1-i)*18,easing:'cubic-bezier(.22,1,.36,1)'})});
  Promise.allSettled(animations.map(a=>a.finished)).then(()=>{if(run===arrangement){arranging=false;popover.classList.remove('is-arranging');positionDockLabels()}});
 }
 function changeCard(id,add){if(busy)finish();if(add){selected.has(id)?selected.delete(id):selected.add(id)}else selected=new Set([id]);render()}
