@@ -5,29 +5,62 @@ const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceA
 for(const c of cards){const el=document.createElement('div');el.className='source tl-shape';el.dataset.source=c.id;el.dataset.shapeId=c.id;el.setAttribute('role','option');el.setAttribute('aria-label',c.title);el.tabIndex=0;el.innerHTML=`<span class="source-title">${esc(c.title)}</span><div class="tl-html-container" inert>${c.html}</div><span class="source-check" aria-hidden="true">${checkIcon}</span>`;sources.append(el);const root=el.querySelector('.tl-html-container').firstElementChild;root.style.removeProperty('outline');root.style.removeProperty('outline-offset');el.addEventListener('click',e=>{if(drag?.moved)return;changeCard(c.id,e.shiftKey||e.target.closest('.source-check')||innerWidth<650)});el.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();changeCard(c.id,true)}});el.addEventListener('mouseenter',()=>highlight(c.id));el.addEventListener('mouseleave',()=>highlight(null));}
 function highlight(id){hot=id;for(const el of document.querySelectorAll('[data-source],[data-context]'))el.classList.toggle('is-hot',el.dataset.source===id||el.dataset.context===id)}
 let arranging=false,arrangement=0;
-function cancelArrangement(){arrangement++;list.getAnimations({subtree:true}).forEach(a=>a.cancel());}
+const flightLayer=document.createElement('div');flightLayer.className='stack-flight-layer';flightLayer.setAttribute('aria-hidden','true');composer.append(flightLayer);
+const flights=new Map();let motionAnimations=[];
+function freezeMotion(){
+ arrangement++;
+ // Read every current pose before cancelling, so a reversed transition starts
+ // exactly where it was drawn in the preceding frame.
+ const poses=[...flights.values()].map(el=>({el,transform:getComputedStyle(el).transform,opacity:getComputedStyle(el).opacity}));
+ motionAnimations.forEach(a=>a.cancel());motionAnimations=[];
+ for(const {el,transform,opacity} of poses){el.style.transform=transform;el.style.opacity=opacity}
+}
+function clearFlights(){flightLayer.replaceChildren();flights.clear();list.style.visibility='';arranging=false;popover.classList.remove('is-arranging')}
 function stackOrigins(){return [...previews.children].map(el=>{const m=new DOMMatrixReadOnly(getComputedStyle(el).transform);return{id:el.dataset.context,rect:el.getBoundingClientRect(),width:el.offsetWidth,height:el.offsetHeight,angle:Math.atan2(m.b,m.a)*180/Math.PI}})}
-function entryPose(entry,origins){const target=entry.getBoundingClientRect(),origin=origins.find(o=>o.id===entry.dataset.context)||origins.at(-1),r=origin.rect;return `translate(${r.x+r.width/2-target.x-target.width/2}px,${r.y+r.height/2-target.y-target.height/2}px) rotate(${origin.angle}deg) scale(${origin.width/target.width},${origin.height/target.height})`}
+function flightPose(rect,angle=0,width=48,height=60){const r=flightLayer.getBoundingClientRect();return `translate(${rect.x+rect.width/2-r.x-24}px,${rect.y+rect.height/2-r.y-30}px) rotate(${angle}deg) scale(${width/48},${height/60})`}
+function originPose(entry,origins){const o=origins.find(o=>o.id===entry.dataset.context)||origins.at(-1);return flightPose(o.rect,o.angle,o.width,o.height)}
 function setStackTiming(open){const s=window.stackMotion;stackGroup.style.setProperty('--stack-duration',(open?s.openDuration:s.closeDuration)+'ms');stackGroup.style.setProperty('--stack-ease',open?window.stackEase(s.openEase,s.curve):window.stackEase(s.closeEase));}
-function closePopover({immediate=false}={}){
- const wasOpen=!popover.hidden;cancelArrangement();setStackTiming(false);stack.setAttribute('aria-expanded','false');stackGroup.classList.remove('is-open');
- if(!wasOpen||immediate||reduced.matches||!selected.size){popover.hidden=true;arranging=false;popover.classList.remove('is-arranging');return}
- const run=arrangement,origins=stackOrigins(),s=window.stackMotion;arranging=true;popover.classList.add('is-arranging');
- const animations=[...list.children].map((entry,i)=>entry.animate([{transform:'translate(0,0) rotate(0deg) scale(1)',opacity:1},{transform:entryPose(entry,origins),opacity:0}],{duration:s.closeDuration,delay:i*s.stagger/2,easing:window.stackEase(s.closeEase),fill:'forwards'}));
- Promise.allSettled(animations.map(a=>a.finished)).then(()=>{if(run===arrangement){popover.hidden=true;arranging=false;popover.classList.remove('is-arranging');animations.forEach(a=>a.cancel())}});
+function transitionStack(open,{immediate=false}={}){
+ if(open&&!selected.size)return;
+ const wasVisible=!popover.hidden,interrupted=arranging;
+ if(!immediate&&interrupted&&stack.getAttribute('aria-expanded')===String(open))return;
+ const origins=stackOrigins();freezeMotion();const run=arrangement;
+ setStackTiming(open);stack.setAttribute('aria-expanded',String(open));stackGroup.classList.toggle('is-open',open);
+ if(immediate||reduced.matches||!selected.size||!open&&!wasVisible){popover.hidden=!open;clearFlights();if(open){placeComposer();positionDockLabels()}return}
+ popover.hidden=false;
+ if(open&&!wasVisible)list.scrollTop=0;
+ placeComposer();
+ const s=window.stackMotion,easing=open?window.stackEase(s.openEase,s.curve):window.stackEase(s.closeEase),entries=[...list.children];
+ arranging=true;popover.classList.add('is-arranging');list.style.visibility='hidden';
+ // Fly lightweight previews outside the scrollport. The real, interactive
+ // entries stay in layout and take over only once all cards have settled.
+ const poses=entries.map(entry=>{
+  const id=entry.dataset.context;let el=flights.get(id);
+  if(!el){el=document.createElement('div');el.className='stack-flight';const preview=entry.querySelector('.entry-preview').cloneNode(true);preview.querySelector('button')?.remove();el.append(preview);flightLayer.append(el);flights.set(id,el);el.style.transform=open?originPose(entry,origins):flightPose(entry.getBoundingClientRect());el.style.opacity=open?'0':'1'}
+  return {entry,el,from:el.style.transform,opacity:Number(el.style.opacity),to:open?flightPose(entry.getBoundingClientRect()):originPose(entry,origins)};
+ });
+ motionAnimations=poses.map(({el,from,opacity,to},i)=>el.animate([
+  {transform:from,opacity,offset:0},
+  {opacity:open?1:opacity,offset:open?.16:.72},
+  {transform:to,opacity:open?1:0,offset:1}
+ ],{duration:open?s.openDuration:s.closeDuration,delay:interrupted?0:open?(entries.length-1-i)*s.stagger:i*s.stagger/2,easing,fill:'both'}));
+ const animations=motionAnimations;
+ Promise.allSettled(animations.map(a=>a.finished)).then(()=>{
+  if(run!==arrangement)return;
+  if(!open)popover.hidden=true;
+  // Swap a settled preview for the identical real element in the same task.
+  clearFlights();animations.forEach(a=>a.cancel());motionAnimations=[];
+  if(open)positionDockLabels();
+ });
 }
-function openPopover(){
- if(!selected.size)return;cancelArrangement();const origins=stackOrigins();setStackTiming(true);popover.hidden=false;stack.setAttribute('aria-expanded','true');stackGroup.classList.add('is-open');list.scrollTop=0;placeComposer();
- if(reduced.matches){arranging=false;popover.classList.remove('is-arranging');positionDockLabels();return}
- const run=arrangement,s=window.stackMotion;arranging=true;popover.classList.add('is-arranging');
- const animations=[...list.children].map((entry,i)=>entry.animate([{transform:entryPose(entry,origins),opacity:.9},{transform:'translate(0,0) rotate(0deg) scale(1)',opacity:1}],{duration:s.openDuration,delay:(list.children.length-1-i)*s.stagger,easing:window.stackEase(s.openEase,s.curve)}));
- Promise.allSettled(animations.map(a=>a.finished)).then(()=>{if(run===arrangement){arranging=false;popover.classList.remove('is-arranging');positionDockLabels()}});
-}
+function closePopover(options){transitionStack(false,options)}
+function openPopover(){transitionStack(true)}
 window.__stackLabReplay=()=>{closePopover({immediate:true});stackGroup.style.setProperty('--stack-duration','0ms');previews.getBoundingClientRect();requestAnimationFrame(()=>requestAnimationFrame(openPopover))};
 window.addEventListener('stack-motion-change',()=>{requestAnimationFrame(()=>{placeComposer();positionDockLabels()});setTimeout(positionDockLabels,window.stackMotion.openDuration+60)});
 function changeCard(id,add){if(busy)finish();if(add){selected.has(id)?selected.delete(id):selected.add(id)}else selected=new Set([id]);render()}
 function removeCard(id){if(busy)finish();const index=[...selected].indexOf(id),managing=!popover.hidden;selected.delete(id);hot=null;render();if(managing&&selected.size){const next=list.querySelectorAll('[data-remove]')[Math.min(index,selected.size-1)];next?.focus({preventScroll:true})}else prompt.focus({preventScroll:true})}
 function render(){
+ if(arranging){const open=stack.getAttribute('aria-expanded')==='true';freezeMotion();clearFlights();popover.hidden=!open}
  const active=[...selected].map(id=>byId.get(id)),n=active.length;
  for(const el of sources.children){const on=selected.has(el.dataset.source);el.classList.toggle('is-selected',on);el.classList.toggle('is-excluded',n>0&&!on);el.setAttribute('aria-selected',String(on))}
  list.innerHTML=active.map(c=>`<div class="context-entry" role="listitem" aria-label="${esc(c.title)}" data-context="${esc(c.id)}"><div class="entry-preview"><img src="${c.thumb}" alt=""><button type="button" class="preview-dismiss" data-remove="${esc(c.id)}" aria-label="Remove ${esc(c.title)}">${closeIcon}</button></div></div>`).join('');
