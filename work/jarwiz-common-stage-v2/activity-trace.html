@@ -78,8 +78,15 @@ summary:focus-visible { outline: 2px solid #a5afff; outline-offset: -2px; border
   border-radius: 7px;
 }
 .question:hover, .run > summary:hover { background: rgba(235, 238, 255, .05); }
-.meta { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
-time, .duration { font-variant-numeric: tabular-nums; }
+.meta {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.meta, .duration, .result time { font-variant-numeric: tabular-nums; }
 .prompt { grid-column: 1 / -1; font-size: 14px; line-height: 1.4; font-weight: 550; letter-spacing: -.015em; }
 .chevron {
   width: 7px;
@@ -185,7 +192,7 @@ details[open] > summary > .chevron { transform: translateY(-2px) rotate(45deg); 
   <div class="history">
     <details class="request">
       <summary class="question">
-        <span class="meta"><span>You</span><time datetime="10:41">10:41</time></span>
+        <span class="meta"><span>You</span> <span aria-hidden="true">·</span> <time datetime="10:41">10:41</time></span>
         <span class="prompt">Where do people get stuck in signup?</span><span class="chevron" aria-hidden="true"></span>
         <span class="recap"><span>Reviewed the signup sketch and interview notes.</span></span>
       </summary>
@@ -198,7 +205,7 @@ details[open] > summary > .chevron { transform: translateY(-2px) rotate(45deg); 
     </details>
     <details class="request" open>
       <summary class="question">
-        <span class="meta"><span>You</span><time datetime="10:43">10:43</time></span>
+        <span class="meta"><span>You</span> <span aria-hidden="true">·</span> <time datetime="10:43">10:43</time></span>
         <span class="prompt">How can people try a report before connecting their data?</span><span class="chevron" aria-hidden="true"></span>
         <span class="recap"><span>Reviewed two board cards and one product example. Saved a revised signup flow.</span></span>
       </summary>
