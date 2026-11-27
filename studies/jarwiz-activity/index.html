@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<title>Jarwiz · Activity review</title><link rel="icon" href="data:,"><link rel="stylesheet" href="review.css">
+<title>Jarwiz · Activity review</title><link rel="icon" href="data:,"><link rel="stylesheet" href="review.css?v=audit2">
 </head>
 <body>
 <main>
-<header class="review-head"><h1>Agent activity</h1><span>Interaction study</span></header>
-<nav class="states" aria-label="Review a state"></nav>
+<header class="review-head"><h1>Agent activity</h1><span>Prototype</span></header>
+<p class="guide">Select the sketch and the notes, then send the suggested request. Follow Jarwiz’s work in Activity.</p>
 <div class="stage"><section class="window" aria-label="Jarwiz board">
 <div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="workspace">
@@ -19,8 +19,8 @@
 <article class="card result" tabindex="-1" hidden></article></div>
 <div class="composer"><div class="chips"></div><div class="compose-line"><label class="sr" for="prompt">Prompt for Jarwiz</label><textarea rows="1" id="prompt" placeholder="Ask about this board"></textarea><button class="send" aria-label="Send prompt">↑</button></div></div>
 </section>
-<aside aria-label="Board side panel"><div class="rail-head"><button id="activity">Activity</button><button id="comments">Comments</button><button class="close" aria-label="Collapse side panel">›</button></div><div class="rail"></div></aside>
+<aside aria-label="Board side panel"><div class="rail-head"><button id="activity">Activity</button><button id="comments">Comments</button><button class="close" aria-label="Collapse side panel">›</button></div><div class="rail"><div id="feed" aria-label="Board activity history"></div><div id="thread" hidden></div></div><button class="latest" hidden>See latest activity ↓</button></aside>
 </div></section></div>
-<p class="caption" aria-live="polite"></p><p class="foot">Static review with illustrative research and agent activity. Choose a state above to inspect it.</p>
-</main><script src="review.js"></script>
+<p class="foot">Illustrative board. Requests, changes, and rollbacks stay in this tab when you refresh.</p><div class="sr" role="status" id="status"></div>
+</main><dialog id="preview" aria-labelledby="dialog-title" aria-describedby="dialog-copy"><h2 id="dialog-title">Roll back this change?</h2><p id="dialog-copy"></p><div class="diff"></div><div class="dialog-actions"><button id="cancel" autofocus>Cancel</button><button id="confirm">Roll back change</button></div></dialog><script src="review.js?v=audit2"></script>
 </body></html>
