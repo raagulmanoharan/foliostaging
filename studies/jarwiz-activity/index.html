@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<title>Jarwiz · Activity review</title><link rel="icon" href="data:,"><link rel="stylesheet" href="review.css?v=audit2">
+<title>Jarwiz · Activity review</title><link rel="icon" href="data:,"><link rel="stylesheet" href="review.css?v=trace4">
 </head>
 <body>
 <main>
-<header class="review-head"><h1>Agent activity</h1><span>Prototype</span></header>
-<p class="guide">Select the sketch and the notes, then send the suggested request. Follow Jarwiz’s work in Activity.</p>
+<header class="review-head"><h1>Behind the board</h1></header>
+<p class="guide">Select the sketch and the research notes, then send the prompt to see how Jarwiz builds the next card.</p>
 <div class="stage"><section class="window" aria-label="Jarwiz board">
 <div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="workspace">
@@ -21,6 +21,6 @@
 </section>
 <aside aria-label="Board side panel"><div class="rail-head"><button id="activity">Activity</button><button id="comments">Comments</button><button class="close" aria-label="Collapse side panel">›</button></div><div class="rail"><div id="feed" aria-label="Board activity history"></div><div id="thread" hidden></div></div><button class="latest" hidden>See latest activity ↓</button></aside>
 </div></section></div>
-<p class="foot">Illustrative board. Requests, changes, and rollbacks stay in this tab when you refresh.</p><div class="sr" role="status" id="status"></div>
-</main><dialog id="preview" aria-labelledby="dialog-title" aria-describedby="dialog-copy"><h2 id="dialog-title">Roll back this change?</h2><p id="dialog-copy"></p><div class="diff"></div><div class="dialog-actions"><button id="cancel" autofocus>Cancel</button><button id="confirm">Roll back change</button></div></dialog><script src="review.js?v=audit2"></script>
+<p class="foot">Interactive study with simulated agent activity. Your trace stays in this tab on refresh.</p><div class="sr" role="status" id="status"></div>
+</main><dialog id="snapshot" aria-labelledby="snapshot-summary"><h2 id="snapshot-summary"></h2><ol id="snapshot-steps"></ol><button id="snapshot-close">Close</button></dialog><script src="review.js?v=trace4"></script>
 </body></html>
