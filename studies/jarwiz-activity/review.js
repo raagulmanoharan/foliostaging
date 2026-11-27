@@ -65,12 +65,17 @@ function paintTask(row,index,finished){
     const glyph=el('span',{Summarizer:'≡',Researcher:'⌕',Writer:'✎'}[role],'glyph');glyph.ariaHidden='true';
     summary.append(glyph,words);
     const evidence=el('div',null,'evidence');evidence.append(el('small','Received'),el('span',source));
-    n.append(summary,evidence);view.list.append(n);view.tasks[index]={line,evidence};
+    n.append(summary,evidence);view.list.append(n);view.tasks[index]={line,evidence};updateConnections(view);
   }else{
     const {line,evidence}=view.tasks[index];line.textContent=finding;
     evidence.append(el('small','Returned to Jarwiz'),el('span',detail));
     if(role==='Researcher'){const link=el('a','Open sample guide ↗');link.href=reportURL;link.target='_blank';link.rel='noreferrer';evidence.append(el('br'),link);}
   }
+}
+function updateConnections(view){
+  const nodes = Array.from(view.list.querySelectorAll('.node .glyph'));
+  view.lines?.svg.remove();
+  if(nodes.length)view.lines=connectTrace(view.list,view.parent,nodes);
 }
 function receipt(row){
   if(!row.rev)return;
@@ -93,7 +98,11 @@ function addRequest(row,open=true){
   const refs=el('div',null,'inputs');inputs(row).forEach(t=>refs.append(el('span',t,'pill')));
   const root=el('div',null,'root'),phase=el('span','Received','phase');
   root.append(el('span','✦','glyph'),el('span','Jarwiz'),phase);
-  const list=el('div',null,'branches');n.append(refs,root,list);views.set(row,{list,phase,tasks:[],n});
+  const list=el('div',null,'branches');n.append(refs,root,list);const view={list,phase,tasks:[],n,parent:root.querySelector('.glyph')};
+  views.set(row,view);
+  const resize=new ResizeObserver(()=>view.lines?.layout());
+  resize.observe(list);
+  n.addEventListener('toggle',()=>view.lines?.layout(),true);
   feed.append(n);
   for(let i=0;i<row.count;i++)drawEvent(row,i);
 }
