@@ -47,7 +47,7 @@ tl.set('#result',{autoAlpha:1},18.0);
 tl.fromTo('#result',{clipPath:'inset(0 0 100% 0 round 10px)'},{clipPath:'inset(0 0 0% 0 round 10px)',duration:3.05,ease:'sine.inOut'},18.0);for(const [i,cover] of [...document.querySelectorAll('.ink')].entries()){
   tl.fromTo(cover,{scaleX:1},{scaleX:0,transformOrigin:'100% 50%',duration:.48,ease:'sine.out'},18.05+i*.44);
 }
-tl.to('.history',{y:-88,duration:.8,ease:'sine.inOut'},20.8);enter('#receipt',21.3,.5);exit('#busy,#glow',21.55);enter('#next',21.85);
+exit('.earlier',20.48,.28);tl.to('.history',{y:-88,duration:.8,ease:'sine.inOut'},20.8);enter('#receipt',21.3,.5);exit('#busy,#glow',21.55);enter('#next',21.85);
 cursor(receipt.x,receipt.y-88,21.62,1.05);click(22.69);
 tl.fromTo('#result',{boxShadow:'0 0 0 0px transparent'},{boxShadow:'0 0 0 2px #c5b6de',duration:.32,yoyo:true,repeat:1,repeatDelay:.58},22.72);
 camera(1,0,0,22.78,1.25);cursor(721,570,23.19,1.25);
