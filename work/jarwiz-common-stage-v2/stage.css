@@ -6,25 +6,22 @@
 .jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:12px}
 @media(max-width:600px){.jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:8px}}
 
-/* A single product-scale inspector on the shared vignette backdrop. */
-.jarwiz-case .jarwiz-blocking-frame.activity-stage {
-  --stage-padding: 24px 16px;
+/* Preserve the 356px inspector's placement in the 880px master frame. */
+.jarwiz-case .activity-stage {
   display: grid;
   place-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  container-type: inline-size;
   margin-block: 0;
-  min-height: min-content;
+  background: #dde5eb url('./backdrop.webp') center / cover no-repeat;
 }
 .activity-stage .activity-panel {
   display: block;
-  width: min(100%, 356px);
-  max-width: 100%;
+  width: 40.454545%;
   overflow: hidden;
-  border-radius: 9px;
-  box-shadow: 0 8px 22px #171b2226, 0 1px 3px #171b221c;
+  border-radius: 1.023cqw;
+  box-shadow: 0 .91cqw 2.5cqw #171b2226, 0 .114cqw .341cqw #171b221c;
   cursor: zoom-in;
 }
 .activity-stage .activity-panel img { display: block; width: 100%; height: auto; }
 .activity-panel:focus-visible { outline: 2px solid #594e71; outline-offset: 3px; }
-@media (max-width: 840px) {
-  .jarwiz-case .jarwiz-blocking-frame.activity-stage { aspect-ratio: auto; }
-}
