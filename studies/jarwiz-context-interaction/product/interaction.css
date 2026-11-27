@@ -2,30 +2,59 @@
 .jz-board-context-reading > .tl-html-container > :first-child {
   outline: 3px solid transparent;
   outline-offset: 4px;
-  animation: jz-context-card 3.4s ease-in-out var(--jz-context-delay, 0ms) both;
+  animation: jz-context-card 5s ease-in-out var(--jz-context-delay, 0ms) both;
 }
 .jz-board-context-field {
   position:absolute;
   inset:0;
   z-index:200;
   pointer-events:none;
-  background:radial-gradient(ellipse at 50% 100%, rgba(214,173,89,.075), transparent 64%);
-  animation:jz-context-field 3.8s cubic-bezier(.22,.61,.36,1) both;
 }
-.jz-board-context-background { animation:jz-context-grid 3.8s ease-in-out both; }
+/* Keep the field stationary. Only its oversized, fully feathered light layers
+   drift, so a translated rectangular layer can never cross the visible board. */
+.jz-board-context-field::before,
+.jz-board-context-field::after {
+  content:"";
+  position:absolute;
+  inset:-25%;
+  pointer-events:none;
+  filter:blur(72px);
+  opacity:0;
+  transform-origin:50% 60%;
+  will-change:transform,opacity;
+}
+.jz-board-context-field::before {
+  background:
+    radial-gradient(ellipse 45% 40% at 43% 61%, rgba(208,167,99,.065) 0%, rgba(208,167,99,.032) 27%, transparent 72%),
+    radial-gradient(ellipse 36% 46% at 62% 43%, rgba(128,142,169,.025) 0%, transparent 73%);
+  animation:jz-context-bloom 5.6s ease-in-out both;
+}
+.jz-board-context-field::after {
+  background:radial-gradient(ellipse 38% 35% at 60% 59%, rgba(180,142,98,.045) 0%, rgba(180,142,98,.014) 35%, transparent 75%);
+  animation:jz-context-bloom-secondary 5.6s ease-in-out both;
+}
+.jz-board-context-background { animation:jz-context-grid 5.6s ease-in-out both; }
 @keyframes jz-context-card {
   0%,100% { outline-color:transparent; }
   18% { outline-color:rgba(214,173,89,.60); }
   58% { outline-color:rgba(214,173,89,.22); }
 }
-@keyframes jz-context-field {
-  0% { opacity:0; transform:translateY(20%); }
-  28% { opacity:1; }
-  100% { opacity:0; transform:translateY(-30%); }
+@keyframes jz-context-bloom {
+  0% { opacity:0; transform:translate(-4%,6%) rotate(-6deg) scale(.94,.98); }
+  25% { opacity:.75; }
+  48% { opacity:.9; transform:translate(3%,-2%) rotate(3deg) scale(1.05,.94); }
+  76% { opacity:.55; transform:translate(-1%,-5%) rotate(-3deg) scale(.96,1.06); }
+  100% { opacity:0; transform:translate(2%,-7%) rotate(1deg) scale(1.05,1.02); }
+}
+@keyframes jz-context-bloom-secondary {
+  0% { opacity:0; transform:translate(5%,3%) rotate(8deg) scale(1.04,.9); }
+  36% { opacity:.7; transform:translate(-3%,-2%) rotate(-4deg) scale(.94,1.06); }
+  65% { opacity:.6; transform:translate(1%,2%) rotate(3deg) scale(1.08,.96); }
+  100% { opacity:0; transform:translate(-4%,-4%) rotate(-5deg) scale(.98,1.04); }
 }
 @keyframes jz-context-grid {
   0%,100% { filter:brightness(1); }
-  36% { filter:brightness(1.28); }
+  42% { filter:brightness(1.12); }
 }
 @media(prefers-reduced-motion:reduce) {
   .jz-board-context-reading > .tl-html-container > :first-child { animation:none; outline-color:rgba(214,173,89,.35); }
