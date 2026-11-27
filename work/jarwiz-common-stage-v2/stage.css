@@ -6,14 +6,6 @@
 .jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:12px}
 @media(max-width:600px){.jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:8px}}
 
-.jarwiz-product-still {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 880px;
-  box-sizing: border-box;
-  padding: clamp(12px, 2.4vw, 32px);
-  border-radius: var(--folio-media-radius, 48px);
-  background: #dde5eb url('./backdrop.webp') center / cover;
-}
+.jarwiz-product-still { margin-block: 0; }
 .jarwiz-product-still a { display: block; cursor: zoom-in; }
-.jarwiz-product-still img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.jarwiz-product-still img { display: block; width: 100%; height: auto; }
