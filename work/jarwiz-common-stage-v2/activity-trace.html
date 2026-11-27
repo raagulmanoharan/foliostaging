@@ -48,7 +48,14 @@ header strong, header span { display: grid; align-items: center; }
 header strong { position: relative; font-weight: 580; }
 header strong::after { content: ''; height: 2px; background: var(--accent); position: absolute; inset: auto 0 -1px; }
 header span { color: var(--muted); }
-.history { padding: 16px; overflow-y: auto; overscroll-behavior: contain; }
+.history {
+  padding: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-anchor: none;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
 .request { border: 1px solid var(--border); border-radius: 8px; }
 .request + .request { margin-top: 8px; }
 summary { cursor: pointer; list-style: none; }
@@ -120,35 +127,43 @@ details[open] > summary > .chevron { transform: translateY(-2px) rotate(45deg); 
     linear-gradient(#b4b6be,#b4b6be) center 6px / 5px 1px no-repeat;
 }
 @media (prefers-reduced-motion: no-preference) {
-  details > summary > .chevron {
-    transition: transform 260ms cubic-bezier(.3, 0, .2, 1);
-  }
+  details > summary > .chevron { transition: transform 300ms cubic-bezier(.42, 0, .45, 1); }
 }
-@supports selector(details::details-content) and (interpolate-size: allow-keywords) {
+@supports selector(details::details-content) and (transition-behavior: allow-discrete) {
   @media (prefers-reduced-motion: no-preference) {
     .request, .run {
-      interpolate-size: allow-keywords;
-      --disclosure-motion: 260ms cubic-bezier(.3, 0, .2, 1);
+      --disclosure-time: 420ms;
+      --disclosure-ease: cubic-bezier(.42, 0, .45, 1);
     }
+    .run { --disclosure-time: 300ms; }
     details::details-content {
-      block-size: 0;
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
       overflow: clip;
-      transition: block-size var(--disclosure-motion), content-visibility 260ms allow-discrete;
+      transition: grid-template-rows var(--disclosure-time) var(--disclosure-ease),
+        opacity var(--disclosure-time) var(--disclosure-ease),
+        content-visibility var(--disclosure-time) allow-discrete;
     }
-    details[open]::details-content { block-size: auto; }
+    details[open]::details-content { grid-template-rows: 1fr; opacity: 1; }
+    .disclosure-body, .recap > span { min-height: 0; overflow: clip; }
     .request > summary > .recap {
-      display: block;
-      block-size: auto;
+      display: grid;
+      grid-template-rows: 1fr;
       overflow: clip;
       opacity: 1;
+      visibility: visible;
       margin-block-start: 0;
-      transition: block-size var(--disclosure-motion), margin-block-start var(--disclosure-motion),
-        opacity 150ms ease;
+      transition: grid-template-rows var(--disclosure-time) var(--disclosure-ease),
+        margin-block-start var(--disclosure-time) var(--disclosure-ease),
+        opacity var(--disclosure-time) var(--disclosure-ease),
+        visibility var(--disclosure-time);
     }
     .request[open] > summary > .recap {
-      display: block;
-      block-size: 0;
+      display: grid;
+      grid-template-rows: 0fr;
       opacity: 0;
+      visibility: hidden;
       margin-block-start: -3px;
     }
   }
@@ -163,55 +178,59 @@ details[open] > summary > .chevron { transform: translateY(-2px) rotate(45deg); 
       <summary class="question">
         <span class="meta"><span>You</span><time datetime="10:41">10:41</time></span>
         <span class="prompt">Where do people get stuck in signup?</span><span class="chevron" aria-hidden="true"></span>
-        <span class="recap">Reviewed the signup sketch and interview notes.</span>
+        <span class="recap"><span>Reviewed the signup sketch and interview notes.</span></span>
       </summary>
-      <div class="card-content">
-        <div class="byline"><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">Jarwiz</div>
-        <p class="answer">People pause at “Connect a workspace.” The sketch asks for access before showing a report, and the interview notes describe hesitation at that step.</p>
+      <div class="disclosure-body">
+        <div class="card-content">
+          <div class="byline"><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">Jarwiz</div>
+          <p class="answer">People pause at “Connect a workspace.” The sketch asks for access before showing a report, and the interview notes describe hesitation at that step.</p>
+        </div>
       </div>
     </details>
     <details class="request" open>
       <summary class="question">
         <span class="meta"><span>You</span><time datetime="10:43">10:43</time></span>
         <span class="prompt">How can people try a report before connecting their data?</span><span class="chevron" aria-hidden="true"></span>
-        <span class="recap">Reviewed two board cards and one product example. Saved a revised signup flow.</span>
+        <span class="recap"><span>Reviewed two board cards and one product example. Saved a revised signup flow.</span></span>
       </summary>
-      <div class="card-content">
-        <div class="byline"><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">Jarwiz</div>
-        <p class="answer">Start with a sample report people can filter. Offer “Connect your data” once they’ve explored a result.</p>
-        <section class="work" aria-labelledby="work-heading">
-          <h2 id="work-heading">Agent activity</h2>
-          <ol class="log">
-            <li>
-              <details class="run" open>
-                <summary><span data-role="Summarizer">Summarizer</span><time class="duration" datetime="PT3.2S">3.2 s</time><span class="chevron" aria-hidden="true"></span></summary>
-                <p>The signup sketch asks for access before showing a report. Interview notes describe hesitation at that step.</p>
-              </details>
-            </li>
-            <li>
-              <details class="run" open>
-                <summary><span data-role="Researcher">Researcher</span><time class="duration" datetime="PT8.6S">8.6 s</time><span class="chevron" aria-hidden="true"></span></summary>
-                <p>Power BI’s Corporate Spend sample pairs a report with a data model. People can compare spending by region before adding their data. We still need to test whether a preview helps people decide to connect.</p>
-              </details>
-            </li>
-            <li>
-              <details class="run">
-                <summary><span data-role="Writer">Writer</span><time class="duration" datetime="PT2.1S">2.1 s</time><span class="chevron" aria-hidden="true"></span></summary>
-                <p>Used both findings to draft a flow that opens a sample report and offers a connection after the first filter.</p>
-              </details>
-            </li>
-          </ol>
-        </section>
-        <ul class="evidence" aria-label="Sources used">
-          <li><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">First-run signup <span class="origin">Board sketch</span></li>
-          <li><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">Usability notes <span class="origin">Board document</span></li>
-          <li><img src="../../studies/jarwiz-activity-motion/film/assets/microsoft-learn.png" alt=""><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/sample-corporate-spend" target="_blank" rel="noopener noreferrer">Corporate Spend sample</a><span class="origin">Microsoft Learn</span></li>
-        </ul>
-        <div class="result">
-          <span class="result-icon" aria-hidden="true"></span>
-          <div>
-            <strong>Try a sample report</strong>
-            <small>Saved to board <time datetime="10:43">10:43</time></small>
+      <div class="disclosure-body">
+        <div class="card-content">
+          <div class="byline"><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">Jarwiz</div>
+          <p class="answer">Start with a sample report people can filter. Offer “Connect your data” once they’ve explored a result.</p>
+          <section class="work" aria-labelledby="work-heading">
+            <h2 id="work-heading">Agent activity</h2>
+            <ol class="log">
+              <li>
+                <details class="run" open>
+                  <summary><span data-role="Summarizer">Summarizer</span><time class="duration" datetime="PT3.2S">3.2 s</time><span class="chevron" aria-hidden="true"></span></summary>
+                  <div class="disclosure-body"><p>The signup sketch asks for access before showing a report. Interview notes describe hesitation at that step.</p></div>
+                </details>
+              </li>
+              <li>
+                <details class="run" open>
+                  <summary><span data-role="Researcher">Researcher</span><time class="duration" datetime="PT8.6S">8.6 s</time><span class="chevron" aria-hidden="true"></span></summary>
+                  <div class="disclosure-body"><p>Power BI’s Corporate Spend sample pairs a report with a data model. People can compare spending by region before adding their data. We still need to test whether a preview helps people decide to connect.</p></div>
+                </details>
+              </li>
+              <li>
+                <details class="run">
+                  <summary><span data-role="Writer">Writer</span><time class="duration" datetime="PT2.1S">2.1 s</time><span class="chevron" aria-hidden="true"></span></summary>
+                  <div class="disclosure-body"><p>Used both findings to draft a flow that opens a sample report and offers a connection after the first filter.</p></div>
+                </details>
+              </li>
+            </ol>
+          </section>
+          <ul class="evidence" aria-label="Sources used">
+            <li><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">First-run signup <span class="origin">Board sketch</span></li>
+            <li><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">Usability notes <span class="origin">Board document</span></li>
+            <li><img src="../../studies/jarwiz-activity-motion/film/assets/microsoft-learn.png" alt=""><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/sample-corporate-spend" target="_blank" rel="noopener noreferrer">Corporate Spend sample</a><span class="origin">Microsoft Learn</span></li>
+          </ul>
+          <div class="result">
+            <span class="result-icon" aria-hidden="true"></span>
+            <div>
+              <strong>Try a sample report</strong>
+              <small>Saved to board <time datetime="10:43">10:43</time></small>
+            </div>
           </div>
         </div>
       </div>
