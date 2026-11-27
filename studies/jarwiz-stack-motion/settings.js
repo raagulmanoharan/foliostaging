@@ -1,5 +1,5 @@
 (()=>{
- const defaults={idleSpacing:19,idleFan:12,deckSpacing:10,deckFan:5,listGap:12,hoverLift:5,openDuration:820,closeDuration:800,stagger:54,openEase:'gentle',closeEase:'gentle',curve:[.22,1,.36,1]};
+ const defaults={idleSpacing:19,idleFan:12,deckSpacing:10,deckFan:5,listGap:12,hoverLift:5,openDuration:820,closeDuration:800,stagger:54,openEase:'gentle',closeEase:'smooth',curve:[.22,1,.36,1]};
  const curves={gentle:[.22,1,.36,1],smooth:[.4,0,.2,1],quick:[.16,1,.3,1],spring:[.34,1.25,.4,1],linear:[0,0,1,1]};
  const specs=[['idleSpacing','Fan spacing',8,26,1,'px','deck'],['idleFan','Fan angle',0,16,1,'°','deck'],['deckSpacing','Selected deck spacing',1,14,1,'px','deck'],['deckFan','Selected deck angle',0,6,.5,'°','deck'],['listGap','Vertical card spacing',6,24,1,'px','deck'],['hoverLift','Hover lift',1,6,1,'px','deck'],['openDuration','Opening',160,1000,20,'ms','timing'],['closeDuration','Closing',160,800,20,'ms','timing'],['stagger','Card stagger',0,60,2,'ms','timing']];
  const presets={gentle:{...defaults},snappy:{...defaults,openDuration:280,closeDuration:220,stagger:10,deckSpacing:4,deckFan:1.5,openEase:'quick'},float:{...defaults,openDuration:760,closeDuration:560,stagger:26,deckSpacing:6,deckFan:2.5,openEase:'spring'}};

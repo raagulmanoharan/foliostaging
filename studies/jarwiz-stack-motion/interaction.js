@@ -15,13 +15,13 @@ function freezeMotion(){
  motionAnimations.forEach(a=>a.cancel());motionAnimations=[];
  for(const {el,transform,opacity} of poses){el.style.transform=transform;el.style.opacity=opacity}
 }
-function clearFlights(){flightLayer.replaceChildren();flights.clear();list.style.visibility='';arranging=false;popover.classList.remove('is-arranging')}
-function stackOrigins(){return [...previews.children].map(el=>{const m=new DOMMatrixReadOnly(getComputedStyle(el).transform);return{id:el.dataset.context,rect:el.getBoundingClientRect(),width:el.offsetWidth,height:el.offsetHeight,angle:Math.atan2(m.b,m.a)*180/Math.PI}})}
+function clearFlights(){flightLayer.replaceChildren();flights.clear();list.style.visibility='';arranging=false;popover.classList.remove('is-arranging','is-folding')}
+function stackOrigins(){return [...previews.children].map(el=>{const m=new DOMMatrixReadOnly(getComputedStyle(el).transform);return{id:el.dataset.context,rect:el.getBoundingClientRect(),width:el.offsetWidth*Math.hypot(m.a,m.b),height:el.offsetHeight*Math.hypot(m.c,m.d),angle:Math.atan2(m.b,m.a)*180/Math.PI}})}
 function flightPose(rect,angle=0,width=48,height=60){const r=flightLayer.getBoundingClientRect();return `translate(${rect.x+rect.width/2-r.x-24}px,${rect.y+rect.height/2-r.y-30}px) rotate(${angle}deg) scale(${width/48},${height/60})`}
 function deckPose(origins,open){
  if(open){const o=origins.at(-1);return flightPose(o.rect,o.angle,o.width,o.height)}
  const el=previews.lastElementChild,style=getComputedStyle(el),r=previews.getBoundingClientRect(),s=window.stackMotion,layer=Number(style.getPropertyValue('--layer')),tilt=Number(style.getPropertyValue('--tilt')),lift=el.matches(':hover')?-s.hoverLift:0;
- return flightPose({x:r.x+2+layer*s.idleSpacing,y:r.y+5+lift,width:34,height:42},tilt*s.idleFan,34,42);
+ return flightPose({x:r.x+2+layer*s.idleSpacing,y:r.y+5+lift/2,width:34,height:42},tilt*s.idleFan,34*.86,42*.86);
 }
 function setStackTiming(open){const s=window.stackMotion;stackGroup.style.setProperty('--stack-duration',(open?s.openDuration:s.closeDuration)+'ms');stackGroup.style.setProperty('--stack-ease',open?window.stackEase(s.openEase,s.curve):window.stackEase(s.closeEase));}
 function transitionStack(open,{immediate=false}={}){
@@ -35,7 +35,8 @@ function transitionStack(open,{immediate=false}={}){
  if(open&&!wasVisible)list.scrollTop=0;
  placeComposer();
  const s=window.stackMotion,easing=open?window.stackEase(s.openEase,s.curve):window.stackEase(s.closeEase),entries=[...list.children];
- arranging=true;popover.classList.add('is-arranging');list.style.visibility='hidden';
+ const previewPoses=new Map(entries.map(entry=>[entry.dataset.context,getComputedStyle(entry.querySelector('.entry-preview')).transform]));
+ arranging=true;popover.classList.add('is-arranging');popover.classList.toggle('is-folding',!open);list.style.visibility='hidden';
  // Each link is a child behind the preceding card. Relative motion creates
  // a physical accordion: no independent flights, fades, or crossing layers.
  const chain=[...entries].reverse(),identity='translate(0px,0px) rotate(0deg) scale(1)',deck=deckPose(origins,open);
@@ -44,7 +45,7 @@ function transitionStack(open,{immediate=false}={}){
   const id=entry.dataset.context,rect=entry.getBoundingClientRect();let el=flights.get(id);
   if(!el){
    el=document.createElement('div');el.className='stack-flight stack-link';el.dataset.chainIndex=String(i);
-   const preview=entry.querySelector('.entry-preview').cloneNode(true);preview.querySelector('button')?.remove();el.append(preview);parent.append(el);flights.set(id,el);
+   const preview=entry.querySelector('.entry-preview').cloneNode(true);preview.querySelector('button')?.remove();if(!open){const from=previewPoses.get(id);preview.style.transform=from;selectionTween(preview,[{transform:from},{transform:'none'}],{duration:180})}el.append(preview);parent.append(el);flights.set(id,el);
    el.style.transform=open?(i===0?deck:identity):(i===0?flightPose(rect):`translate(${rect.x-parentRect.x}px,${rect.y-parentRect.y}px) rotate(0deg) scale(1)`);
    el.style.opacity='1';
   }
@@ -69,25 +70,70 @@ function closePopover(options){transitionStack(false,options)}
 function openPopover(){transitionStack(true)}
 window.__stackLabReplay=()=>{closePopover({immediate:true});stackGroup.style.setProperty('--stack-duration','0ms');previews.getBoundingClientRect();requestAnimationFrame(()=>requestAnimationFrame(openPopover))};
 window.addEventListener('stack-motion-change',()=>{requestAnimationFrame(()=>{placeComposer();positionDockLabels()});setTimeout(positionDockLabels,window.stackMotion.openDuration+60)});
+const selectionAnimations=new Set();let selectionHasRendered=false;
+const selectionGhosts=document.createElement('div');selectionGhosts.className='selection-ghost-layer';selectionGhosts.setAttribute('aria-hidden','true');composer.append(selectionGhosts);
+function selectionTween(el,frames,options,cleanup=()=>{}){
+ const a=el.animate(frames,{duration:400,easing:'cubic-bezier(.22,1,.36,1)',fill:'both',...options});selectionAnimations.add(a);popover.classList.add('is-selection-shifting');
+ const done=()=>{selectionAnimations.delete(a);cleanup();a.cancel();if(!selectionAnimations.size){popover.classList.remove('is-selection-shifting');requestAnimationFrame(()=>positionDockLabels())}};a.finished.then(done,done);return a;
+}
+function leaveSelection(el,previous){
+ if(reduced.matches)return;
+ const rect=previous||el.getBoundingClientRect(),style=getComputedStyle(el),origin=selectionGhosts.getBoundingClientRect(),matrix=new DOMMatrixReadOnly(previous?.pose||style.transform),ghost=document.createElement('div');
+ ghost.className='selection-ghost';ghost.innerHTML=el.innerHTML;
+ for(const property of ['display','alignItems','justifyContent','background','border','borderRadius','boxShadow','color','font','padding','boxSizing','whiteSpace','textAlign','lineHeight'])ghost.style[property]=style[property];
+ Object.assign(ghost.style,{left:rect.x+rect.width/2-origin.x+'px',top:rect.y+rect.height/2-origin.y+'px',width:el.offsetWidth+'px',height:el.offsetHeight+'px'});
+ const pose=`translate(-50%,-50%) matrix(${matrix.a},${matrix.b},${matrix.c},${matrix.d},0,0)`;
+ ghost.style.transform=pose;
+ const preview=ghost.querySelector('.entry-preview'),old=el.querySelector('.entry-preview');if(preview&&old){preview.style.transform=getComputedStyle(old).transform;preview.style.borderColor=getComputedStyle(old).borderColor}
+ ghost.querySelectorAll('button').forEach(button=>button.remove());selectionGhosts.append(ghost);
+ selectionTween(ghost,[{transform:pose,opacity:Number(style.opacity)},{transform:pose+' translateY(-3px) scale(.94)',opacity:0}],{duration:220},()=>ghost.remove());
+}
+function syncSelection(container,items,key,build,before){
+ const desired=new Set(items.map(key));for(const el of [...container.children])if(!desired.has(el.dataset.key)){if(!container.closest('[hidden]'))leaveSelection(el,before?.get(el.dataset.key));el.remove()}
+ const fresh=[];
+ for(const [index,item] of items.entries()){const id=key(item);let el=[...container.children].find(el=>el.dataset.key===id);if(!el){el=build(item);el.dataset.key=id;fresh.push(el)}if(container.children[index]!==el)container.insertBefore(el,container.children[index]||null)}
+ return fresh;
+}
+function captureSelection(container){return new Map([...container.children].map(el=>{const rect=el.getBoundingClientRect();rect.pose=getComputedStyle(el).transform;return[el.dataset.key,rect]}))}
+function settleSelectionLayout(container,before){
+ if(reduced.matches||container.closest('[hidden]'))return;
+ for(const el of container.children){const previous=before.get(el.dataset.key);if(!previous)continue;const next=el.getBoundingClientRect(),dx=previous.x-next.x,dy=previous.y-next.y;
+ // Existing deck cards keep their DOM nodes: their native left/rotation CSS
+ // transitions do the movement. The list and its labels use the same FLIP.
+ if(container===previews||Math.hypot(dx,dy)<.25)continue;
+ selectionTween(el,[{translate:`${dx}px ${dy}px`},{translate:'0 0'}],{duration:420});
+ }
+}
+function enterSelection(el){
+ if(reduced.matches)return;
+ const m=new DOMMatrixReadOnly(getComputedStyle(el).transform),angle=Math.atan2(m.b,m.a)*180/Math.PI;
+ selectionTween(el,[{opacity:0,transform:`translateY(6px) rotate(${angle-2}deg) scale(.94)`},{opacity:1,transform:`translateY(0px) rotate(${angle}deg) scale(1)`}],{duration:420});
+}
 function changeCard(id,add){if(busy)finish();if(add){selected.has(id)?selected.delete(id):selected.add(id)}else selected=new Set([id]);render()}
 function removeCard(id){if(busy)finish();const index=[...selected].indexOf(id),managing=!popover.hidden;selected.delete(id);hot=null;render();if(managing&&selected.size){const next=list.querySelectorAll('[data-remove]')[Math.min(index,selected.size-1)];next?.focus({preventScroll:true})}else prompt.focus({preventScroll:true})}
 function render(){
+ const oldPreviews=captureSelection(previews),oldEntries=captureSelection(list),labels=document.querySelector('#dock-labels'),oldLabels=captureSelection(labels);
  if(arranging){const open=stack.getAttribute('aria-expanded')==='true';freezeMotion();clearFlights();popover.hidden=!open}
  const active=[...selected].map(id=>byId.get(id)),n=active.length;
  for(const el of sources.children){const on=selected.has(el.dataset.source);el.classList.toggle('is-selected',on);el.classList.toggle('is-excluded',n>0&&!on);el.setAttribute('aria-selected',String(on))}
- list.innerHTML=active.map(c=>`<div class="context-entry" role="listitem" aria-label="${esc(c.title)}" data-context="${esc(c.id)}"><div class="entry-preview"><img src="${c.thumb}" alt=""><button type="button" class="preview-dismiss" data-remove="${esc(c.id)}" aria-label="Remove ${esc(c.title)}">${closeIcon}</button></div></div>`).join('');
- region.classList.toggle('is-hidden',n===0);stackGroup.hidden=n===0;stackGroup.dataset.size=n===1?'one':n===2?'two':'many';
- const visible=n>3?active.slice(0,2):active.slice(0,3);
- previews.innerHTML=visible.map(c=>`<span class="stack-preview" data-context="${esc(c.id)}"><img src="${c.thumb}" alt=""></span>`).join('')+(n>3?`<span class="stack-tail" data-overflow aria-hidden="true">+${n-2}</span>`:'');
+ const make=html=>{const template=document.createElement('template');template.innerHTML=html;return template.content.firstElementChild};
+ syncSelection(list,active,c=>c.id,c=>make(`<div class="context-entry" role="listitem" aria-label="${esc(c.title)}" data-context="${esc(c.id)}"><div class="entry-preview"><img src="${c.thumb}" alt=""><button type="button" class="preview-dismiss" data-remove="${esc(c.id)}" aria-label="Remove ${esc(c.title)}">${closeIcon}</button></div></div>`),oldEntries);
+ stackGroup.dataset.size=n===1?'one':n===2?'two':'many';
+ stackGroup.style.setProperty('--stack-duration','420ms');stackGroup.style.setProperty('--stack-ease','cubic-bezier(.22,1,.36,1)');
+ const visible=n>3?active.slice(0,2):active.slice(0,3),previewItems=[...visible];if(n>3)previewItems.push({id:'overflow',count:n-2});
+ const fresh=syncSelection(previews,previewItems,c=>c.id,c=>make(c.id==='overflow'?`<span class="stack-tail" data-overflow aria-hidden="true">+${c.count}</span>`:`<span class="stack-preview" data-context="${esc(c.id)}"><img src="${c.thumb}" alt=""></span>`),oldPreviews);
+ region.classList.toggle('is-hidden',n===0);stackGroup.hidden=n===0;
+ const overflow=previews.querySelector('[data-overflow]');if(overflow)overflow.textContent='+'+(n-2);
  const singleDismiss=document.querySelector('#single-dismiss');singleDismiss.hidden=n!==1;singleDismiss.innerHTML=closeIcon;if(n===1){singleDismiss.dataset.remove=active[0].id;singleDismiss.setAttribute('aria-label','Remove '+active[0].title)}else delete singleDismiss.dataset.remove;
- document.querySelector('#dock-labels').innerHTML=active.map(c=>`<span class="dock-name" data-context="${esc(c.id)}">${esc(c.title)}</span>`).join('');
+ syncSelection(labels,active,c=>c.id,c=>make(`<span class="dock-name" data-context="${esc(c.id)}">${esc(c.title)}</span>`),oldLabels);
  list.style.setProperty('--context-columns',Math.min(3,n)||1);popover.dataset.count=n;
  stack.setAttribute('aria-label','Using '+n+' '+(n===1?'card':'cards')+'. Toggle selected context');scope.hidden=n>0;scope.textContent='Board context';
  prompt.placeholder=n===0?'Ask about anything on this board…':n===1?'What would you like to make from this?':'What would you like to make from these?';
  if(!n)closePopover({immediate:true});status.textContent=n?'Selection ready':'The whole board is context';
  for(const b of document.querySelectorAll('button[data-count]'))b.setAttribute('aria-pressed',String(Number(b.dataset.count)===n));
- send.disabled=!prompt.value.trim();requestAnimationFrame(()=>{layout();highlight(hot)});
- window.__stackReview={getState:()=>({selected:[...selected],prompt:prompt.value,busy,popover:!popover.hidden,arranging}),setCount:selectCount};
+ prompt.style.height='24px';prompt.style.height=Math.min(96,prompt.scrollHeight)+'px';
+ send.disabled=!prompt.value.trim();layout();positionDockLabels(true);highlight(hot);settleSelectionLayout(list,oldEntries);settleSelectionLayout(labels,oldLabels);for(const el of fresh)if(selectionHasRendered)enterSelection(el);selectionHasRendered=true;
+ window.__stackReview={getState:()=>({selected:[...selected],prompt:prompt.value,busy,popover:!popover.hidden,arranging,selectionAnimating:selectionAnimations.size>0}),setCount:selectCount};
 }
 function selectCount(n){finish();selected=new Set(cards.slice(0,n).map(c=>c.id));closePopover({immediate:true});render()}
 function layout(){const w=app.clientWidth,z=Math.min(.72,(w-(w<650?32:120))/1320,(app.clientHeight-80)/950),ox=(w-1320*z)/2-80*z,oy=w<650?55:40;for(const c of cards){const el=sources.querySelector(`[data-source="${c.id}"]`);Object.assign(el.style,{left:(c.x*z+ox)+'px',top:(c.y*z+oy)+'px',width:c.w*z+'px',height:c.h*z+'px'});Object.assign(el.querySelector('.tl-html-container').style,{width:c.w+'px',height:c.h+'px',transform:`scale(${z})`});}placeComposer();}
@@ -105,5 +151,5 @@ let drag=null;app.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.c
 prompt.addEventListener('focus',closePopover);document.addEventListener('pointerdown',e=>{if(!popover.hidden&&!e.target.closest('#composer,.motion-panel'))closePopover()});
 new ResizeObserver(layout).observe(app);new ResizeObserver(placeComposer).observe(composer);render();document.fonts.ready.then(()=>{layout();app.dataset.ready='true'});
 
-function positionDockLabels(){if(popover.hidden||arranging)return;const p=popover.getBoundingClientRect(),viewport=list.getBoundingClientRect();for(const label of document.querySelectorAll('.dock-name')){const item=list.querySelector(`[data-context="${label.dataset.context}"]`);if(!item)continue;const r=item.getBoundingClientRect();label.hidden=r.top<viewport.top+4||r.bottom>viewport.bottom-4;label.style.top=r.top+r.height/2-p.top+'px';}}
+function positionDockLabels(force=false){if(popover.hidden||arranging||(force!==true&&selectionAnimations.size))return;const p=popover.getBoundingClientRect(),viewport=list.getBoundingClientRect();for(const label of document.querySelectorAll('.dock-name')){const item=list.querySelector(`[data-context="${label.dataset.context}"]`);if(!item)continue;const r=item.getBoundingClientRect();label.hidden=r.top<viewport.top+4||r.bottom>viewport.bottom-4;label.style.top=r.top+r.height/2-p.top+'px';}}
 list.addEventListener('scroll',positionDockLabels,{passive:true});
