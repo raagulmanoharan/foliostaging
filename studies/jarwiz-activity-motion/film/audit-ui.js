@@ -1,6 +1,6 @@
 // Shared by the interactive audit rail and its motion study.
 window.auditUI = (() => {
-  const assets = new URL('assets/', document.currentScript.src);
+  const assets = document.documentElement.dataset.auditAssets || 'assets/';
   const ns = 'http://www.w3.org/2000/svg';
   const paths = {
     Jarwiz:'M12 3l2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4z',
@@ -16,7 +16,7 @@ window.auditUI = (() => {
   }
   function favicon(external=false){
     const img=document.createElement('img');img.className='source-favicon';img.alt='';
-    img.width=15;img.height=15;img.src=new URL(external?'microsoft-learn.png':'jarwiz-favicon.svg',assets);return img;
+    img.width=15;img.height=15;img.src=assets+(external?'microsoft-learn.png':'jarwiz-favicon.svg');return img;
   }
   const sources=[
     ['First-run signup','Board sketch','sketch'],
