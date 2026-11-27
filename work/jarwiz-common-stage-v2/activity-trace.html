@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jarwiz · Signup activity</title>
+<link rel="stylesheet" href="../../studies/jarwiz-activity-motion/film/audit-ui.css">
+<style>
+@font-face {
+  font-family: Inter;
+  src: url('../../studies/jarwiz-activity-motion/film/assets/inter.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+:root {
+  color-scheme: dark;
+  font: 13px/1.5 Inter, system-ui, sans-serif;
+  color: #edecf0;
+  background: #17181b;
+  --border: #34343b;
+  --muted: #aaa8b1;
+  --accent: #c8badc;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.panel {
+  display: grid;
+  grid-template-rows: 48px minmax(0,1fr);
+  height: 100dvh;
+  border: 1px solid #303037;
+  background: #17181b;
+}
+header {
+  padding-inline: 16px;
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+  border-bottom: 1px solid #303037;
+}
+header strong, header span { display: grid; align-items: center; }
+header strong { position: relative; font-weight: 580; }
+header strong::after { content: ''; height: 2px; background: var(--accent); position: absolute; inset: auto 0 -1px; }
+header span { color: var(--muted); }
+.history { padding: 16px; overflow-y: auto; overscroll-behavior: contain; }
+.request { border: 1px solid var(--border); border-radius: 10px; background: #202126; }
+.request + .request { margin-top: 10px; }
+.request[open] { border-color: #424048; }
+summary { cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 6px; }
+.question { padding: 13px 14px; display: grid; grid-template-columns: minmax(0,1fr) 14px; gap: 3px 10px; }
+.question:hover { background: #ffffff04; border-radius: 9px; }
+.meta {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+}
+.prompt { font-size: 14px; line-height: 1.45; font-weight: 550; letter-spacing: -.015em; }
+.chevron { align-self: center; width: 7px; height: 7px; margin: 0 2px 2px auto; border: solid #aaa8b1; border-width: 0 1.4px 1.4px 0; transform: rotate(-45deg); }
+details[open] > summary > .chevron { transform: rotate(45deg); }
+.recap { color: var(--muted); font-size: 12px; }
+.request[open] > summary > .recap { display: none; }
+.card-content { margin: 0 14px; padding: 12px 0 14px; border-top: 1px solid var(--border); }
+.card-content p { margin: 0; }
+.byline { display: flex; gap: 8px; align-items: center; margin-bottom: 7px; font-weight: 550; }
+.byline img, .evidence img { width: 14px; height: 14px; border-radius: 3px; }
+.answer { color: #e1dfe6; }
+.work { margin: 12px 0; border: 1px solid #3b3a42; border-radius: 7px; background: #1b1c20; }
+.work > summary { display: flex; align-items: center; gap: 6px; padding: 8px 10px; }
+.work > summary:hover { background: #ffffff06; border-radius: 7px; }
+.work > summary .chevron { margin-right: 3px; }
+.work-label { font-weight: 530; }
+.work-count { color: var(--muted); }
+.log { display: grid; gap: 11px; margin: 0 10px 11px; padding: 0 0 0 23px; border-left: 1px solid #4a454f; list-style: none; }
+.log li { position: relative; }
+.log li::before { content: ''; position: absolute; width: 7px; left: -23px; top: 11px; border-top: 1px solid #4a454f; }
+.log p { margin-top: 4px; color: #cfccd7; }
+.evidence { margin: 12px 0 0; padding: 0; list-style: none; }
+.evidence li { padding: 6px 0; display: flex; align-items: center; gap: 7px; color: #cfccd5; font-size: 11.5px; border-top: 1px solid #34343b; }
+.evidence .origin { margin-left: auto; color: var(--muted); font-size: 10.5px; text-align: right; }
+.evidence a { color: inherit; text-decoration-color: #77717e; text-underline-offset: 2px; }
+.result { display: grid; grid-template-columns: 26px minmax(0,1fr); align-items: center; column-gap: 9px; padding: 9px 10px; border: 1px solid #494152; border-radius: 7px; background: #2b2731; }
+.result small { color: #c2b6cb; font-size: 10.5px; }
+.result strong { display: block; font-weight: 540; }
+.result-icon {
+  width: 14px;
+  height: 17px;
+  justify-self: center;
+  border: 1px solid #c8badc;
+  border-radius: 3px;
+  background: linear-gradient(#c8badc,#c8badc) center 5px / 6px 1px no-repeat,
+    linear-gradient(#c8badc,#c8badc) center 9px / 6px 1px no-repeat;
+}
+</style>
+</head>
+<body>
+<section class="panel" aria-label="Jarwiz Activity example">
+  <header><strong>Activity</strong><span>Comments</span></header>
+  <div class="history">
+    <details class="request">
+      <summary class="question">
+        <span class="meta"><span>You</span><time>10:41</time></span>
+        <span class="prompt">Where do people get stuck in signup?</span><span class="chevron" aria-hidden="true"></span>
+        <span class="recap">Reviewed the signup sketch and interview notes.</span>
+      </summary>
+      <div class="card-content">
+        <div class="byline"><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">Jarwiz</div>
+        <p class="answer">People pause at “Connect a workspace.” The sketch asks for access before showing a report, and the interview notes describe hesitation at that step.</p>
+      </div>
+    </details>
+    <details class="request" open>
+      <summary class="question">
+        <span class="meta"><span>You</span><time>10:43</time></span>
+        <span class="prompt">How can people try a report before connecting their data?</span><span class="chevron" aria-hidden="true"></span>
+        <span class="recap">Reviewed two board cards and one product example. Saved a revised signup flow.</span>
+      </summary>
+      <div class="card-content">
+        <div class="byline"><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">Jarwiz</div>
+        <p class="answer">Start with a sample report people can filter. Offer “Connect your data” once they’ve explored a result.</p>
+        <details class="work">
+          <summary><span class="work-label">Agent activity</span><span class="work-count">· 3 steps</span><span class="chevron" aria-hidden="true"></span></summary>
+          <ol class="log">
+            <li><span data-role="Summarizer">Summarizer</span><p>The sketch asks for a connection before people see the report. Interview notes point to that step as the source of hesitation.</p></li>
+            <li><span data-role="Researcher">Researcher</span><p>Power BI’s Corporate Spend sample opens with a report and a data model. People can compare spending by region with sample data. It’s a working example of a preview. We still need to test whether seeing a report helps people decide to connect.</p></li>
+            <li><span data-role="Writer">Writer</span><p>Used both findings to draft a flow that opens a sample report and offers a connection after the first filter.</p></li>
+          </ol>
+        </details>
+        <div class="result">
+          <span class="result-icon" aria-hidden="true"></span>
+          <div><small>Saved to board</small><strong>Try a sample report</strong></div>
+        </div>
+        <ul class="evidence" aria-label="Sources used">
+          <li><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">First-run signup <span class="origin">Board sketch</span></li>
+          <li><img src="../../studies/jarwiz-activity-motion/film/assets/jarwiz-favicon.svg" alt="">Usability notes <span class="origin">Board document</span></li>
+          <li><img src="../../studies/jarwiz-activity-motion/film/assets/microsoft-learn.png" alt=""><a href="https://learn.microsoft.com/en-us/power-bi/create-reports/sample-corporate-spend" target="_blank" rel="noopener noreferrer">Corporate Spend sample</a><span class="origin">Microsoft Learn</span></li>
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>
+<script src="../../studies/jarwiz-activity-motion/film/audit-ui.js"></script>
+<script>
+  document.querySelectorAll('[data-role]').forEach(role => {
+    role.replaceWith(auditUI.agent(role.dataset.role));
+  });
+</script>
+</body>
+</html>
