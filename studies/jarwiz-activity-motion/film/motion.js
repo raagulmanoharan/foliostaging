@@ -5,7 +5,16 @@ function target(selector, fx=.55, fy=.55){
   const r=$(selector).getBoundingClientRect();
   return {x:r.left-space.left+fx*r.width,y:r.top-space.top+fy*r.height};
 }
-const connectors=connectTrace($('.tree'),$('#parent b'),[...document.querySelectorAll('.task .symbol')]);
+const parentBadge=auditUI.agent('Jarwiz');
+$('#parent').replaceChildren(parentBadge);
+for(const task of document.querySelectorAll('.task')){
+  const label=task.querySelector('strong small');
+  label.replaceWith(auditUI.agent(label.textContent));
+  task.querySelector('.symbol').remove();
+}
+$('#evidence-box').replaceChildren(auditUI.sourceList());
+document.querySelectorAll('#run .chips>span').forEach(chip=>chip.prepend(auditUI.favicon()));
+const connectors=connectTrace($('.tree'),parentBadge.querySelector('svg'),[...document.querySelectorAll('.task strong')]);
 const writer=target('#disclose',.88,.85),receipt=target('#receipt',.8);
 function cursor(x,y,t,d){tl.to('#pointer',{x,y,duration:d,ease:'sine.inOut'},t);}
 function click(t){tl.to('#pointer svg',{scale:.87,transformOrigin:'3px 2px',duration:.1,yoyo:true,repeat:1},t);}

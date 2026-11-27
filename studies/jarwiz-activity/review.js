@@ -4,7 +4,7 @@ const $$ = selector => [...document.querySelectorAll(selector)];
 const exampleView = new URLSearchParams(location.search).get('view') === 'result';
 const key = 'jarwiz.activity.trace.v4.' + (exampleView ? 'result' : 'board');
 const reportURL = 'https://learn.microsoft.com/en-us/power-bi/create-reports/sample-datasets';
-const names = {sketch:'First-run signup', notes:'Trying the product', result:'Try a sample report'};
+const names = {sketch:'First-run signup', notes:'Usability notes', result:'Try a sample report'};
 const full = [
   ['Open a sample report','Use example data immediately.'],
   ['Explore a useful view','Filter the report and inspect one trend.'],
@@ -12,11 +12,11 @@ const full = [
 ];
 const short = [['Explore a sample report','Open a working report and try its filters.'],full[2]];
 const stories = {
-  earlier:{prompt:'Where do people hesitate?',inputs:['Trying the product · v1'],tasks:[
-    ['Summarizer','Read the usability note','People paused at the workspace connection.','Trying the product · v1','“Can I see what I’m connecting this for?”']
+  earlier:{prompt:'Where do people hesitate?',inputs:['Usability notes · v1'],tasks:[
+    ['Summarizer','Read the usability note','People paused at the workspace connection.','Usability notes · v1','“Can I see what I’m connecting this for?”']
   ],tape:[[0,0],[0,1]]},
-  create:{prompt:'How could someone try this before connecting their data?',inputs:['First-run signup · v2','Trying the product · v1'],tasks:[
-    ['Summarizer','Review the two selected cards','The sketch asks for access before the user sees a report.','First-run signup · v2 and Trying the product · v1','The connection field in the sketch matches the moment of hesitation in the session note.'],
+  create:{prompt:'How could someone try this before connecting their data?',inputs:['First-run signup · v2','Usability notes · v1'],tasks:[
+    ['Summarizer','Review the two selected cards','The sketch asks for access before the user sees a report.','First-run signup · v2 and Usability notes · v1','The connection field in the sketch matches the moment of hesitation in the session note.'],
     ['Researcher','Find a working sample-data example','Power BI lets people explore reports with sample data.','Power BI sample datasets','A ready-made sample report gives people something to explore before they bring their own data.'],
     ['Writer','Combine the two findings','Moved the workspace connection after the first useful view.','Summarizer’s friction finding + Researcher’s sample-report example','Drafted a three-step flow that starts with a report and ends with connecting a workspace.']
   ],tape:[[0,0],[1,0],[0,1],[1,1],[2,0],[2,1]],steps:full},
@@ -62,30 +62,25 @@ function paintTask(row,index,finished){
     const n=el('details',null,'node just-added'),summary=el('summary'),words=el('span'),line=el('span','In progress…','finding');
     n.dataset.role=role;
     const heading=el('b',assignment);
-    heading.append(el('small',role,'specialist'));
+    heading.append(auditUI.agent(role));
     words.append(heading,line);
-    const glyph=el('span',{Summarizer:'≡',Researcher:'⌕',Writer:'✎'}[role],'glyph');glyph.ariaHidden='true';
-    summary.append(glyph,words);
+    summary.append(words);
     const evidence=el('div',null,'evidence');evidence.append(el('small','Received'),el('span',source));
     n.append(summary,evidence);view.list.append(n);view.tasks[index]={line,evidence};updateConnections(view);
   }else{
     const {line,evidence}=view.tasks[index];line.textContent=finding;
     evidence.append(el('small','Returned to Jarwiz'),el('span',detail));
     if(role==='Researcher'){
-      const sources=el('div',null,'source-list');sources.append(el('small','Sources in this run'));
-      for(const [name,origin] of [['First-run signup','Board sketch'],['Trying the product','Board document'],['Sample reports','Microsoft Learn']]){
-        const entry=el('div');
-        if(origin==='Microsoft Learn'){
-          const a=el('a',name+' ↗');a.href=reportURL;a.target='_blank';a.rel='noreferrer';entry.append(a);
-        }else entry.append(name);
-        entry.append(el('span',origin));sources.append(entry);
-      }
-      view.list.append(sources);
+      view.list.append(auditUI.sourceList(id=>{
+        if(matchMedia('(max-width:700px)').matches)$('aside').hidden=true;
+        const card=$('[data-card="'+id+'"]');
+        card.scrollIntoView({block:'nearest'});card.focus({preventScroll:true});focused=id;
+      }));
       const link=el('a','Open sample guide ↗');link.href=reportURL;link.target='_blank';link.rel='noreferrer';evidence.append(el('br'),link);}
   }
 }
 function updateConnections(view){
-  const nodes = Array.from(view.list.querySelectorAll('.node .glyph'));
+  const nodes = Array.from(view.list.querySelectorAll('.node summary b'));
   view.lines?.svg.remove();
   if(nodes.length)view.lines=connectTrace(view.list,view.parent,nodes);
 }
@@ -107,10 +102,10 @@ function addRequest(row,open=true){
   const n=el('details',null,'run'),h=el('summary'),meta=el('div',null,'request-meta');
   meta.append(el('span','You'),time(row.at));h.append(meta,el('div',stories[row.kind].prompt,'ask'));
   n.open=open;n.append(h);
-  const refs=el('div',null,'inputs');inputs(row).forEach(t=>refs.append(el('span',t,'pill')));
+  const refs=el('div',null,'inputs');inputs(row).forEach(t=>{const chip=el('span',t,'pill');chip.prepend(auditUI.favicon());refs.append(chip);});
   const root=el('div',null,'root'),phase=el('span','Received','phase');
-  root.append(el('span','✦','glyph'),el('span','Jarwiz'),phase);
-  const list=el('div',null,'branches');n.append(refs,root,list);const view={list,phase,tasks:[],n,parent:root.querySelector('.glyph')};
+  root.append(auditUI.agent('Jarwiz'),phase);
+  const list=el('div',null,'branches');n.append(refs,root,list);const view={list,phase,tasks:[],n,parent:root.querySelector('.agent-pill svg')};
   views.set(row,view);
   const resize=new ResizeObserver(()=>view.lines?.layout());
   resize.observe(list);
@@ -126,7 +121,20 @@ function result(row,draft=false){
     const li=el('li',title);li.append(el('small',hint));list.append(li);
   }
   card.replaceChildren(el('small',draft?'Signup flow · Draft':'Signup flow · v'+row.rev),el('h2',names.result),list);
-  if(!draft)card.append(el('p','Based on the signup sketch, usability note and Power BI sample-report example.','grounds'));
+  if(!draft){
+    const basis=el('details',null,'basis');
+    basis.append(el('summary','What shaped this flow'));
+    const evidence=el('dl');
+    for(const [title,meaning,external] of [
+      ['First-run signup','The first screen requires a connection. Move that request to the last step.',false],
+      ['Usability notes','Testers wanted to see a report before granting access. Give them a useful first view.',false],
+      ['Power BI sample reports','The sample-report example shows how to let people explore with data already in place.',true]
+    ]){
+      const term=el('dt',title);
+      term.prepend(auditUI.favicon(external));evidence.append(term,el('dd',meaning));
+    }
+    basis.append(evidence);card.append(basis);
+  }
 }
 function showBoard(){
   const row=last(),draft=row.kind==='create'&&!saved(row)&&row.count>=5;
@@ -144,7 +152,7 @@ function nextKind(){const prev=visibleRevision();return !prev?'create':prev.kind
 function composer(){
   const prev=visibleRevision();
   $('#prompt').value=running()?'Jarwiz is working…':stories[nextKind()].prompt;
-  $('.chips').replaceChildren(...(prev?[names.result+' · v'+prev.rev]:[...selected].map(k=>names[k])).map(t=>el('span',t,'pill')));
+  $('.chips').replaceChildren(...(prev?[names.result+' · v'+prev.rev]:[...selected].map(k=>names[k])).map(t=>{const chip=el('span',t,'pill');chip.prepend(auditUI.favicon());return chip;}));
   $('.send').disabled=running()||(!prev&&selected.size!==2);
   $('#prompt').style.height='auto';$('#prompt').style.height=Math.min($('#prompt').scrollHeight,68)+'px';
   $$('.source').forEach(b=>b.setAttribute('aria-pressed',!prev&&selected.has(b.dataset.card)));
