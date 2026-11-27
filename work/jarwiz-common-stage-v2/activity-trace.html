@@ -119,6 +119,40 @@ details[open] > summary > .chevron { transform: translateY(-2px) rotate(45deg); 
   background: linear-gradient(#b4b6be,#b4b6be) center 3px / 5px 1px no-repeat,
     linear-gradient(#b4b6be,#b4b6be) center 6px / 5px 1px no-repeat;
 }
+@media (prefers-reduced-motion: no-preference) {
+  details > summary > .chevron {
+    transition: transform 260ms cubic-bezier(.3, 0, .2, 1);
+  }
+}
+@supports selector(details::details-content) and (interpolate-size: allow-keywords) {
+  @media (prefers-reduced-motion: no-preference) {
+    .request, .run {
+      interpolate-size: allow-keywords;
+      --disclosure-motion: 260ms cubic-bezier(.3, 0, .2, 1);
+    }
+    details::details-content {
+      block-size: 0;
+      overflow: clip;
+      transition: block-size var(--disclosure-motion), content-visibility 260ms allow-discrete;
+    }
+    details[open]::details-content { block-size: auto; }
+    .request > summary > .recap {
+      display: block;
+      block-size: auto;
+      overflow: clip;
+      opacity: 1;
+      margin-block-start: 0;
+      transition: block-size var(--disclosure-motion), margin-block-start var(--disclosure-motion),
+        opacity 150ms ease;
+    }
+    .request[open] > summary > .recap {
+      display: block;
+      block-size: 0;
+      opacity: 0;
+      margin-block-start: -3px;
+    }
+  }
+}
 </style>
 </head>
 <body>
