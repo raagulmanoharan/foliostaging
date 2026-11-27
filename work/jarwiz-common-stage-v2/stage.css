@@ -1,0 +1,7 @@
+/* A single outer clip keeps video/poster corners free of layered seams. */
+.jarwiz-case .jarwiz-blocking-frame{background:#dde5eb url('./backdrop.webp') center/cover no-repeat;border:0;box-shadow:none}
+.jarwiz-case .jarwiz-video-stage{background:none;clip-path:inset(0 round var(--folio-media-radius,48px))}
+.jarwiz-case .jarwiz-video-stage video,.jarwiz-case .jarwiz-video-stage .jarwiz-video-poster{border:0;border-radius:0;box-shadow:none;background:transparent}
+.jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage){--stage-padding:clamp(18px,4vw,56px);aspect-ratio:16/11;display:grid;place-items:center}
+.jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:12px}
+@media(max-width:600px){.jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:8px}}
