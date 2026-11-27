@@ -91,7 +91,7 @@ function receipt(row){
 }
 function drawEvent(row,i){
   const tape=stories[row.kind].tape,view=views.get(row);
-  if(i===tape.length){view.phase.textContent=row.rev?'Delivered':'Finished';receipt(row);return;}
+  if(i===tape.length){view.phase.textContent='✓ Completed';view.phase.classList.add('is-complete');receipt(row);return;}
   const [index,finished]=tape[i];
   paintTask(row,index,finished);
   if(row.kind==='create'){
