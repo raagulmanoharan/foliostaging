@@ -15,20 +15,33 @@
   margin-block: 0;
   background: #dde5eb url('./backdrop.webp') center / cover no-repeat;
 }
-.activity-stage .activity-panel {
+.jarwiz-case .jarwiz-blocking-frame.activity-stage > .activity-panel {
   display: block;
+  width: auto;
   height: 78.787879%;
   aspect-ratio: 423 / 800;
-  overflow: hidden;
-  border-radius: 1.023cqw;
-  box-shadow: 0 .91cqw 2.5cqw #171b2226, 0 .114cqw .341cqw #171b221c;
-  cursor: zoom-in;
-  padding: 0;
   border: 0;
+  border-radius: 1.023cqw;
   background: #17181b;
+  box-shadow: 0 .91cqw 2.5cqw #171b2226, 0 .114cqw .341cqw #171b221c;
 }
-.activity-stage .activity-panel img { display: block; width: 100%; height: auto; }
-.activity-panel:focus-visible { outline: 2px solid #594e71; outline-offset: 3px; }
+.activity-expand {
+  position: absolute;
+  top: clamp(9px, 1.8cqw, 16px);
+  right: clamp(12px, 2.3cqw, 20px);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #20263324;
+  border-radius: 6px;
+  background: #ffffff68;
+  color: #303846;
+  font-size: 17px;
+  cursor: pointer;
+}
+.activity-expand:hover { background: #fff; }
+.activity-expand:focus-visible { outline: 2px solid #594e71; outline-offset: 3px; }
 
 #activity-detail {
   width: min(calc(100% - 32px), 423px);
