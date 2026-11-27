@@ -1,0 +1,5 @@
+/* One shared original surround for finished films and the remaining flow studies. */
+.jarwiz-case .jarwiz-blocking-frame{background:#a5afb5 url('./backdrop.webp') center/cover no-repeat}
+.jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage){--stage-padding:clamp(18px,4vw,56px);aspect-ratio:16/11;display:grid;place-items:center}
+.jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:12px}
+@media(max-width:600px){.jarwiz-case .jarwiz-blocking-frame:not(.jarwiz-video-stage) iframe{border-radius:8px}}
