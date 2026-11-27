@@ -1,0 +1,34 @@
+/* A quiet read of existing context. No card moves, scales or changes selection. */
+.jz-board-context-reading > .tl-html-container > :first-child {
+  outline: 3px solid transparent;
+  outline-offset: 4px;
+  animation: jz-context-card 3.4s ease-in-out var(--jz-context-delay, 0ms) both;
+}
+.jz-board-context-field {
+  position:absolute;
+  inset:0;
+  z-index:200;
+  pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%, rgba(214,173,89,.075), transparent 64%);
+  animation:jz-context-field 3.8s cubic-bezier(.22,.61,.36,1) both;
+}
+.jz-board-context-background { animation:jz-context-grid 3.8s ease-in-out both; }
+@keyframes jz-context-card {
+  0%,100% { outline-color:transparent; }
+  18% { outline-color:rgba(214,173,89,.60); }
+  58% { outline-color:rgba(214,173,89,.22); }
+}
+@keyframes jz-context-field {
+  0% { opacity:0; transform:translateY(20%); }
+  28% { opacity:1; }
+  100% { opacity:0; transform:translateY(-30%); }
+}
+@keyframes jz-context-grid {
+  0%,100% { filter:brightness(1); }
+  36% { filter:brightness(1.28); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .jz-board-context-reading > .tl-html-container > :first-child { animation:none; outline-color:rgba(214,173,89,.35); }
+  .jz-board-context-field { display:none; }
+  .jz-board-context-background { animation:none; }
+}
